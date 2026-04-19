@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 const APPS = [
   {
     icon: '⛳',
@@ -21,13 +19,36 @@ const APPS = [
     color: 'blue',
     features: ['14,500+ research abstracts', 'Clinical trials database', 'AI research assistant', 'Report interpretation'],
   },
+  {
+    icon: '🍽️',
+    name: 'Recipe AI Companion',
+    tagline: 'Your AI-powered cooking companion',
+    description: 'A cozy, modern cooking companion that blends a personal recipe vault, guided learning, and an AI chef — built for home cooks who want a simple way to save recipes, learn skills, and get help in the kitchen.',
+    url: 'https://recipe.mycompanionapps.com',
+    status: 'live',
+    color: 'orange',
+    features: ['Recipe Vault & Cards', 'Chef Jennifer AI', 'Chef TV videos', 'MyPlan & shopping list'],
+  },
 ]
 
 const COMING_SOON = [
-  { icon: '🍽️', name: 'MyRecipe Companion', tagline: 'AI-powered cooking guidance' },
   { icon: '💪', name: 'MyFitness Companion', tagline: 'Personalized workout planning' },
   { icon: '📚', name: 'MyLearning Companion', tagline: 'AI-guided skill building' },
 ]
+
+// Per-app accent colors. Centralized so adding a new card means adding one
+// line here instead of editing the ternaries in multiple places.
+const CARD_STYLES: Record<string, string> = {
+  green: 'border-green-200 hover:border-green-400 bg-green-50/30',
+  blue: 'border-blue-200 hover:border-blue-400 bg-blue-50/30',
+  orange: 'border-orange-200 hover:border-orange-400 bg-orange-50/30',
+}
+
+const TAGLINE_STYLES: Record<string, string> = {
+  green: 'text-green-700',
+  blue: 'text-blue-700',
+  orange: 'text-orange-700',
+}
 
 export default function Home() {
   return (
@@ -62,11 +83,7 @@ export default function Home() {
                 href={app.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`block p-6 rounded-2xl border-2 transition-all hover:shadow-md ${
-                  app.color === 'green'
-                    ? 'border-green-200 hover:border-green-400 bg-green-50/30'
-                    : 'border-blue-200 hover:border-blue-400 bg-blue-50/30'
-                }`}
+                className={`block p-6 rounded-2xl border-2 transition-all hover:shadow-md ${CARD_STYLES[app.color] || CARD_STYLES.blue}`}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-start gap-4">
@@ -76,7 +93,7 @@ export default function Home() {
                         <h3 className="font-bold text-gray-900 text-lg">{app.name}</h3>
                         <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-semibold">Live</span>
                       </div>
-                      <p className={`text-sm font-semibold mb-2 ${app.color === 'green' ? 'text-green-700' : 'text-blue-700'}`}>
+                      <p className={`text-sm font-semibold mb-2 ${TAGLINE_STYLES[app.color] || TAGLINE_STYLES.blue}`}>
                         {app.tagline}
                       </p>
                       <p className="text-sm text-gray-500 leading-relaxed mb-3">{app.description}</p>
@@ -127,6 +144,7 @@ export default function Home() {
           <div className="flex gap-4">
             <a href="https://golf-ai-companion.vercel.app" className="text-sm text-gray-400 hover:text-gray-600">MyGolf</a>
             <a href="https://net-ai-companion.vercel.app" className="text-sm text-gray-400 hover:text-gray-600">NET AI</a>
+            <a href="https://recipe.mycompanionapps.com" className="text-sm text-gray-400 hover:text-gray-600">Recipe AI</a>
           </div>
         </div>
       </footer>
