@@ -21,7 +21,7 @@ const APPS = [
   },
   {
     icon: '🍽️',
-    name: 'Recipe AI Companion',
+    name: 'MyRecipe Companion',
     tagline: 'Your AI-powered cooking companion',
     description: 'A cozy, modern cooking companion that blends a personal recipe vault, guided learning, and an AI chef — built for home cooks who want a simple way to save recipes, learn skills, and get help in the kitchen.',
     url: 'https://recipe.mycompanionapps.com',
@@ -144,7 +144,7 @@ export default function Home() {
           <div className="flex gap-4">
             <a href="https://golf-ai-companion.vercel.app" className="text-sm text-gray-400 hover:text-gray-600">MyGolf</a>
             <a href="https://net-ai-companion.vercel.app" className="text-sm text-gray-400 hover:text-gray-600">NET AI</a>
-            <a href="https://recipe.mycompanionapps.com" className="text-sm text-gray-400 hover:text-gray-600">Recipe AI</a>
+            <a href="https://recipe.mycompanionapps.com" className="text-sm text-gray-400 hover:text-gray-600">MyRecipe</a>
           </div>
         </div>
       </footer>
