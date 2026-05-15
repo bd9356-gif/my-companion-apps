@@ -57,7 +57,20 @@ const TAGLINE_STYLES: Record<string, string> = {
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
-      <main className="max-w-4xl mx-auto px-4 pt-8 pb-8">
+      {/* Banner — full-width edge-to-edge at the very top. Image was cropped
+          to remove the white padding baked into the PNG, so it now sits
+          flush with the page without re-introducing the "banner in a box"
+          look. New dimensions: 1536 × 511 (3:1). */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/banner.png"
+        alt="MyCompanionApps — where your real life and your AI companion meet."
+        className="w-full h-auto block"
+        width={1536}
+        height={511}
+      />
+
+      <main className="max-w-4xl mx-auto px-4 pt-6 pb-8">
 
         {/* Positioning line — single short sentence at the top of the page.
             With the banner removed, this is the only brand voice on the
