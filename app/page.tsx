@@ -2,32 +2,32 @@ const APPS = [
   {
     icon: '⛳',
     name: 'MyGolf Companion',
-    tagline: 'Your AI-powered golf clubhouse',
-    description: 'Personalized videos, AI-crafted guides, and your own Club Pro — all matched to your skill level. From beginner basics to advanced shot shaping.',
+    tagline: 'Your personal golf clubhouse',
+    description: 'Lessons matched to your level, a Club Pro who answers your questions, and a Golf Bag that builds with you — from first swings to scoring shots.',
     url: 'https://golf-ai-companion.vercel.app',
     status: 'live',
     color: 'green',
-    features: ['767 instruction videos', 'AI-matched to your level', 'MyPro AI guidance', 'MyBag learning journey'],
+    features: ['767 lessons', 'Matched to your level', 'Club Pro guidance', 'MyBag learning journey'],
   },
   {
     icon: '🔬',
     name: 'NET AI Companion',
-    tagline: 'AI-powered support for NET cancer patients',
+    tagline: 'Support for NET cancer patients',
     description: 'Navigate neuroendocrine tumor research, clinical trials, and treatment options. Built with compassion for patients and families.',
     url: 'https://net-ai-companion.vercel.app',
     status: 'live',
     color: 'blue',
-    features: ['14,500+ research abstracts', 'Clinical trials database', 'AI research assistant', 'Report interpretation'],
+    features: ['14,500+ research abstracts', 'Clinical trials database', 'Research assistant', 'Report interpretation'],
   },
   {
     icon: '🍽️',
     name: 'MyRecipe Companion',
-    tagline: 'Your AI-powered cooking companion',
-    description: 'A cozy, modern cooking companion that blends a personal recipe vault, guided learning, and an AI chef — built for home cooks who want a simple way to save recipes, learn skills, and get help in the kitchen.',
+    tagline: 'Where your cooking life and your learning journey meet',
+    description: "A cozy cooking companion — save recipes, plan meals, learn new skills, and cook alongside Chef Jennifer who's always ready to help.",
     url: 'https://recipe.mycompanionapps.com',
     status: 'live',
     color: 'orange',
-    features: ['Recipe Vault & Cards', 'Chef Jennifer AI', 'Chef TV videos', 'MyPlan & shopping list'],
+    features: ['Recipe Vault & Cards', 'Chef Jennifer', 'Chef TV lessons', 'Meal Plan & shopping list'],
   },
 ]
 
@@ -81,7 +81,7 @@ export default function Home() {
             "banner, then a gap, then text." */}
         <div className="text-center mb-8 max-w-xl mx-auto">
           <p className="text-lg text-gray-800 leading-relaxed font-medium text-balance">
-            A suite of focused AI companions &mdash; from everyday goals to the moments that truly test you.
+            A suite of focused companions &mdash; from everyday goals to the moments that truly test you.
           </p>
           <p className="text-base text-gray-500 leading-relaxed mt-3 text-balance">
             Clear, personal guidance, built for the realities of your&nbsp;life.
@@ -146,7 +146,7 @@ export default function Home() {
         <div className="text-center p-8 bg-gray-50 rounded-2xl border border-gray-100">
           <p className="text-2xl font-bold text-gray-900 mb-2">The My Companion Promise</p>
           <p className="text-gray-500 leading-relaxed max-w-lg mx-auto">
-            Every My Companion app is built on the same foundation — AI that gets personal, guidance that matches where you are, and tools that grow with you. Simple. Focused. Yours.
+            Every My Companion app is built on the same foundation &mdash; guidance that gets personal, matched to where you are, and tools that grow with you. Simple. Focused. Yours.
           </p>
         </div>
 
@@ -154,7 +154,7 @@ export default function Home() {
 
       <footer className="border-t border-gray-100 px-4 py-6 mt-12">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <p className="text-sm text-gray-400">© 2025 MyCompanionApps</p>
+          <p className="text-sm text-gray-400">© 2026 MyCompanionApps</p>
           <div className="flex gap-4">
             <a href="https://golf-ai-companion.vercel.app" className="text-sm text-gray-400 hover:text-gray-600">MyGolf</a>
             <a href="https://net-ai-companion.vercel.app" className="text-sm text-gray-400 hover:text-gray-600">NET AI</a>
