@@ -53,29 +53,25 @@ const TAGLINE_STYLES: Record<string, string> = {
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Header — the banner carries the brand name and tagline
-          itself, so the page header is intentionally minimal. No
-          duplicate "MyCompanionApps" or tagline up top; the banner
-          IS the brand block. */}
+      {/* Full-width banner — edge-to-edge, no card framing, no shadow,
+          no rounded corners. The banner image already has its own
+          background and visual treatment; wrapping it in a card was
+          framing-it-twice. This way the banner IS the top of the page,
+          not "a banner inside the page." */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/banner.png"
+        alt="MyCompanionApps — where your real life and your AI companion meet."
+        className="w-full h-auto block"
+        width={1200}
+        height={630}
+      />
 
-      <main className="max-w-4xl mx-auto px-4 pt-6 pb-8">
+      <main className="max-w-4xl mx-auto px-4 py-8">
 
-        {/* Hero banner — the brand mark + tagline + emotional scene
-            (woman on couch with her AI companion). Carries the full
-            brand intro on its own (name + tagline + visual). */}
-        <div className="mb-6">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/banner.png"
-            alt="MyCompanionApps — where your real life and your AI companion meet."
-            className="w-full h-auto rounded-2xl shadow-sm"
-            width={1200}
-            height={630}
-          />
-        </div>
-
-        {/* Positioning statement, sits directly under the banner so the
-            visual + words read as one thought. */}
+        {/* Positioning statement — sits at the top of main, directly
+            beneath the banner, so the visual hands off to the words
+            with no whitespace gap. */}
         <div className="text-center mb-12 max-w-2xl mx-auto">
           <p className="text-lg text-gray-800 leading-relaxed font-medium">
             A suite of focused AI companions &mdash; from everyday goals to the moments that truly test you.
