@@ -70,12 +70,12 @@ export default function Home() {
         height={511}
       />
 
-      <main className="max-w-4xl mx-auto px-4 pt-6 pb-8">
+      <main className="max-w-4xl mx-auto px-4 pt-0 pb-8">
 
         {/* Positioning line — single short sentence at the top of the page.
             With the banner removed, this is the only brand voice on the
             page above the app cards. */}
-        <p className="text-center text-base text-gray-600 leading-relaxed text-balance mb-2 max-w-xl mx-auto">
+        <p className="text-center text-base text-gray-600 leading-snug text-balance mt-3 mb-3 max-w-xl mx-auto">
           A suite of focused companions &mdash; clear, personal guidance for the realities of your&nbsp;life.
         </p>
 
