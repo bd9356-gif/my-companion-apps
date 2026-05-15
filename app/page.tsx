@@ -62,7 +62,7 @@ export default function Home() {
         {/* Positioning line — single short sentence at the top of the page.
             With the banner removed, this is the only brand voice on the
             page above the app cards. */}
-        <p className="text-center text-base text-gray-600 leading-relaxed text-balance mb-8 max-w-xl mx-auto">
+        <p className="text-center text-base text-gray-600 leading-relaxed text-balance mb-3 max-w-xl mx-auto">
           A suite of focused companions &mdash; clear, personal guidance for the realities of your&nbsp;life.
         </p>
 
