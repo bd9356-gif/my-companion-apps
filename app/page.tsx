@@ -93,21 +93,28 @@ export default function Home() {
                 href={app.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`block p-6 rounded-2xl border-2 transition-all hover:shadow-md ${CARD_STYLES[app.color] || CARD_STYLES.orange}`}
+                className={`relative block p-6 pl-24 rounded-2xl border-2 transition-all hover:shadow-md ${CARD_STYLES[app.color] || CARD_STYLES.orange}`}
               >
+                {/* Icon anchored to the top-left corner of the card. Using
+                    absolute positioning so the icon doesn't take a column in
+                    the flex row — the text content can use the full width
+                    (minus a fixed left pad) and the icon doesn't compress
+                    the title/tagline/description on narrow phones. */}
+                {app.icon.startsWith('/') ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={app.icon}
+                    alt=""
+                    className="absolute top-5 left-5 w-16 h-16 object-contain"
+                    width={64}
+                    height={64}
+                  />
+                ) : (
+                  <span className="absolute top-4 left-5 text-5xl leading-none">{app.icon}</span>
+                )}
+
                 <div className="flex items-start justify-between gap-4">
-                  <div className="flex items-start gap-4 min-w-0">
-                    {app.icon.startsWith('/') ? (
-                      // 64×64 to match the size the Recipe site uses on its
-                      // MyKitchen header. Larger than the text-4xl emoji on
-                      // the sister cards, but that's intentional — the
-                      // brand icon carries more visual weight than a
-                      // generic emoji.
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={app.icon} alt="" className="w-16 h-16 shrink-0 object-contain" width={64} height={64} />
-                    ) : (
-                      <span className="text-4xl shrink-0">{app.icon}</span>
-                    )}
+                  <div className="flex items-start min-w-0">
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <h3 className="font-bold text-gray-900 text-lg">{app.name}</h3>
