@@ -57,26 +57,7 @@ const TAGLINE_STYLES: Record<string, string> = {
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Banner — sits at the very top, full-width edge-to-edge, no card
-          framing. The banner already carries the brand block (logo +
-          tagline) so the page below doesn't repeat it. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/banner.png"
-        alt="MyCompanionApps — where your real life and your AI companion meet."
-        className="w-full h-auto block"
-        width={1200}
-        height={630}
-      />
-
-      <main className="max-w-4xl mx-auto px-4 pt-6 pb-8">
-
-        {/* Positioning line — single short sentence, sits right under the
-            banner. Kept brief because the banner is doing the heavy lift
-            visually. */}
-        <p className="text-center text-base text-gray-600 leading-relaxed text-balance mb-8 max-w-xl mx-auto">
-          A suite of focused companions &mdash; clear, personal guidance for the realities of your&nbsp;life.
-        </p>
+      <main className="max-w-4xl mx-auto px-4 pt-8 pb-8">
 
         {/* Live Apps — MyRecipe first, MyGolf second, NET third. */}
         <div className="mb-8">
