@@ -98,8 +98,13 @@ export default function Home() {
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-start gap-4 min-w-0">
                     {app.icon.startsWith('/') ? (
+                      // 64×64 to match the size the Recipe site uses on its
+                      // MyKitchen header. Larger than the text-4xl emoji on
+                      // the sister cards, but that's intentional — the
+                      // brand icon carries more visual weight than a
+                      // generic emoji.
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={app.icon} alt="" className="w-10 h-10 shrink-0 object-contain" width={40} height={40} />
+                      <img src={app.icon} alt="" className="w-16 h-16 shrink-0 object-contain" width={64} height={64} />
                     ) : (
                       <span className="text-4xl shrink-0">{app.icon}</span>
                     )}
