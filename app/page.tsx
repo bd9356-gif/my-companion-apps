@@ -71,13 +71,17 @@ export default function Home() {
 
         {/* Positioning statement — sits at the top of main, directly
             beneath the banner, so the visual hands off to the words
-            with no whitespace gap. */}
-        <div className="text-center mb-12 max-w-2xl mx-auto">
-          <p className="text-lg text-gray-800 leading-relaxed font-medium">
+            with no whitespace gap. `text-balance` evens out the line
+            breaks so we don't get orphans like "life" sitting alone
+            on the last line on phone widths. The non-breaking space
+            between "your" and "life" is a belt-and-suspenders guard
+            for browsers that don't yet support text-balance. */}
+        <div className="text-center mb-12 max-w-xl mx-auto">
+          <p className="text-lg text-gray-800 leading-relaxed font-medium text-balance">
             A suite of focused AI companions &mdash; from everyday goals to the moments that truly test you.
           </p>
-          <p className="text-base text-gray-500 leading-relaxed mt-3">
-            Clear, personal guidance, built for the realities of your life.
+          <p className="text-base text-gray-500 leading-relaxed mt-3 text-balance">
+            Clear, personal guidance, built for the realities of your&nbsp;life.
           </p>
         </div>
 
