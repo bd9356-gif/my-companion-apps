@@ -7,7 +7,11 @@
 
 const APPS = [
   {
-    icon: '🍽️',
+    // MyRecipe has its own brand icon (orange pot + green leaves + book +
+    // graduation cap). Anything that starts with "/" gets rendered as an
+    // <img> below; emojis render as text. Lets Golf and NET keep their
+    // single-character icons without a special prop.
+    icon: '/recipe-icon.png',
     name: 'MyRecipe Companion',
     tagline: 'Where your cooking life and your learning journey meet',
     description: "A cozy cooking companion — save recipes, plan meals, learn new skills, and cook alongside Chef Jennifer who's always ready to help.",
@@ -93,7 +97,12 @@ export default function Home() {
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-start gap-4 min-w-0">
-                    <span className="text-4xl shrink-0">{app.icon}</span>
+                    {app.icon.startsWith('/') ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={app.icon} alt="" className="w-10 h-10 shrink-0 object-contain" width={40} height={40} />
+                    ) : (
+                      <span className="text-4xl shrink-0">{app.icon}</span>
+                    )}
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <h3 className="font-bold text-gray-900 text-lg">{app.name}</h3>
