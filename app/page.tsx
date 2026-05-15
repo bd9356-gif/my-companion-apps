@@ -59,6 +59,13 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <main className="max-w-4xl mx-auto px-4 pt-8 pb-8">
 
+        {/* Positioning line — single short sentence at the top of the page.
+            With the banner removed, this is the only brand voice on the
+            page above the app cards. */}
+        <p className="text-center text-base text-gray-600 leading-relaxed text-balance mb-8 max-w-xl mx-auto">
+          A suite of focused companions &mdash; clear, personal guidance for the realities of your&nbsp;life.
+        </p>
+
         {/* Live Apps — MyRecipe first, MyGolf second, NET third. */}
         <div className="mb-8">
           <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Live Apps</h2>
