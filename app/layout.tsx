@@ -21,8 +21,10 @@ export const metadata: Metadata = {
   // Open Graph + Twitter Card metadata. Drives the preview image,
   // title, and description that appear when the URL is shared on
   // iMessage, WhatsApp, Twitter/X, LinkedIn, Slack, Facebook, etc.
-  // The banner image is the brand banner — every shared link instantly
-  // markets the app family.
+  // We use a dedicated /og-image.png at the recommended 1200×630 OG ratio
+  // (1.91:1) rather than the page banner — the page banner is cropped to
+  // 3:1 which gets letterboxed or center-cropped by social platforms.
+  // Every shared link now renders cleanly at the size each platform reserves.
   openGraph: {
     type: "website",
     siteName: "MyCompanionApps",
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
     description: "Where your real life and your AI companion meet.",
     images: [
       {
-        url: "/banner.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "MyCompanionApps — where your real life and your AI companion meet.",
@@ -41,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "MyCompanionApps",
     description: "Where your real life and your AI companion meet.",
-    images: ["/banner.png"],
+    images: ["/og-image.png"],
   },
 };
 
