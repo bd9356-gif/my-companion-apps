@@ -28,15 +28,6 @@ const APPS = [
     color: 'green',
     features: ['767 lessons', 'Matched to your level', 'Club Pro guidance', 'MyBag learning journey'],
   },
-  {
-    icon: '🔬',
-    name: 'NET AI Companion',
-    tagline: 'Support for NET cancer patients',
-    description: 'Navigate neuroendocrine tumor research, clinical trials, and treatment options. Built with compassion for patients and families.',
-    url: 'https://net-ai-companion.vercel.app',
-    color: 'blue',
-    features: ['14,500+ research abstracts', 'Clinical trials database', 'Research assistant', 'Report interpretation'],
-  },
 ]
 
 const COMING_SOON = [
@@ -173,7 +164,6 @@ export default function Home() {
           <div className="flex gap-4">
             <a href="https://recipe.mycompanionapps.com" className="text-sm text-gray-400 hover:text-gray-600">MyRecipe</a>
             <a href="https://golf-ai-companion.vercel.app" className="text-sm text-gray-400 hover:text-gray-600">MyGolf</a>
-            <a href="https://net-ai-companion.vercel.app" className="text-sm text-gray-400 hover:text-gray-600">NET AI</a>
           </div>
         </div>
       </footer>
