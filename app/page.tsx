@@ -57,20 +57,35 @@ export default function Home() {
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">MyCompanionApps</h1>
-            <p className="text-sm text-gray-500 mt-0.5">AI-powered companions for every part of your life</p>
+            <p className="text-sm text-gray-500 mt-0.5">Where your real life and your AI companion meet.</p>
           </div>
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 py-12">
+      <main className="max-w-4xl mx-auto px-4 py-8">
 
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4 leading-tight">
-            Your AI Companion.<br />
-            <span className="text-green-700">For everything that matters.</span>
-          </h2>
-          <p className="text-lg text-gray-500 max-w-xl mx-auto leading-relaxed">
-            Each My Companion app brings AI-powered, personalized guidance to a specific area of your life — simple, focused, and built around you.
+        {/* Hero banner — the brand mark + tagline + emotional scene
+            (woman on couch with her AI companion). Replaces the
+            previous text-only hero ("Your AI Companion / For everything
+            that matters.") because the banner already does that work
+            visually, with more warmth. */}
+        <div className="mb-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/banner.png"
+            alt="MyCompanionApps — where your real life and your AI companion meet."
+            className="w-full h-auto rounded-2xl shadow-sm"
+            width={1200}
+            height={630}
+          />
+        </div>
+
+        <div className="text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-800 leading-relaxed font-medium">
+            A suite of focused AI companions &mdash; from everyday goals to the moments that truly test you.
+          </p>
+          <p className="text-base text-gray-500 leading-relaxed mt-3">
+            Clear, personal guidance, built for the realities of your life.
           </p>
         </div>
 
