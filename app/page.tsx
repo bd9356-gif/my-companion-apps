@@ -67,7 +67,7 @@ export default function Home() {
         height={630}
       />
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
+      <main className="max-w-4xl mx-auto px-4 pt-5 pb-8">
 
         {/* Positioning statement — sits at the top of main, directly
             beneath the banner, so the visual hands off to the words
@@ -75,8 +75,11 @@ export default function Home() {
             breaks so we don't get orphans like "life" sitting alone
             on the last line on phone widths. The non-breaking space
             between "your" and "life" is a belt-and-suspenders guard
-            for browsers that don't yet support text-balance. */}
-        <div className="text-center mb-12 max-w-xl mx-auto">
+            for browsers that don't yet support text-balance. Tight
+            top padding on main (pt-5 ≈ 20px) keeps the tagline close
+            to the banner so the visual handoff feels intentional, not
+            "banner, then a gap, then text." */}
+        <div className="text-center mb-8 max-w-xl mx-auto">
           <p className="text-lg text-gray-800 leading-relaxed font-medium text-balance">
             A suite of focused AI companions &mdash; from everyday goals to the moments that truly test you.
           </p>
