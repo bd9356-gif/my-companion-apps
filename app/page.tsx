@@ -40,7 +40,7 @@ const APPS = [
 ]
 
 const COMING_SOON = [
-  { icon: '💪', name: 'MyFitness Companion', tagline: 'Personalized workout planning' },
+  { icon: '🐶', name: 'MyDoggie Companion', tagline: 'Personalized care and training' },
   { icon: '📚', name: 'MyLearning Companion', tagline: 'Guided skill building' },
 ]
 
