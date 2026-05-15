@@ -62,13 +62,13 @@ export default function Home() {
         {/* Positioning line — single short sentence at the top of the page.
             With the banner removed, this is the only brand voice on the
             page above the app cards. */}
-        <p className="text-center text-base text-gray-600 leading-relaxed text-balance mb-3 max-w-xl mx-auto">
+        <p className="text-center text-base text-gray-600 leading-relaxed text-balance mb-2 max-w-xl mx-auto">
           A suite of focused companions &mdash; clear, personal guidance for the realities of your&nbsp;life.
         </p>
 
-        {/* Live Apps — MyRecipe first, MyGolf second, NET third. */}
+        {/* Live Apps — MyRecipe first, MyGolf second, NET third.
+            "Live Apps" label removed — the cards speak for themselves. */}
         <div className="mb-8">
-          <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Live Apps</h2>
           <div className="space-y-4">
             {APPS.map((app) => (
               <a
