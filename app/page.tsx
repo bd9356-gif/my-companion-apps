@@ -148,6 +148,32 @@ export default function Home() {
           </div>
         </div>
 
+        {/* App Store / Google Play "Coming Soon" buttons (May 2026).
+            Brand-safe styled pills with Apple silhouette + Google Play
+            arrow on a dark background, "Coming Soon" eyebrow signals
+            the native apps are on the way. Swap for the real official
+            badges once the apps actually ship. */}
+        <div className="mb-12 grid grid-cols-2 gap-3 max-w-md mx-auto">
+          <div className="flex items-center gap-3 bg-stone-900 text-white rounded-xl px-3 py-2.5" aria-label="App Store — coming soon">
+            <svg className="w-7 h-7 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
+            </svg>
+            <div className="min-w-0 flex-1">
+              <p className="text-[9px] uppercase tracking-wider text-stone-400 leading-none">Coming Soon</p>
+              <p className="text-sm font-semibold leading-tight mt-0.5">App Store</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 bg-stone-900 text-white rounded-xl px-3 py-2.5" aria-label="Google Play — coming soon">
+            <svg className="w-7 h-7 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M5 2.92v18.16c0 .69.5 1.06 1.04.78l13.92-9.08c.5-.32.5-1.25 0-1.57L6.04 2.14C5.5 1.86 5 2.23 5 2.92z" />
+            </svg>
+            <div className="min-w-0 flex-1">
+              <p className="text-[9px] uppercase tracking-wider text-stone-400 leading-none">Coming Soon</p>
+              <p className="text-sm font-semibold leading-tight mt-0.5">Google Play</p>
+            </div>
+          </div>
+        </div>
+
         {/* The promise — closing block. */}
         <div className="text-center p-8 bg-gray-50 rounded-2xl border border-gray-100">
           <p className="text-2xl font-bold text-gray-900 mb-2">The My Companion Promise</p>
