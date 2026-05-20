@@ -76,35 +76,30 @@ export default function Home() {
               rel="noopener noreferrer"
               className={`block rounded-2xl border-2 bg-white overflow-hidden transition-all hover:shadow-lg ${app.borderColor}`}
             >
-              <div className="p-6">
-                {/* App name */}
-                <div className="mb-1">
-                  <span className="font-bold text-2xl" style={{ fontFamily: 'Georgia, serif' }}>
-                    <span className="text-stone-800">My</span>
-                    <span className={app.nameColor}>{app.name.replace('My', '').replace(' Companion', '')}</span>
-                  </span>
-                  <br />
-                  <span className="text-xl italic text-stone-600" style={{ fontFamily: 'Georgia, serif' }}>Companion ♡</span>
-                </div>
-
-                {/* Tagline */}
-                <p className="text-sm font-semibold text-stone-500 uppercase tracking-wide mb-4">{app.tagline}</p>
-
-                {/* Icon */}
-                <div className="flex justify-center mb-4">
+              <div className="p-5">
+                {/* Logo + heading side by side */}
+                <div className="flex items-center gap-4 mb-2">
                   {app.icon.startsWith('/') ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={app.icon} alt="" className="w-24 h-24 object-contain" width={96} height={96} />
+                    <img src={app.icon} alt="" className="w-16 h-16 object-contain shrink-0" width={64} height={64} />
                   ) : (
-                    <span className="text-7xl">{app.icon}</span>
+                    <span className="text-5xl leading-none shrink-0">{app.icon}</span>
                   )}
+                  <div>
+                    <div className="font-bold text-2xl leading-tight" style={{ fontFamily: 'Georgia, serif' }}>
+                      <span className="text-stone-800">My</span>
+                      <span className={app.nameColor}>{app.name.replace('My', '').replace(' Companion', '')}</span>
+                    </div>
+                    <div className="text-lg italic text-stone-600 leading-tight" style={{ fontFamily: 'Georgia, serif' }}>Companion ♡</div>
+                    <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide mt-0.5">{app.tagline}</p>
+                  </div>
                 </div>
 
                 {/* Description */}
-                <p className="text-sm text-stone-600 leading-relaxed text-center mb-5">{app.description}</p>
+                <p className="text-sm text-stone-600 leading-relaxed mb-4">{app.description}</p>
 
                 {/* Button */}
-                <div className={`w-full py-3 px-4 rounded-xl text-white text-sm font-semibold text-center ${app.buttonColor}`}>
+                <div className={`w-full py-2.5 px-4 rounded-xl text-white text-sm font-semibold text-center ${app.buttonColor}`}>
                   Open {app.name} &gt;
                 </div>
               </div>
