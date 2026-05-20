@@ -51,34 +51,16 @@ export default function Home() {
         <span className="font-bold text-gray-900 text-lg">MyCompanionApps</span>
       </header>
 
-      {/* Hero — full width photo with text overlay */}
-      <div className="relative w-full overflow-hidden" style={{ maxHeight: '420px' }}>
+      {/* Hero — image has text baked in, no overlay needed */}
+      <div className="max-w-2xl mx-auto px-4 pt-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/hero-update.png"
           alt="The Companion Suite"
-          className="w-full object-cover"
-          style={{ maxHeight: '420px' }}
-          width={1536}
-          height={420}
+          className="w-full h-auto rounded-2xl"
+          width={800}
+          height={400}
         />
-        {/* Dark gradient overlay for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
-
-        {/* Hero text */}
-        <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-16 max-w-2xl">
-          <p className="text-orange-300 text-sm font-semibold uppercase tracking-widest mb-2">Introducing</p>
-          <h1 className="text-white font-bold leading-tight mb-3" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}>
-            The Companion<br />
-            <span className="text-orange-400 italic" style={{ fontFamily: 'Georgia, serif' }}>Suite</span>
-            <span className="text-orange-400 ml-2">♡</span>
-          </h1>
-          <p className="text-white/80 text-base md:text-lg leading-relaxed max-w-md">
-            Thoughtfully designed companions<br />
-            for the passions and journeys<br />
-            that shape your life.
-          </p>
-        </div>
       </div>
 
       <main className="max-w-2xl mx-auto px-4 pt-6 pb-12">
