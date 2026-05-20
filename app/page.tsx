@@ -55,7 +55,7 @@ export default function Home() {
       <div className="relative w-full overflow-hidden" style={{ maxHeight: '420px' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/hero.jpg"
+          src="/hero-update.png"
           alt="The Companion Suite"
           className="w-full object-cover"
           style={{ maxHeight: '420px' }}
