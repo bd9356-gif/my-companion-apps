@@ -49,7 +49,7 @@ export default function Home() {
       <div className="max-w-2xl mx-auto px-4 pt-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/companion-suite-hero.jpg"
+          src="/hero-update.jpg"
           alt="The Companion Suite by MyCompanionApps"
           className="w-full h-auto rounded-2xl shadow-md"
           width={1200}
