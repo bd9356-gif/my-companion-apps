@@ -46,20 +46,22 @@ export default function Home() {
     <div className="min-h-screen bg-white">
 
       {/* Header */}
-      <header className="px-6 py-4 flex items-center gap-2 border-b border-gray-100">
-        <span className="text-2xl">🌿</span>
-        <span className="font-bold text-gray-900 text-lg">MyCompanionApps</span>
+      <header className="border-b border-gray-100">
+        <div className="max-w-2xl mx-auto px-4 py-4 flex items-center gap-2">
+          <span className="text-2xl">🌿</span>
+          <span className="font-bold text-gray-900 text-lg">MyCompanionApps</span>
+        </div>
       </header>
 
       {/* Hero — image has text baked in, no overlay needed */}
-      <div className="max-w-2xl mx-auto px-4 pt-4">
+      <div className="max-w-2xl mx-auto px-4 pt-1">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/hero-update.png"
           alt="The Companion Suite"
           className="w-full h-auto rounded-2xl"
-          width={800}
-          height={400}
+          width={1200}
+          height={600}
         />
       </div>
 
