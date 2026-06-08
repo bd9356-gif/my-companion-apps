@@ -8,6 +8,7 @@ const APPS = [
     tagline: 'More Than Recipes',
     description: 'Your cozy kitchen companion. Save recipes, plan meals, learn new skills, and cook with confidence.',
     url: 'https://recipe.mycompanionapps.com',
+    pricingUrl: 'https://recipe.mycompanionapps.com/pricing',
     color: 'orange',
     buttonColor: 'bg-orange-700 hover:bg-orange-800',
     borderColor: 'border-orange-200',
@@ -102,6 +103,9 @@ export default function Home() {
                 <div className={`w-full py-2.5 px-4 rounded-xl text-white text-sm font-semibold text-center ${app.buttonColor}`}>
                   Open {app.name} &gt;
                 </div>
+                {app.pricingUrl && (
+                  <a href={app.pricingUrl} className="block text-center text-xs text-stone-400 hover:text-stone-600 mt-2">See pricing →</a>
+                )}
               </div>
             </a>
           ))}
@@ -156,6 +160,7 @@ export default function Home() {
           <div className="flex gap-4">
             <a href="https://recipe.mycompanionapps.com" className="text-sm text-stone-400 hover:text-stone-600">MyRecipe</a>
             <a href="https://golf-ai-companion.vercel.app" className="text-sm text-stone-400 hover:text-stone-600">MyGolf</a>
+            <a href="https://recipe.mycompanionapps.com/pricing" className="text-sm text-stone-400 hover:text-stone-600">Pricing</a>
           </div>
         </div>
       </footer>
