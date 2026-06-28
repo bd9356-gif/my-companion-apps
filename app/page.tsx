@@ -160,7 +160,8 @@ export default function Home() {
           <div className="flex gap-4">
             <a href="https://recipe.mycompanionapps.com" className="text-sm text-stone-400 hover:text-stone-600">MyRecipe</a>
             <a href="https://golf-ai-companion.vercel.app" className="text-sm text-stone-400 hover:text-stone-600">MyGolf</a>
-            <a href="https://recipe.mycompanionapps.com/pricing" className="text-sm text-stone-400 hover:text-stone-600">Pricing</a>
+            <a href="/privacy" className="text-sm text-stone-400 hover:text-stone-600">Privacy</a>
+            <a href="/terms" className="text-sm text-stone-400 hover:text-stone-600">Terms</a>
           </div>
         </div>
       </footer>
