@@ -15,13 +15,13 @@ const SCREENSHOTS = [
 ]
 
 const FEATURES = [
-  { icon: '🗄️', title: 'Recipe Vault', desc: 'Your entire collection. Search, filter, tag, and sort 200+ recipes instantly.' },
+  { icon: '🗄️', title: 'Recipe Vault', desc: 'Your entire collection. Search, filter, tag, and sort every recipe you love — all in one place.' },
   { icon: '📖', title: 'Recipe Box', desc: 'Where recipes become memories. Save your family treasures forever.' },
   { icon: '⬇️', title: 'Bring In Recipes', desc: 'Import from any website by URL, share from Safari, or paste text.' },
   { icon: '🍽️', title: 'Meal Ideas', desc: "Stop wondering what's for dinner. AI suggestions based on what you have." },
   { icon: '🛒', title: 'Shopping List', desc: 'Never forget an ingredient. Build your list from any recipe in one tap.' },
   { icon: '📤', title: 'Social Share', desc: 'Share your recipes with friends and family. Your recipes. Their table.' },
-  { icon: '✨', title: 'Chef Helpers', desc: 'Polish, resize, adjust, and photograph your recipes — AI does the work.' },
+  { icon: '✨', title: 'Chef Helpers', desc: 'Polish a recipe, resize servings, adjust ingredients, and generate a stunning AI photo for any dish. Your cookbook, beautifully illustrated.' },
   { icon: '🎓', title: 'AI Cooking School', desc: 'Learn. Practice. Master. Chef Jennifer teaches you at your own pace.' },
 ]
 
@@ -88,7 +88,7 @@ export default function MyRecipePage() {
       <section id="gallery" style={{ backgroundColor: '#2C1810', padding: '72px 32px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', color: '#C8401A', textTransform: 'uppercase', marginBottom: 12, textAlign: 'center' }}>See Every Feature</p>
-          <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(26px, 4vw, 38px)', fontWeight: 700, textAlign: 'center', marginBottom: 48, color: '#FFFDF9' }}>Built for how you really cook.</h2>
+          <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(26px, 4vw, 38px)', fontWeight: 700, textAlign: 'center', marginBottom: 48, color: '#FFFDF9' }}>More Than Recipes.</h2>
 
           {/* Main display */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24, marginBottom: 32 }}>
@@ -193,7 +193,7 @@ export default function MyRecipePage() {
           <div style={{ maxWidth: 440 }}>
             <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', color: '#D4A574', textTransform: 'uppercase', marginBottom: 12 }}>AI Cooking School</p>
             <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(26px, 3.5vw, 40px)', fontWeight: 700, lineHeight: 1.15, marginBottom: 16, color: '#FFFDF9' }}>Learn. Practice. Master.</h2>
-            <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 16, lineHeight: 1.75, color: '#D4C4B0', marginBottom: 24 }}>Chef Jennifer is your personal AI cooking teacher. Ask anything, learn techniques, practice skills, and watch curated videos — all at your own pace.</p>
+            <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 16, lineHeight: 1.75, color: '#D4C4B0', marginBottom: 24 }}>Chef Jennifer is your personal AI cooking teacher and sous chef. Ask anything, learn techniques, practice skills — and let Chef Jen create original recipes just for you, tailored to your taste and what's in your kitchen.</p>
             {['Ask Chef Jen anything about cooking', 'Practice with guided AI coaching', 'Watch curated cooking videos', 'Save lessons to your Notebook'].map(f => (
               <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'system-ui, sans-serif', fontSize: 15, color: '#F5EDE0', marginBottom: 10 }}>
                 <span style={{ color: '#D4A574' }}>♡</span> {f}
