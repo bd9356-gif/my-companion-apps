@@ -99,7 +99,6 @@ export default function MyRecipePage() {
             <div style={{ textAlign: 'center' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                key={active}
                 src={`/${SCREENSHOTS[active].file}`}
                 alt={SCREENSHOTS[active].label}
                 style={{ width: 'clamp(200px, 22vw, 280px)', borderRadius: 28, boxShadow: '0 32px 80px rgba(0,0,0,0.4)', display: 'block', margin: '0 auto' }}
