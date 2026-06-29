@@ -55,7 +55,7 @@ export default function MyRecipePage() {
       <section style={{ background: 'linear-gradient(135deg, #F2E8D9 0%, #F8F0E6 40%, #FDF6EE 100%)', padding: '72px 32px 64px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 64, flexWrap: 'wrap', minHeight: '80vh' }}>
         {/* Left copy */}
         <div style={{ maxWidth: 460, flex: '1 1 300px' }}>
-          <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', color: '#C8401A', textTransform: 'uppercase', marginBottom: 16 }}>Now on iPhone</p>
+          <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', color: '#C8401A', textTransform: 'uppercase', marginBottom: 16 }}>Now on iPhone & iPad</p>
           <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(40px, 5vw, 62px)', fontWeight: 700, lineHeight: 1.06, color: '#2C1810', marginBottom: 6 }}>MyRecipe</h1>
           <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(40px, 5vw, 62px)', fontWeight: 700, lineHeight: 1.06, color: '#2C1810', marginBottom: 16 }}>Companion</h1>
           <p style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(20px, 2.5vw, 28px)', fontStyle: 'italic', color: '#C8401A', marginBottom: 24, lineHeight: 1.3 }}>Your AI Kitchen,<br />All In One Place.</p>
