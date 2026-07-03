@@ -7,7 +7,7 @@ const APPS = [
     name: 'MyRecipe Companion',
     tagline: 'More Than Recipes',
     description: 'Your cozy kitchen companion. Save recipes, plan meals, learn new skills, and cook with confidence.',
-    url: 'https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990',
+    url: '/myrecipe',
     pricingUrl: '',
     color: 'orange',
     buttonColor: 'bg-orange-700 hover:bg-orange-800',
