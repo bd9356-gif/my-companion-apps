@@ -16,10 +16,10 @@ const APPS = [
   },
   {
     icon: '⛳',
-    name: 'MyGolf Companion',
+    name: 'MyGolf Companion (Coming Soon)',
     tagline: 'More Than Golf',
     description: 'Your personal golf companion. Track rounds, improve your game, and enjoy the journey.',
-    url: 'https://golf-ai-companion.vercel.app',
+    url: '/',
     color: 'green',
     buttonColor: 'bg-green-800 hover:bg-green-900',
     borderColor: 'border-green-200',
@@ -159,9 +159,10 @@ export default function Home() {
           <p className="text-sm text-stone-400">© 2026 MyCompanionApps</p>
           <div className="flex gap-4">
             <a href="/myrecipe" className="text-sm text-stone-400 hover:text-stone-600">MyRecipe</a>
-            <a href="https://golf-ai-companion.vercel.app" className="text-sm text-stone-400 hover:text-stone-600">MyGolf</a>
+            <a href="/" className="text-sm text-stone-400 hover:text-stone-600">MyGolf (Coming Soon)</a>
             <a href="/privacy" className="text-sm text-stone-400 hover:text-stone-600">Privacy</a>
             <a href="/terms" className="text-sm text-stone-400 hover:text-stone-600">Terms</a>
+            <a href="/support" className="text-sm text-stone-400 hover:text-stone-600">Support</a>
           </div>
         </div>
       </footer>
