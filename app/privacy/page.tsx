@@ -96,6 +96,7 @@ export default function PrivacyPage() {
           <div className="flex gap-4">
             <a href="/privacy" className="text-xs text-stone-400 hover:text-stone-600">Privacy</a>
             <a href="/terms" className="text-xs text-stone-400 hover:text-stone-600">Terms</a>
+            <a href="/support" className="text-xs text-stone-400 hover:text-stone-600">Support</a>
           </div>
         </div>
       </footer>
