@@ -75,7 +75,7 @@ export default function MyRecipePage() {
                 <div style={{ fontSize: 16, fontFamily: 'system-ui, sans-serif', fontWeight: 700, lineHeight: 1.1 }}>App Store</div>
               </div>
             </a>
-            <a href="#pricing" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#C8401A', textDecoration: 'none', fontWeight: 600, borderBottom: '1px solid #C8401A', paddingBottom: 2 }}>See pricing →</a>
+            <a href="#gallery" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#C8401A', textDecoration: 'none', fontWeight: 600, borderBottom: '1px solid #C8401A', paddingBottom: 2 }}>See the App →</a>
           </div>
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#78716C' }}>✓ Free to start &nbsp;·&nbsp; ✓ No credit card needed &nbsp;·&nbsp; ✓ iPhone</p>
         </div>
