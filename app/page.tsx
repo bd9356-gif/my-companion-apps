@@ -16,10 +16,11 @@ const APPS = [
   },
   {
     icon: '⛳',
-    name: 'MyGolf Companion (Coming Soon)',
+    name: 'MyGolf Companion',
     tagline: 'More Than Golf',
     description: 'Your personal golf companion. Track rounds, improve your game, and enjoy the journey.',
-    url: '/',
+    url: '/golf',
+    buttonText: 'See What\'s Coming ›',
     color: 'green',
     buttonColor: 'bg-green-800 hover:bg-green-900',
     borderColor: 'border-green-200',
@@ -101,7 +102,7 @@ export default function Home() {
 
                 {/* Button */}
                 <div className={`w-full py-2.5 px-4 rounded-xl text-white text-sm font-semibold text-center ${app.buttonColor}`}>
-                  Learn More &gt;
+                  {app.buttonText || 'Learn More >'}
                 </div>
                 {app.pricingUrl && (
                   <a href={app.pricingUrl} className="block text-center text-xs text-stone-400 hover:text-stone-600 mt-2">See pricing →</a>
@@ -159,7 +160,7 @@ export default function Home() {
           <p className="text-sm text-stone-400">© 2026 MyCompanionApps</p>
           <div className="flex gap-4">
             <a href="/myrecipe" className="text-sm text-stone-400 hover:text-stone-600">MyRecipe</a>
-            <a href="/" className="text-sm text-stone-400 hover:text-stone-600">MyGolf (Coming Soon)</a>
+            <a href="/golf" className="text-sm text-stone-400 hover:text-stone-600">MyGolf</a>
             <a href="/privacy" className="text-sm text-stone-400 hover:text-stone-600">Privacy</a>
             <a href="/terms" className="text-sm text-stone-400 hover:text-stone-600">Terms</a>
             <a href="/support" className="text-sm text-stone-400 hover:text-stone-600">Support</a>
