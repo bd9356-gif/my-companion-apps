@@ -75,6 +75,7 @@ export default function MyRecipePage() {
                 <div style={{ fontSize: 16, fontFamily: 'system-ui, sans-serif', fontWeight: 700, lineHeight: 1.1 }}>App Store</div>
               </div>
             </a>
+            <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, backgroundColor: '#C8401A', color: '#FFFDF9', padding: '12px 22px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 15, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.35)' }}>Try Free →</a>
             <a href="#gallery" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#C8401A', textDecoration: 'none', fontWeight: 600, borderBottom: '1px solid #C8401A', paddingBottom: 2 }}>See the App →</a>
           </div>
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#78716C' }}>✓ Free to start &nbsp;·&nbsp; ✓ No credit card needed &nbsp;·&nbsp; ✓ iPhone</p>
