@@ -53,7 +53,7 @@ export default function MyRecipePage() {
           <a href="#gallery" style={{ fontSize: 13, color: '#FFFDF9', backgroundColor: '#C8401A', padding: '8px 16px', borderRadius: 20, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>See the App</a>
         </div>
       </nav>
-      <style>{`@media (max-width: 640px) { .nav-links { display: none !important; } }`}</style>
+      <style>{`@media (max-width: 768px) { .nav-links { display: none !important; } }`}</style>
 
       {/* HERO */}
       <section style={{ background: 'linear-gradient(135deg, #F2E8D9 0%, #F8F0E6 40%, #FDF6EE 100%)', padding: '72px 32px 64px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 64, flexWrap: 'wrap', minHeight: '80vh' }}>
