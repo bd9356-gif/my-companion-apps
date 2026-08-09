@@ -48,6 +48,7 @@ export default function MyRecipePage() {
             <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Features</a>
             <a href="#school" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>AI Cooking School</a>
             <a href="#pricing" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Pricing</a>
+            <a href="/recipes" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Recipes</a>
           </div>
           <a href="#gallery" style={{ fontSize: 13, color: '#FFFDF9', backgroundColor: '#C8401A', padding: '8px 16px', borderRadius: 20, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>See the App</a>
         </div>
