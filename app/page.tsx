@@ -20,7 +20,7 @@ const APPS = [
     tagline: 'More Than Golf',
     description: 'Your personal golf companion. Track rounds, improve your game, and enjoy the journey.',
     url: '/golf',
-    buttonText: 'See What\'s Coming ›',
+    buttonText: 'Download Free ›',
     color: 'green',
     buttonColor: 'bg-green-800 hover:bg-green-900',
     borderColor: 'border-green-200',
@@ -139,7 +139,7 @@ export default function Home() {
               <path d="M5 2.92v18.16c0 .69.5 1.06 1.04.78l13.92-9.08c.5-.32.5-1.25 0-1.57L6.04 2.14C5.5 1.86 5 2.23 5 2.92z" />
             </svg>
             <div>
-              <p className="text-[9px] uppercase tracking-wider text-stone-400 leading-none">Coming Soon</p>
+              <p className="text-[9px] uppercase tracking-wider text-stone-400 leading-none">Now Available</p>
               <p className="text-sm font-semibold leading-tight mt-0.5">Google Play</p>
             </div>
           </div>

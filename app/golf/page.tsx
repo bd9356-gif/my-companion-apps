@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'MyGolf Companion — Coming Soon',
-  description: 'More Than Golf. Your AI golf companion for every round — challenges, memories, practice, and more. Coming soon to the App Store.',
+  title: 'MyGolf Companion — More Than Golf',
+  description: 'More Than Golf. Your AI golf companion for every round — challenges, memories, practice, and more. Available now on the App Store.',
 }
 
 const features = [
@@ -54,7 +54,7 @@ export default function GolfPage() {
         {/* Hero */}
         <div className="text-center mb-10">
           <div className="inline-block bg-green-800 text-white text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-5">
-            Coming Soon to the App Store
+            Now Available on the App Store
           </div>
           <h1 className="text-3xl font-bold text-green-900 mb-2" style={{ fontFamily: 'Georgia, serif' }}>
             MyGolf Companion
@@ -107,11 +107,14 @@ export default function GolfPage() {
         {/* CTA */}
         <div className="text-center bg-white rounded-2xl border border-stone-200 p-6 shadow-sm">
           <p className="text-sm font-bold text-stone-800 mb-1">MyGolf Companion</p>
-          <p className="text-xs text-stone-400 italic mb-4">Launching soon on iOS</p>
-          <div className="inline-block bg-stone-900 text-white text-xs font-semibold px-5 py-2.5 rounded-xl opacity-60 cursor-not-allowed select-none">
+          <p className="text-xs text-stone-400 italic mb-4">Available now on iPhone</p>
+          <a
+            href="https://apps.apple.com/us/app/mygolf-companion-app/id6792284106"
+            className="inline-block bg-stone-900 text-white text-xs font-semibold px-5 py-2.5 rounded-xl"
+          >
             ⬇ Download on the App Store
-          </div>
-          <p className="text-xs text-stone-400 mt-3">Available soon — check back shortly.</p>
+          </a>
+          <p className="text-xs text-stone-400 mt-3">Free to download · 7-day free trial</p>
         </div>
 
       </main>
