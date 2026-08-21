@@ -47,7 +47,6 @@ export default function MyRecipePage() {
           <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
             <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Features</a>
             <a href="#school" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>AI Cooking School</a>
-            <a href="#pricing" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Pricing</a>
             <a href="/recipes" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Recipes</a>
           </div>
           <a href="#gallery" style={{ fontSize: 13, color: '#FFFDF9', backgroundColor: '#C8401A', padding: '8px 16px', borderRadius: 20, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>See the App</a>
@@ -57,7 +56,6 @@ export default function MyRecipePage() {
       <div className="mobile-nav" style={{ backgroundColor: '#FFFDF9', borderBottom: '1px solid #E8E0D4', padding: '10px 20px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24, overflowX: 'auto' }}>
         <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Features</a>
         <a href="#school" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>AI Cooking School</a>
-        <a href="#pricing" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Pricing</a>
         <a href="/recipes" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Recipes</a>
       </div>
 
@@ -231,50 +229,23 @@ export default function MyRecipePage() {
       </section>
 
       {/* PRICING */}
-      <section id="pricing" style={{ backgroundColor: '#FFFDF9', padding: '72px 32px' }}>
-        <div style={{ maxWidth: 960, margin: '0 auto' }}>
-          <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', color: '#C8401A', textTransform: 'uppercase', marginBottom: 12, textAlign: 'center' }}>Simple Pricing</p>
-          <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(26px, 4vw, 38px)', fontWeight: 700, textAlign: 'center', marginBottom: 8, color: '#2C1810' }}>Start free. Upgrade when you're ready.</h2>
-          <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#78716C', textAlign: 'center', marginBottom: 52 }}>Cancel anytime · Billed annually · Managed via Apple ID</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 24, alignItems: 'center' }}>
-
-            {/* FREE */}
-            <div style={{ backgroundColor: '#F5EDE0', borderRadius: 20, padding: '32px 28px', border: '1px solid #E8D8C4' }}>
-              <h3 style={{ fontFamily: 'Georgia, serif', fontSize: 24, fontWeight: 700, color: '#2C1810', marginBottom: 4 }}>Free</h3>
-              <div style={{ marginBottom: 6 }}><span style={{ fontFamily: 'Georgia, serif', fontSize: 40, fontWeight: 700, color: '#2C1810' }}>$0</span><span style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#78716C' }}> / forever</span></div>
-              <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#78716C', marginBottom: 28 }}>Always free — no credit card needed</p>
-              {['Recipe Vault (10 recipes)', '3 imports/month', 'Meal Ideas', 'Shopping List', 'Chef TV videos', '3 Recipe Box cards', '3 Chef Jen sessions'].map(f => (
-                <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#2C1810', marginBottom: 10 }}>
-                  <span style={{ color: '#C8401A', fontWeight: 700 }}>✓</span> {f}
-                </div>
-              ))}
-            </div>
-
-            {/* PREMIUM */}
-            <div style={{ backgroundColor: '#2C1810', borderRadius: 24, padding: '36px 28px', boxShadow: '0 24px 72px rgba(44,24,16,0.28)', transform: 'scale(1.04)' }}>
-              <h3 style={{ fontFamily: 'Georgia, serif', fontSize: 24, fontWeight: 700, color: '#FFFDF9', marginBottom: 4 }}>Premium</h3>
-              <div style={{ marginBottom: 4 }}><span style={{ fontFamily: 'Georgia, serif', fontSize: 40, fontWeight: 700, color: '#FFFDF9' }}>$34.99</span><span style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#D4A574' }}> / year</span></div>
-              <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#D4A574', marginBottom: 28 }}>Just $2.92/mo</p>
-              {['Unlimited imports', 'Unlimited Recipe Vault', 'Unlimited Recipe Box + Memories', 'Memory Photos', 'Chef Jen AI — 5/mo', 'Chef Jen Helpers + Photos — 5/mo', 'Learn & Practice', 'Print recipes', 'Social sharing'].map(f => (
-                <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#F5EDE0', marginBottom: 10 }}>
-                  <span style={{ color: '#C8401A', fontWeight: 700 }}>✓</span> {f}
-                </div>
-              ))}
-            </div>
-
-            {/* PRO */}
-            <div style={{ backgroundColor: '#F5EDE0', borderRadius: 20, padding: '32px 28px', border: '2px solid #C8401A', position: 'relative' }}>
-              <div style={{ position: 'absolute', top: -13, left: '50%', transform: 'translateX(-50%)', backgroundColor: '#C8401A', color: '#FFFDF9', fontSize: 11, fontWeight: 700, fontFamily: 'system-ui, sans-serif', letterSpacing: '0.1em', padding: '4px 16px', borderRadius: 20, textTransform: 'uppercase', whiteSpace: 'nowrap' }}>Best Value</div>
-              <h3 style={{ fontFamily: 'Georgia, serif', fontSize: 24, fontWeight: 700, color: '#2C1810', marginBottom: 4 }}>Pro</h3>
-              <div style={{ marginBottom: 4 }}><span style={{ fontFamily: 'Georgia, serif', fontSize: 40, fontWeight: 700, color: '#2C1810' }}>$49.99</span><span style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#78716C' }}> / year</span></div>
-              <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#78716C', marginBottom: 28 }}>Just $4.17/mo</p>
-              {['Everything in Premium', 'Chef Jen AI — Unlimited', 'Chef Jen Helpers + Photos — Unlimited', 'Priority support'].map(f => (
-                <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#2C1810', marginBottom: 10 }}>
-                  <span style={{ color: '#C8401A', fontWeight: 700 }}>✓</span> {f}
-                </div>
-              ))}
-            </div>
-          </div>
+      <section id="pricing" style={{ backgroundColor: '#F5EDE0', padding: '80px 32px', textAlign: 'center' }}>
+        <div style={{ maxWidth: 560, margin: '0 auto' }}>
+          <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, color: '#2C1810', marginBottom: 20, lineHeight: 1.2 }}>
+            Try MyRecipe Companion Free.
+          </h2>
+          <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 17, color: '#5C4A3A', lineHeight: 1.75, marginBottom: 36 }}>
+            Explore the Recipe Vault, save recipes, plan meals, build shopping lists, watch cooking videos, and meet Chef Jen.
+          </p>
+          <a
+            href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990"
+            style={{ display: 'inline-block', backgroundColor: '#C8401A', color: '#FFFDF9', padding: '16px 40px', borderRadius: 16, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 17, fontWeight: 700, boxShadow: '0 4px 20px rgba(200,64,26,0.3)', marginBottom: 16 }}
+          >
+            Try It Free
+          </a>
+          <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 13, color: '#78716C', margin: 0 }}>
+            No credit card required. Optional upgrades are available when you want more.
+          </p>
         </div>
       </section>
 
