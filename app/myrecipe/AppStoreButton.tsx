@@ -2,23 +2,28 @@
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990'
 
-function fireAppStoreClick(buttonText: string) {
-  if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
-    (window as any).gtag('event', 'app_store_click', {
+function fireAppStoreClick(buttonText: string, e: React.MouseEvent<HTMLAnchorElement>) {
+  const g = typeof window !== 'undefined' ? (window as any).gtag : null
+  if (typeof g === 'function') {
+    e.preventDefault()
+    g('event', 'app_store_click', {
       page_location: window.location.href,
       page_path: window.location.pathname,
       page_title: document.title,
       button_text: buttonText,
       destination_url: APP_STORE_URL,
+      event_callback: () => { window.open(APP_STORE_URL, '_blank') },
+      event_timeout: 1500,
     })
   }
+  // If gtag not available, navigate normally (no preventDefault called)
 }
 
 export function AppStoreBadgeButton() {
   return (
     <a
       href={APP_STORE_URL}
-      onClick={() => fireAppStoreClick('App Store')}
+      onClick={(e) => fireAppStoreClick('App Store', e)}
       style={{ display: 'inline-flex', alignItems: 'center', gap: 10, backgroundColor: '#1C1C1E', color: '#FFFDF9', padding: '12px 22px', borderRadius: 14, textDecoration: 'none' }}
     >
       <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
@@ -36,7 +41,7 @@ export function TryFreeButton() {
   return (
     <a
       href={APP_STORE_URL}
-      onClick={() => fireAppStoreClick('Try Free')}
+      onClick={(e) => fireAppStoreClick('Try Free', e)}
       style={{ display: 'inline-flex', alignItems: 'center', gap: 8, backgroundColor: '#C8401A', color: '#FFFDF9', padding: '12px 22px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 15, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.35)' }}
     >
       Try Free →
@@ -48,7 +53,7 @@ export function TryItFreeButton() {
   return (
     <a
       href={APP_STORE_URL}
-      onClick={() => fireAppStoreClick('Try It Free')}
+      onClick={(e) => fireAppStoreClick('Try It Free', e)}
       style={{ display: 'inline-block', backgroundColor: '#C8401A', color: '#FFFDF9', padding: '16px 40px', borderRadius: 16, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 17, fontWeight: 700, boxShadow: '0 4px 20px rgba(200,64,26,0.3)', marginBottom: 16 }}
     >
       Try It Free
@@ -60,7 +65,7 @@ export function AppStoreBadgeButtonLarge() {
   return (
     <a
       href={APP_STORE_URL}
-      onClick={() => fireAppStoreClick('App Store')}
+      onClick={(e) => fireAppStoreClick('App Store', e)}
       style={{ display: 'inline-flex', alignItems: 'center', gap: 12, backgroundColor: '#1C1C1E', color: '#FFFDF9', padding: '14px 28px', borderRadius: 14, textDecoration: 'none' }}
     >
       <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
