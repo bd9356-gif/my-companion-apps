@@ -232,7 +232,6 @@ export default function MyRecipePage() {
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 17, color: '#5C4A3A', lineHeight: 1.75, marginBottom: 36 }}>
             Explore the Recipe Vault, save recipes, plan meals, build shopping lists, watch cooking videos, and meet Chef Jen.
           </p>
-          <a
           <TryItFreeButton />
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 13, color: '#78716C', margin: 0 }}>
             No credit card required. Optional upgrades are available when you want more.
