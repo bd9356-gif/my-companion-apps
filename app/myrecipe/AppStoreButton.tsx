@@ -1,22 +1,35 @@
 'use client'
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990'
+const GA_ID = 'G-YWGNHS7MP7'
 
 function fireAppStoreClick(buttonText: string, e: React.MouseEvent<HTMLAnchorElement>) {
-  const g = typeof window !== 'undefined' ? (window as any).gtag : null
-  if (typeof g === 'function') {
-    e.preventDefault()
-    g('event', 'app_store_click', {
+  e.preventDefault()
+  const w = window as any
+
+  const openAppStore = () => window.open(APP_STORE_URL, '_blank')
+
+  // Safety timeout — always open App Store within 1.5s regardless
+  const timeout = setTimeout(openAppStore, 1500)
+
+  if (typeof w.gtag === 'function') {
+    w.gtag('event', 'app_store_click', {
+      send_to: GA_ID,
       page_location: window.location.href,
       page_path: window.location.pathname,
       page_title: document.title,
       button_text: buttonText,
       destination_url: APP_STORE_URL,
-      event_callback: () => { window.open(APP_STORE_URL, '_blank') },
-      event_timeout: 1500,
+      event_callback: () => {
+        clearTimeout(timeout)
+        openAppStore()
+      },
     })
+  } else {
+    // gtag not ready — open immediately
+    clearTimeout(timeout)
+    openAppStore()
   }
-  // If gtag not available, navigate normally (no preventDefault called)
 }
 
 export function AppStoreBadgeButton() {
