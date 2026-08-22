@@ -1,7 +1,27 @@
 'use client'
-import { AppStoreBadgeButton, TryFreeButton, TryItFreeButton, AppStoreBadgeButtonLarge } from './AppStoreButton'
 
 import { useState } from 'react'
+
+const APP_STORE_URL = 'https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990'
+
+function fireAndGo(buttonText: string, e: React.MouseEvent<HTMLAnchorElement>) {
+  e.preventDefault()
+  const w = window as any
+  const open = () => window.open(APP_STORE_URL, '_blank')
+  const t = setTimeout(open, 1500)
+  if (typeof w.gtag === 'function') {
+    w.gtag('event', 'app_store_click', {
+      send_to: 'G-YWGNHS7MP7',
+      button_text: buttonText,
+      page_path: window.location.pathname,
+      destination_url: APP_STORE_URL,
+      event_callback: () => { clearTimeout(t); open() },
+    })
+  } else {
+    clearTimeout(t); open()
+  }
+}
+
 
 const SCREENSHOTS = [
   { file: '0001-hub-iphone.png', label: 'My Kitchen' },
@@ -74,8 +94,11 @@ export default function MyRecipePage() {
             All powered by Chef Jen, your AI sous chef.
           </p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center', marginBottom: 20 }}>
-            <AppStoreBadgeButton />
-            <TryFreeButton />
+            <a href={APP_STORE_URL} onClick={(e) => fireAndGo('App Store', e)} style={{ display: 'inline-flex', alignItems: 'center', gap: 10, backgroundColor: '#1C1C1E', color: '#FFFDF9', padding: '12px 22px', borderRadius: 14, textDecoration: 'none' }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+              <div style={{ textAlign: 'left' }}><div style={{ fontSize: 9, fontFamily: 'system-ui, sans-serif', opacity: 0.65, letterSpacing: '0.06em' }}>DOWNLOAD ON THE</div><div style={{ fontSize: 16, fontFamily: 'system-ui, sans-serif', fontWeight: 700, lineHeight: 1.1 }}>App Store</div></div>
+            </a>
+            <a href={APP_STORE_URL} onClick={(e) => fireAndGo('Try Free', e)} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, backgroundColor: '#C8401A', color: '#FFFDF9', padding: '12px 22px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 15, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.35)' }}>Try Free →</a>
             <a href="#gallery" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#C8401A', textDecoration: 'none', fontWeight: 600, borderBottom: '1px solid #C8401A', paddingBottom: 2 }}>See the App →</a>
           </div>
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#78716C' }}>✓ Free to start &nbsp;·&nbsp; ✓ No credit card needed &nbsp;·&nbsp; ✓ iPhone</p>
@@ -232,7 +255,7 @@ export default function MyRecipePage() {
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 17, color: '#5C4A3A', lineHeight: 1.75, marginBottom: 36 }}>
             Explore the Recipe Vault, save recipes, plan meals, build shopping lists, watch cooking videos, and meet Chef Jen.
           </p>
-          <TryItFreeButton />
+          <a href={APP_STORE_URL} onClick={(e) => fireAndGo('Try It Free', e)} style={{ display: 'inline-block', backgroundColor: '#C8401A', color: '#FFFDF9', padding: '16px 40px', borderRadius: 16, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 17, fontWeight: 700, boxShadow: '0 4px 20px rgba(200,64,26,0.3)', marginBottom: 16 }}>Try It Free</a>
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 13, color: '#78716C', margin: 0 }}>
             No credit card required. Optional upgrades are available when you want more.
           </p>
@@ -245,7 +268,10 @@ export default function MyRecipePage() {
         <img src="/recipe-icon.png" alt="" style={{ width: 68, height: 68, objectFit: 'contain', marginBottom: 20 }} />
         <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, color: '#2C1810', maxWidth: 500, margin: '0 auto 12px' }}>Your kitchen companion awaits.</h2>
         <p style={{ fontFamily: 'Georgia, serif', fontSize: 18, fontStyle: 'italic', color: '#78716C', marginBottom: 36 }}>Free to start. Yours to keep.</p>
-        <AppStoreBadgeButtonLarge />
+        <a href={APP_STORE_URL} onClick={(e) => fireAndGo('App Store', e)} style={{ display: 'inline-flex', alignItems: 'center', gap: 12, backgroundColor: '#1C1C1E', color: '#FFFDF9', padding: '14px 28px', borderRadius: 14, textDecoration: 'none' }}>
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+                <div style={{ textAlign: 'left' }}><div style={{ fontSize: 9, fontFamily: 'system-ui, sans-serif', opacity: 0.65, letterSpacing: '0.06em' }}>DOWNLOAD ON THE</div><div style={{ fontSize: 17, fontFamily: 'system-ui, sans-serif', fontWeight: 700, lineHeight: 1.1 }}>App Store</div></div>
+              </a>
       </section>
 
       {/* FOOTER */}
