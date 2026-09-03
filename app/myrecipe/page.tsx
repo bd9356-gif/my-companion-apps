@@ -5,24 +5,21 @@ import { useState } from 'react'
 const APP_STORE_URL = 'https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990'
 
 function fireAndGo(buttonText: string, e: React.MouseEvent<HTMLAnchorElement>) {
-  e.preventDefault()
   const w = window as any
-  const open = () => window.open(APP_STORE_URL, '_blank')
-  const t = setTimeout(open, 1500)
   if (typeof w.gtag === 'function') {
+    e.preventDefault()
+    const navigate = () => { window.location.href = APP_STORE_URL }
+    const t = setTimeout(navigate, 1000)
     w.gtag('event', 'app_store_click', {
       send_to: 'G-YWGNHS7MP7',
       button_text: buttonText,
       page_path: window.location.pathname,
       destination_url: APP_STORE_URL,
-      event_callback: () => { clearTimeout(t); open() },
+      event_callback: () => { clearTimeout(t); navigate() },
     })
-  } else {
-    clearTimeout(t); open()
   }
+  // If gtag not available, let the href navigate normally
 }
-
-
 
 function fireNav(eventName: string, buttonText: string, destinationUrl: string, e: React.MouseEvent<HTMLAnchorElement>) {
   const w = window as any
