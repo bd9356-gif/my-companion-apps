@@ -90,6 +90,7 @@ export default function MyRecipePage() {
             <a href="#features" onClick={(e) => fireNav('what_it_does_click', 'What It Does', '#features', e)} style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>What It Does</a>
             <a href="https://pin.it/wfzginTwe" target="_blank" rel="noopener noreferrer" onClick={(e) => fireNav('demo_room_click', 'Demo Room', 'https://pin.it/wfzginTwe', e)} style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Demo Room</a>
             <a href="/recipes" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Recipes</a>
+            <a href="/tips" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Tips</a>
           </div>
           <a href={APP_STORE_URL} onClick={(e) => fireAndGo('Try It Free', e)} style={{ fontSize: 13, color: '#FFFDF9', backgroundColor: '#C8401A', padding: '8px 16px', borderRadius: 20, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Try It Free</a>
         </div>
@@ -99,6 +100,7 @@ export default function MyRecipePage() {
         <a href="#features" onClick={(e) => fireNav('what_it_does_click', 'What It Does', '#features', e)} style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>What It Does</a>
         <a href="https://pin.it/wfzginTwe" target="_blank" rel="noopener noreferrer" onClick={(e) => fireNav('demo_room_click', 'Demo Room', 'https://pin.it/wfzginTwe', e)} style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Demo Room</a>
         <a href="/recipes" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Recipes</a>
+            <a href="/tips" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Tips</a>
         <a href={APP_STORE_URL} onClick={(e) => fireAndGo('Try It Free', e)} style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Try It Free</a>
       </div>
 
