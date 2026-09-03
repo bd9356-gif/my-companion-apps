@@ -2,47 +2,6 @@
 
 import { useState } from 'react'
 
-const APP_STORE_URL = 'https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990'
-
-function fireAndGo(buttonText: string, e: React.MouseEvent<HTMLAnchorElement>) {
-  const w = window as any
-  if (typeof w.gtag === 'function') {
-    e.preventDefault()
-    const navigate = () => { window.location.href = APP_STORE_URL }
-    const t = setTimeout(navigate, 1000)
-    w.gtag('event', 'app_store_click', {
-      send_to: 'G-YWGNHS7MP7',
-      button_text: buttonText,
-      page_path: window.location.pathname,
-      destination_url: APP_STORE_URL,
-      event_callback: () => { clearTimeout(t); navigate() },
-    })
-  }
-  // If gtag not available, let the href navigate normally
-}
-
-function fireNav(eventName: string, buttonText: string, destinationUrl: string, e: React.MouseEvent<HTMLAnchorElement>) {
-  const w = window as any
-  if (typeof w.gtag === 'function' && destinationUrl.startsWith('http')) {
-    e.preventDefault()
-    const open = () => window.open(destinationUrl, '_blank')
-    const t = setTimeout(open, 1500)
-    w.gtag('event', eventName, {
-      send_to: 'G-YWGNHS7MP7',
-      button_text: buttonText,
-      page_path: window.location.pathname,
-      destination_url: destinationUrl,
-      event_callback: () => { clearTimeout(t); open() },
-    })
-  } else if (typeof w.gtag === 'function') {
-    w.gtag('event', eventName, {
-      send_to: 'G-YWGNHS7MP7',
-      button_text: buttonText,
-      page_path: window.location.pathname,
-      destination_url: destinationUrl,
-    })
-  }
-}
 
 const SCREENSHOTS = [
   { file: '0001-hub-iphone.png', label: 'My Kitchen' },
@@ -87,21 +46,21 @@ export default function MyRecipePage() {
         </a>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
           <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-            <a href="#features" onClick={(e) => fireNav('what_it_does_click', 'What It Does', '#features', e)} style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>What It Does</a>
-            <a href="https://pin.it/wfzginTwe" target="_blank" rel="noopener noreferrer" onClick={(e) => fireNav('demo_room_click', 'Demo Room', 'https://pin.it/wfzginTwe', e)} style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Demo Room</a>
+            <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>What It Does</a>
+            <a href="https://pin.it/wfzginTwe" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Demo Room</a>
             <a href="/recipes" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Recipes</a>
             <a href="/tips" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Tips</a>
           </div>
-          <a href={APP_STORE_URL} onClick={(e) => fireAndGo('Try It Free', e)} style={{ fontSize: 13, color: '#FFFDF9', backgroundColor: '#C8401A', padding: '8px 16px', borderRadius: 20, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Try It Free</a>
+          <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ fontSize: 13, color: '#FFFDF9', backgroundColor: '#C8401A', padding: '8px 16px', borderRadius: 20, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Try It Free</a>
         </div>
       </nav>
       <style>{`@media (max-width: 768px) { .nav-links { display: none !important; } } @media (min-width: 769px) { .mobile-nav { display: none !important; } }`}</style>
       <div className="mobile-nav" style={{ backgroundColor: '#FFFDF9', borderBottom: '1px solid #E8E0D4', padding: '10px 20px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24, overflowX: 'auto' }}>
-        <a href="#features" onClick={(e) => fireNav('what_it_does_click', 'What It Does', '#features', e)} style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>What It Does</a>
-        <a href="https://pin.it/wfzginTwe" target="_blank" rel="noopener noreferrer" onClick={(e) => fireNav('demo_room_click', 'Demo Room', 'https://pin.it/wfzginTwe', e)} style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Demo Room</a>
+        <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>What It Does</a>
+        <a href="https://pin.it/wfzginTwe" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Demo Room</a>
         <a href="/recipes" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Recipes</a>
             <a href="/tips" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Tips</a>
-        <a href={APP_STORE_URL} onClick={(e) => fireAndGo('Try It Free', e)} style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Try It Free</a>
+        <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Try It Free</a>
       </div>
 
       {/* HERO */}
@@ -116,9 +75,9 @@ export default function MyRecipePage() {
             One place to collect the recipes you love, create new ones with Chef Jen, learn to cook, preserve family favorites, plan meals, and more.
           </p>
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center', marginBottom: 20 }}>
-            <a href="#features" onClick={(e) => fireNav('what_it_does_click', 'See What It Can Do', '#features', e)} style={{ display: 'inline-block', backgroundColor: '#C8401A', color: '#FFFDF9', padding: '13px 24px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 15, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.3)' }}>See What It Can Do →</a>
-            <a href="https://pin.it/wfzginTwe" target="_blank" rel="noopener noreferrer" onClick={(e) => fireNav('demo_room_click', 'Watch the Demos', 'https://pin.it/wfzginTwe', e)} style={{ display: 'inline-block', backgroundColor: 'white', color: '#C8401A', padding: '13px 24px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 15, fontWeight: 700, border: '1.5px solid #C8401A' }}>Watch the Demos →</a>
-            <a href={APP_STORE_URL} onClick={(e) => fireAndGo('Try Free', e)} style={{ display: 'inline-block', color: '#78716C', padding: '13px 18px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 14, fontWeight: 600, border: '1px solid #D0C8C0' }}>Try Free →</a>
+            <a href="#features" style={{ display: 'inline-block', backgroundColor: '#C8401A', color: '#FFFDF9', padding: '13px 24px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 15, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.3)' }}>See What It Can Do →</a>
+            <a href="https://pin.it/wfzginTwe" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', backgroundColor: 'white', color: '#C8401A', padding: '13px 24px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 15, fontWeight: 700, border: '1.5px solid #C8401A' }}>Watch the Demos →</a>
+            <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ display: 'inline-block', color: '#78716C', padding: '13px 18px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 14, fontWeight: 600, border: '1px solid #D0C8C0' }}>Try Free →</a>
 
           </div>
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#78716C' }}>✓ Free to start &nbsp;·&nbsp; ✓ No credit card needed &nbsp;·&nbsp; ✓ iPhone</p>
@@ -275,7 +234,7 @@ export default function MyRecipePage() {
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 17, color: '#5C4A3A', lineHeight: 1.75, marginBottom: 36 }}>
             Explore the Recipe Vault, save recipes, plan meals, build shopping lists, watch cooking videos, and meet Chef Jen.
           </p>
-          <a href={APP_STORE_URL} onClick={(e) => fireAndGo('Try It Free', e)} style={{ display: 'inline-block', backgroundColor: '#C8401A', color: '#FFFDF9', padding: '16px 40px', borderRadius: 16, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 17, fontWeight: 700, boxShadow: '0 4px 20px rgba(200,64,26,0.3)', marginBottom: 16 }}>Try It Free</a>
+          <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ display: 'inline-block', backgroundColor: '#C8401A', color: '#FFFDF9', padding: '16px 40px', borderRadius: 16, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 17, fontWeight: 700, boxShadow: '0 4px 20px rgba(200,64,26,0.3)', marginBottom: 16 }}>Try It Free</a>
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 13, color: '#78716C', margin: 0 }}>
             No credit card required. Optional upgrades are available when you want more.
           </p>
@@ -288,7 +247,7 @@ export default function MyRecipePage() {
         <img src="/recipe-icon.png" alt="" style={{ width: 68, height: 68, objectFit: 'contain', marginBottom: 20 }} />
         <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, color: '#2C1810', maxWidth: 500, margin: '0 auto 12px' }}>Your kitchen companion awaits.</h2>
         <p style={{ fontFamily: 'Georgia, serif', fontSize: 18, fontStyle: 'italic', color: '#78716C', marginBottom: 36 }}>Free to start. Yours to keep.</p>
-        <a href={APP_STORE_URL} onClick={(e) => fireAndGo('App Store', e)} style={{ display: 'inline-flex', alignItems: 'center', gap: 12, backgroundColor: '#1C1C1E', color: '#FFFDF9', padding: '14px 28px', borderRadius: 14, textDecoration: 'none' }}>
+        <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, backgroundColor: '#1C1C1E', color: '#FFFDF9', padding: '14px 28px', borderRadius: 14, textDecoration: 'none' }}>
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
                 <div style={{ textAlign: 'left' }}><div style={{ fontSize: 9, fontFamily: 'system-ui, sans-serif', opacity: 0.65, letterSpacing: '0.06em' }}>DOWNLOAD ON THE</div><div style={{ fontSize: 17, fontFamily: 'system-ui, sans-serif', fontWeight: 700, lineHeight: 1.1 }}>App Store</div></div>
               </a>
