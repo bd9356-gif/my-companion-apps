@@ -26,7 +26,18 @@ function fireAndGo(buttonText: string, e: React.MouseEvent<HTMLAnchorElement>) {
 
 function fireNav(eventName: string, buttonText: string, destinationUrl: string, e: React.MouseEvent<HTMLAnchorElement>) {
   const w = window as any
-  if (typeof w.gtag === 'function') {
+  if (typeof w.gtag === 'function' && destinationUrl.startsWith('http')) {
+    e.preventDefault()
+    const open = () => window.open(destinationUrl, '_blank')
+    const t = setTimeout(open, 1500)
+    w.gtag('event', eventName, {
+      send_to: 'G-YWGNHS7MP7',
+      button_text: buttonText,
+      page_path: window.location.pathname,
+      destination_url: destinationUrl,
+      event_callback: () => { clearTimeout(t); open() },
+    })
+  } else if (typeof w.gtag === 'function') {
     w.gtag('event', eventName, {
       send_to: 'G-YWGNHS7MP7',
       button_text: buttonText,
