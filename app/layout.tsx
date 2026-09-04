@@ -60,8 +60,8 @@ export default function RootLayout({
     >
       <head><meta name="p:domain_verify" content="1849040e58f1fd56cee76fc2e7b37f08" /></head>
       <body className="min-h-full flex flex-col">
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-YWGNHS7MP7" strategy="afterInteractive" />
-        <Script id="google-analytics" strategy="afterInteractive">{`
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-YWGNHS7MP7" strategy="beforeInteractive" />
+        <Script id="google-analytics" strategy="beforeInteractive">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
