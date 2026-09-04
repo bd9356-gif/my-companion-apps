@@ -2,6 +2,22 @@
 
 import { useState } from 'react'
 
+const APP_STORE_URL = 'https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990'
+
+function trackAppStore(buttonText: string) {
+  try {
+    const w = window as any
+    if (typeof w.gtag === 'function') {
+      w.gtag('event', 'app_store_click', {
+        send_to: 'G-YWGNHS7MP7',
+        button_text: buttonText,
+        page_path: window.location.pathname,
+      })
+    }
+  } catch(e) {}
+}
+
+
 
 const SCREENSHOTS = [
   { file: '0001-hub-iphone.png', label: 'My Kitchen' },
@@ -51,7 +67,7 @@ export default function MyRecipePage() {
             <a href="/recipes" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Recipes</a>
             <a href="/tips" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Tips</a>
           </div>
-          <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ fontSize: 13, color: '#FFFDF9', backgroundColor: '#C8401A', padding: '8px 16px', borderRadius: 20, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Try It Free</a>
+          <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" onClick={() => trackAppStore('Try It Free Nav')} style={{ fontSize: 13, color: '#FFFDF9', backgroundColor: '#C8401A', padding: '8px 16px', borderRadius: 20, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Try It Free</a>
         </div>
       </nav>
       <style>{`@media (max-width: 768px) { .nav-links { display: none !important; } } @media (min-width: 769px) { .mobile-nav { display: none !important; } }`}</style>
@@ -77,7 +93,7 @@ export default function MyRecipePage() {
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center', marginBottom: 20 }}>
             <a href="#features" style={{ display: 'inline-block', backgroundColor: '#C8401A', color: '#FFFDF9', padding: '13px 24px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 15, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.3)' }}>See What It Can Do →</a>
             <a href="https://pin.it/wfzginTwe" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', backgroundColor: 'white', color: '#C8401A', padding: '13px 24px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 15, fontWeight: 700, border: '1.5px solid #C8401A' }}>Watch the Demos →</a>
-            <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ display: 'inline-block', color: '#78716C', padding: '13px 18px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 14, fontWeight: 600, border: '1px solid #D0C8C0' }}>Try Free →</a>
+            <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" onClick={() => trackAppStore('Try Free Hero')} style={{ display: 'inline-block', color: '#78716C', padding: '13px 18px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 14, fontWeight: 600, border: '1px solid #D0C8C0' }}>Try Free →</a>
 
           </div>
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#78716C' }}>✓ Free to start &nbsp;·&nbsp; ✓ No credit card needed &nbsp;·&nbsp; ✓ iPhone</p>
@@ -234,7 +250,7 @@ export default function MyRecipePage() {
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 17, color: '#5C4A3A', lineHeight: 1.75, marginBottom: 36 }}>
             Explore the Recipe Vault, save recipes, plan meals, build shopping lists, watch cooking videos, and meet Chef Jen.
           </p>
-          <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ display: 'inline-block', backgroundColor: '#C8401A', color: '#FFFDF9', padding: '16px 40px', borderRadius: 16, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 17, fontWeight: 700, boxShadow: '0 4px 20px rgba(200,64,26,0.3)', marginBottom: 16 }}>Try It Free</a>
+          <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" onClick={() => trackAppStore('Try It Free CTA')} style={{ display: 'inline-block', backgroundColor: '#C8401A', color: '#FFFDF9', padding: '16px 40px', borderRadius: 16, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 17, fontWeight: 700, boxShadow: '0 4px 20px rgba(200,64,26,0.3)', marginBottom: 16 }}>Try It Free</a>
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 13, color: '#78716C', margin: 0 }}>
             No credit card required. Optional upgrades are available when you want more.
           </p>
