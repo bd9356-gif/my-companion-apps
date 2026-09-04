@@ -32,6 +32,19 @@ function trackDemoRoom(buttonText: string) {
   } catch(e) {}
 }
 
+function trackWhatItDoes(buttonText: string) {
+  try {
+    const w = window as any
+    if (typeof w.gtag === 'function') {
+      w.gtag('event', 'what_it_does_click', {
+        send_to: 'G-YWGNHS7MP7',
+        button_text: buttonText,
+        page_path: window.location.pathname,
+      })
+    }
+  } catch(e) {}
+}
+
 
 
 const SCREENSHOTS = [
@@ -77,7 +90,7 @@ export default function MyRecipePage() {
         </a>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
           <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-            <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>What It Does</a>
+            <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }} onClick={() => trackWhatItDoes('What It Does Nav')}>What It Does</a>
             <a href="https://pin.it/wfzginTwe" target="_blank" rel="noopener noreferrer" onClick={() => trackDemoRoom('Demo Room Nav')} style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Demo Room</a>
             <a href="/recipes" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Recipes</a>
             <a href="/tips" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Tips</a>
@@ -87,7 +100,7 @@ export default function MyRecipePage() {
       </nav>
       <style>{`@media (max-width: 768px) { .nav-links { display: none !important; } } @media (min-width: 769px) { .mobile-nav { display: none !important; } }`}</style>
       <div className="mobile-nav" style={{ backgroundColor: '#FFFDF9', borderBottom: '1px solid #E8E0D4', padding: '10px 20px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24, overflowX: 'auto' }}>
-        <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>What It Does</a>
+        <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }} onClick={() => trackWhatItDoes('What It Does Nav')}>What It Does</a>
         <a href="https://pin.it/wfzginTwe" target="_blank" rel="noopener noreferrer" onClick={() => trackDemoRoom('Demo Room Nav')} style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Demo Room</a>
         <a href="/recipes" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Recipes</a>
             <a href="/tips" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Tips</a>
@@ -106,7 +119,7 @@ export default function MyRecipePage() {
             One place to collect the recipes you love, create new ones with Chef Jen, learn to cook, preserve family favorites, plan meals, and more.
           </p>
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center', marginBottom: 20 }}>
-            <a href="#features" style={{ display: 'inline-block', backgroundColor: '#C8401A', color: '#FFFDF9', padding: '13px 24px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 15, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.3)' }}>See What It Can Do →</a>
+            <a href="#features" style={{ display: 'inline-block', backgroundColor: '#C8401A', color: '#FFFDF9', padding: '13px 24px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 15, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.3)' }} onClick={() => trackWhatItDoes('See What It Can Do')}>See What It Can Do →</a>
             <a href="https://pin.it/wfzginTwe" target="_blank" rel="noopener noreferrer" onClick={() => trackDemoRoom('Watch the Demos Hero')} style={{ display: 'inline-block', backgroundColor: 'white', color: '#C8401A', padding: '13px 24px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 15, fontWeight: 700, border: '1.5px solid #C8401A' }}>Watch the Demos →</a>
             <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" onClick={() => trackAppStore('Try Free Hero')} style={{ display: 'inline-block', color: '#78716C', padding: '13px 18px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 14, fontWeight: 600, border: '1px solid #D0C8C0' }}>Try Free →</a>
 
