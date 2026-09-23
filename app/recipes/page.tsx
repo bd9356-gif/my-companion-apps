@@ -15,6 +15,13 @@ export const metadata: Metadata = {
 
 const recipes = [
   {
+    slug: 'shrimp-scampi',
+    title: 'Shrimp Scampi',
+    description: 'Succulent shrimp sautéed in garlic, white wine, and butter with a squeeze of fresh lemon.',
+    photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1789588822524-3vi6e9j6lm5.jpg',
+    category: 'Seafood',
+  },
+  {
     slug: 'crab-imperial',
     title: 'Crab Imperial',
     description: 'A classic Maryland dish of lump crab meat baked in a creamy, savory sauce topped with crispy breadcrumbs.',
