@@ -13,85 +13,120 @@ export const metadata: Metadata = {
   },
 }
 
-const recipes = [
-  {
-    slug: 'shrimp-scampi',
-    title: 'Shrimp Scampi',
-    description: 'Succulent shrimp sautéed in garlic, white wine, and butter with a squeeze of fresh lemon.',
-    photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1789588822524-3vi6e9j6lm5.jpg',
-    category: 'Seafood',
-  },
-  {
-    slug: 'crab-imperial',
-    title: 'Crab Imperial',
-    description: 'A classic Maryland dish of lump crab meat baked in a creamy, savory sauce topped with crispy breadcrumbs.',
-    photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1786142165339-oxhd0b3576m.jpg',
-    category: 'Seafood',
-  },
+const everydayFavorites = [
   {
     slug: 'garlic-grilled-shrimp',
     title: 'Garlic Grilled Shrimp',
     description: 'Succulent shrimp infused with garlic and smoky spices, quickly grilled to perfection for a restaurant-quality dish.',
     photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1782225884651-nxf7oemu1kn.jpg',
-    category: 'Seafood',
-  },
-  {
-    slug: 'florida-yellow-snapper',
-    title: 'Pan-Seared Florida Yellow Snapper',
-    description: 'A light and bright coastal favorite featuring fresh yellow snapper fillets topped with a zesty citrus butter sauce.',
-    photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1786887794250-j2xsm988twq.jpg',
-    category: 'Seafood',
   },
   {
     slug: 'one-pan-italian-chicken',
     title: 'One-Pan Italian Chicken with Roasted Vegetables',
     description: 'Tender chicken thighs and roasted vegetables finished with fresh tomatoes and basil. A perfect weeknight dinner.',
     photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1780071050898-dykhmla8tx.jpg',
-    category: 'Chicken',
   },
   {
     slug: 'chicken-spiedini',
     title: 'Marinated Grilled Chicken Spiedini',
     description: 'Tender chicken marinated in a vibrant Mediterranean blend of lemon, vinegar, and herbs, perfect for grilling.',
     photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1787267562906-ag88lr39y38.jpg',
-    category: 'Chicken',
-  },
-  {
-    slug: 'tuscan-chicken-pasta',
-    title: 'Tuscan Chicken Pasta',
-    description: 'Tender chicken and pasta tossed with sun-dried tomatoes, spinach, and garlic in a light Tuscan olive oil sauce.',
-    photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1787692475971-r8aloew8u2b.jpg',
-    category: 'Pasta',
   },
   {
     slug: 'linguine-puttanesca',
     title: 'Linguine Puttanesca',
     description: 'Spicy tomato pasta loaded with briny olives, capers, anchovies, and garlic for a bold Mediterranean flavor.',
     photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1786905468260-2mfmcmlkcne.jpg',
-    category: 'Pasta',
   },
   {
-    slug: 'homemade-chicken-stock',
-    title: 'Homemade Chicken Stock',
-    description: 'A rich, flavorful broth made by simmering a rotisserie chicken carcass with aromatic vegetables and herbs for hours.',
-    photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1787664257682-6weayk5v9bn.jpg',
-    category: 'Soups & Stocks',
+    slug: 'tuscan-chicken-pasta',
+    title: 'Tuscan Chicken Pasta',
+    description: 'Tender chicken and pasta tossed with sun-dried tomatoes, spinach, and garlic in a light Tuscan olive oil sauce.',
+    photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1787692475971-r8aloew8u2b.jpg',
   },
   {
     slug: 'orange-creamsicle-smoothie',
     title: 'Orange Creamsicle Smoothie',
     description: 'A nostalgic blend of creamy vanilla and bright orange that tastes like a frozen treat from childhood.',
     photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1787267242632-2t4zgzg9bv4.jpg',
-    category: 'Drinks',
+  },
+]
+
+const crowdPleaserClassics = [
+  {
+    slug: 'crab-imperial',
+    title: 'Crab Imperial',
+    description: 'A classic Maryland dish of lump crab meat baked in a creamy, savory sauce topped with crispy breadcrumbs.',
+    photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1786142165339-oxhd0b3576m.jpg',
+  },
+  {
+    slug: 'florida-yellow-snapper',
+    title: 'Pan-Seared Florida Yellow Snapper',
+    description: 'A light and bright coastal favorite featuring fresh yellow snapper fillets topped with a zesty citrus butter sauce.',
+    photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1786887794250-j2xsm988twq.jpg',
+  },
+  {
+    slug: 'shrimp-scampi',
+    title: 'Shrimp Scampi',
+    description: 'Succulent shrimp sautéed in garlic, white wine, and butter with a squeeze of fresh lemon.',
+    photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1789588822524-3vi6e9j6lm5.jpg',
+  },
+  {
+    slug: 'homemade-chicken-stock',
+    title: 'Homemade Chicken Stock',
+    description: 'A rich, flavorful broth made by simmering a rotisserie chicken carcass with aromatic vegetables and herbs for hours.',
+    photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1787664257682-6weayk5v9bn.jpg',
   },
   {
     slug: 'italian-cream-cake',
     title: 'Italian Cream Cake',
     description: 'A rich, decadent layer cake with cream cheese frosting, coconut, and pecans that\'s pure indulgence.',
     photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1786301424971-7h0y4vp4uaw.jpg',
-    category: 'Dessert',
   },
 ]
+
+function RecipeCard({ slug, title, description, photo }: { slug: string; title: string; description: string; photo: string }) {
+  return (
+    <Link href={`/recipes/${slug}`} style={{ textDecoration: 'none' }}>
+      <div style={{ backgroundColor: 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 2px 12px rgba(0,0,0,0.08)', cursor: 'pointer' }}>
+        <div style={{ height: 220, overflow: 'hidden' }}>
+          <img src={photo} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </div>
+        <div style={{ padding: '16px 18px 20px' }}>
+          <h2 style={{ fontSize: 18, fontWeight: 700, color: '#2C1810', margin: '0 0 8px', lineHeight: 1.3 }}>
+            {title}
+          </h2>
+          <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 13, color: '#78716C', margin: 0, lineHeight: 1.5 }}>
+            {description}
+          </p>
+          <div style={{ marginTop: 14, fontFamily: 'system-ui, sans-serif', fontSize: 13, fontWeight: 600, color: '#C8401A' }}>
+            View Recipe →
+          </div>
+        </div>
+      </div>
+    </Link>
+  )
+}
+
+function CollectionSection({ title, subtitle, recipes }: { title: string; subtitle: string; recipes: typeof everydayFavorites }) {
+  return (
+    <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 60px' }}>
+      <div style={{ marginBottom: 28 }}>
+        <h2 style={{ fontSize: 'clamp(22px, 3vw, 30px)', fontWeight: 700, color: '#2C1810', margin: '0 0 6px' }}>
+          {title}
+        </h2>
+        <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 15, color: '#78716C', margin: 0 }}>
+          {subtitle}
+        </p>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 28 }}>
+        {recipes.map((recipe) => (
+          <RecipeCard key={recipe.slug} {...recipe} />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export default function RecipesPage() {
   return (
@@ -108,7 +143,7 @@ export default function RecipesPage() {
       </div>
 
       {/* Hero */}
-      <div style={{ textAlign: 'center', padding: '64px 24px 40px' }}>
+      <div style={{ textAlign: 'center', padding: '64px 24px 48px' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, backgroundColor: '#FEF3E8', border: '1px solid #F5D9C0', borderRadius: 100, padding: '6px 16px', marginBottom: 20 }}>
           <span style={{ fontSize: 16 }}>👩‍🍳</span>
           <span style={{ fontFamily: 'system-ui, sans-serif', fontSize: 13, fontWeight: 600, color: '#C8401A' }}>Created by Chef Jen</span>
@@ -124,32 +159,27 @@ export default function RecipesPage() {
         </p>
       </div>
 
-      {/* Recipe Grid */}
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 80px', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 28 }}>
-        {recipes.map((recipe) => (
-          <Link key={recipe.slug} href={`/recipes/${recipe.slug}`} style={{ textDecoration: 'none' }}>
-            <div style={{ backgroundColor: 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 2px 12px rgba(0,0,0,0.08)', cursor: 'pointer' }}>
-              <div style={{ height: 220, overflow: 'hidden' }}>
-                <img src={recipe.photo} alt={recipe.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
-              <div style={{ padding: '16px 18px 20px' }}>
-                <div style={{ display: 'inline-block', backgroundColor: '#FEF3E8', color: '#C8401A', fontSize: 11, fontFamily: 'system-ui, sans-serif', fontWeight: 700, padding: '3px 10px', borderRadius: 100, marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  {recipe.category}
-                </div>
-                <h2 style={{ fontSize: 18, fontWeight: 700, color: '#2C1810', margin: '0 0 8px', lineHeight: 1.3 }}>
-                  {recipe.title}
-                </h2>
-                <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 13, color: '#78716C', margin: 0, lineHeight: 1.5 }}>
-                  {recipe.description}
-                </p>
-                <div style={{ marginTop: 14, fontFamily: 'system-ui, sans-serif', fontSize: 13, fontWeight: 600, color: '#C8401A' }}>
-                  View Recipe →
-                </div>
-              </div>
-            </div>
-          </Link>
-        ))}
+      {/* Divider */}
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 48px' }}>
+        <hr style={{ border: 'none', borderTop: '1px solid #F0EBE3' }} />
       </div>
+
+      {/* Collections */}
+      <CollectionSection
+        title="Everyday Favorites"
+        subtitle="Easy, satisfying recipes made for real life."
+        recipes={everydayFavorites}
+      />
+
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 48px' }}>
+        <hr style={{ border: 'none', borderTop: '1px solid #F0EBE3' }} />
+      </div>
+
+      <CollectionSection
+        title="Crowd-Pleaser Classics"
+        subtitle="Familiar favorites worth making again and again."
+        recipes={crowdPleaserClassics}
+      />
 
       {/* Bottom CTA */}
       <div style={{ backgroundColor: '#FEF3E8', borderTop: '1px solid #F5D9C0', padding: '48px 24px', textAlign: 'center' }}>
