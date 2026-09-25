@@ -45,14 +45,15 @@ export default function RecipePage({ recipe }: { recipe: RecipeData }) {
           </p>
         </div>
 
-        {/* Import CTA */}
-        <div style={{ margin: '28px 0', backgroundColor: '#FEF3E8', border: '1px solid #F5D9C0', borderRadius: 14, padding: '18px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
-          <div>
-            <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, fontWeight: 600, color: '#2C1810', margin: '0 0 2px' }}>Save to your Recipe Vault</p>
-            <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#78716C', margin: 0 }}>Open in MyRecipe Companion and import with one tap</p>
-          </div>
-          <a href={recipe.shareUrl} style={{ backgroundColor: '#C8401A', color: 'white', padding: '10px 20px', borderRadius: 10, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap' }}>
-            Import Recipe →
+        {/* MyRecipe Companion CTA */}
+        <div style={{ margin: '28px 0', backgroundColor: '#FEF3E8', border: '1px solid #F5D9C0', borderRadius: 14, padding: '24px' }}>
+          <h3 style={{ fontFamily: 'Georgia, serif', fontSize: 18, fontWeight: 700, color: '#2C1810', margin: '0 0 10px' }}>Found something you like?</h3>
+          <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#5C4A3A', lineHeight: 1.7, margin: '0 0 20px' }}>
+            Keep it. Make it yours. Or ask Chef Jen to create something new.<br />
+            With MyRecipe Companion, you can save the recipes you love, bring in recipes you discover anywhere, and talk to Chef Jen when you want help creating something of your own.
+          </p>
+          <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ display: 'inline-block', backgroundColor: '#C8401A', color: 'white', padding: '12px 24px', borderRadius: 12, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 14, fontWeight: 700 }}>
+            Try MyRecipe Companion Free →
           </a>
         </div>
 
