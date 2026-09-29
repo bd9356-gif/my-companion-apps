@@ -83,9 +83,14 @@ export default function AdminPage() {
 
   async function sendLink(e: React.FormEvent) {
     e.preventDefault(); setError('')
+    const trimmed = email.trim()
     const { error } = await supabase.auth.signInWithOtp({
-      email: email.trim(),
-      options: { emailRedirectTo: `${window.location.origin}/admin`, shouldCreateUser: false },
+      email: trimmed,
+      // Only auto-create an account for the admin email itself — anyone else
+      // typing a different address into this form still gets blocked, since
+      // false here would also block bd9356@gmail.com from ever signing in
+      // if it was never used to make an account inside the app itself.
+      options: { emailRedirectTo: `${window.location.origin}/admin`, shouldCreateUser: trimmed.toLowerCase() === ADMIN_EMAIL },
     })
     if (error) setError(error.message)
     else setLinkSent(true)
