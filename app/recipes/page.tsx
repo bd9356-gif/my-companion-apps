@@ -1,5 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { getPublishedRecipes } from '@/lib/publishing'
+
+// Live: published recipes come from Supabase (set in /admin). Hand-built entries
+// below remain until each one is converted to its Supabase record.
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Chef Jen Recipes — MyRecipe Companion',
@@ -14,7 +19,6 @@ export const metadata: Metadata = {
 }
 
 const everydayFavorites = [
-  { slug: 'crispy-chicken-tacos', title: 'Crispy Chicken Tacos', description: 'Seasoned shredded chicken and cheese baked between two hot pans for crunch on both sides — no frying required.', photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1790286408639-gbgudepbf9a.jpg' },
   { slug: 'sheet-pan-chicken-veggies', title: 'Sheet Pan Chicken and Veggies', description: 'A fuss-free one-pan dinner that comes together in under 30 minutes with minimal prep and cleanup.', photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1786301155111-lwln9gta79.jpg' },
   { slug: 'spaghetti-stuffed-peppers', title: 'Spaghetti Stuffed Peppers', description: 'Colorful bell peppers filled with leftover spaghetti and baked until tender for an easy, comforting weeknight meal.', photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1788092848210-zwvm1y8jgkh.jpg' },
   { slug: 'cheeseburger-casserole', title: 'Cheeseburger Casserole', description: 'A comforting one-dish meal that combines ground beef, cheese, and pasta for classic cheeseburger flavor.', photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1790363779869-86pjbm4sqct.jpg' },
@@ -62,7 +66,14 @@ function CollectionSection({ title, subtitle, recipes }: { title: string; subtit
   )
 }
 
-export default function RecipesPage() {
+export default async function RecipesPage() {
+  const live = await getPublishedRecipes()
+  const liveSlugs = new Set(live.map((r) => r.slug))
+  const merge = (key: string, staticList: typeof everydayFavorites) => [
+    ...live.filter((r) => r.collection === key).map(({ slug, title, description, photo }) => ({ slug, title, description, photo })),
+    ...staticList.filter((r) => !liveSlugs.has(r.slug)),
+  ]
+
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#FFFDF9', fontFamily: 'Georgia, serif' }}>
       <div style={{ backgroundColor: '#FFFDF9', borderBottom: '1px solid #F0EBE3', padding: '16px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -88,13 +99,13 @@ export default function RecipesPage() {
         <hr style={{ border: 'none', borderTop: '1px solid #F0EBE3' }} />
       </div>
 
-      <CollectionSection title="Everyday Favorites" subtitle="Easy, satisfying recipes made for real life." recipes={everydayFavorites} />
+      <CollectionSection title="Everyday Favorites" subtitle="Easy, satisfying recipes made for real life." recipes={merge('everyday-favorites', everydayFavorites)} />
 
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 48px' }}>
         <hr style={{ border: 'none', borderTop: '1px solid #F0EBE3' }} />
       </div>
 
-      <CollectionSection title="Crowd-Pleaser Classics" subtitle="Familiar favorites worth making again and again." recipes={crowdPleaserClassics} />
+      <CollectionSection title="Crowd-Pleaser Classics" subtitle="Familiar favorites worth making again and again." recipes={merge('crowd-pleaser-classics', crowdPleaserClassics)} />
 
       <div style={{ backgroundColor: '#FEF3E8', borderTop: '1px solid #F5D9C0', padding: '48px 24px', textAlign: 'center' }}>
         <h2 style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 700, color: '#2C1810', marginBottom: 12 }}>Want Chef Jen to cook for you?</h2>

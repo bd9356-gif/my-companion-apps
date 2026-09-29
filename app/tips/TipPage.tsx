@@ -35,9 +35,11 @@ export default function TipPage({ tip }: { tip: TipData }) {
         </h1>
 
         {/* Intro */}
-        <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 17, color: '#5C4A3A', lineHeight: 1.8, margin: '0 0 36px', borderLeft: '3px solid #C8401A', paddingLeft: 16 }}>
+        {tip.intro && (
+        <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 17, color: '#5C4A3A', lineHeight: 1.8, margin: '0 0 36px', whiteSpace: 'pre-line', borderLeft: '3px solid #C8401A', paddingLeft: 16 }}>
           {tip.intro}
         </p>
+        )}
 
         {/* Sections */}
         {tip.sections.map((section, i) => (
@@ -45,18 +47,20 @@ export default function TipPage({ tip }: { tip: TipData }) {
             <h2 style={{ fontSize: 20, fontWeight: 700, color: '#2C1810', margin: '0 0 10px', paddingBottom: 8, borderBottom: '2px solid #F5D9C0' }}>
               {section.heading}
             </h2>
-            <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 16, color: '#3C2415', lineHeight: 1.8, margin: 0 }}>
+            <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 16, color: '#3C2415', lineHeight: 1.8, margin: 0, whiteSpace: 'pre-line' }}>
               {section.content}
             </p>
           </div>
         ))}
 
         {/* Bottom line */}
+        {tip.bottomLine && (
         <div style={{ backgroundColor: '#FEF3E8', border: '1px solid #F5D9C0', borderRadius: 14, padding: '20px 24px', marginBottom: 48 }}>
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 15, color: '#2C1810', lineHeight: 1.7, margin: 0 }}>
             <strong>Chef Jen's Bottom Line:</strong> {tip.bottomLine}
           </p>
         </div>
+        )}
 
         {/* Chef Jen CTA */}
         <div style={{ backgroundColor: '#2C1810', borderRadius: 20, padding: '36px 28px', textAlign: 'center' }}>

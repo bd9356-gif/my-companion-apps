@@ -1,5 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { getPublishedTips } from '@/lib/publishing'
+
+// Live: published tips come from Supabase (set in /admin). Hand-built tips below
+// remain until each one is converted to its Supabase record.
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Chef Jen Cooking Tips — MyRecipe Companion',
@@ -21,7 +26,14 @@ const tips = [
   { slug: 'fix-over-salted-dish', title: 'How Do I Fix an Over-Salted Dish?', preview: 'The potato trick is a myth. Here\'s what actually works — dilute, add acid, or add fat. One of those three will fix almost anything.', category: 'Techniques' },
 ]
 
-export default function TipsPage() {
+export default async function TipsPage() {
+  const live = await getPublishedTips()
+  const liveSlugs = new Set(live.map((t) => t.slug))
+  const allTips = [
+    ...tips.filter((t) => !liveSlugs.has(t.slug)),
+    ...live.map((t) => ({ slug: t.slug, title: t.title, preview: t.preview, category: 'Chef Jen Tip' })),
+  ]
+
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#FFFDF9', fontFamily: 'Georgia, serif' }}>
 
@@ -54,7 +66,7 @@ export default function TipsPage() {
 
       {/* Tips Grid */}
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 80px', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 24 }}>
-        {tips.map((tip) => (
+        {allTips.map((tip) => (
           <Link key={tip.slug} href={`/tips/${tip.slug}`} style={{ textDecoration: 'none' }}>
             <div style={{ backgroundColor: 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 2px 12px rgba(0,0,0,0.08)', padding: '24px', height: '100%', boxSizing: 'border-box', borderTop: '3px solid #C8401A' }}>
               <div style={{ display: 'inline-block', backgroundColor: '#FEF3E8', color: '#C8401A', fontSize: 11, fontFamily: 'system-ui, sans-serif', fontWeight: 700, padding: '3px 10px', borderRadius: 100, marginBottom: 14, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
