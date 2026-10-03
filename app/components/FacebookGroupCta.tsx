@@ -31,7 +31,7 @@ export default function FacebookGroupCta({ variant, sourceType, ctaLocation, ful
           onClick={() => trackEvent('chef_jen_group_click', { source_page: window.location.pathname, source_type: sourceType, cta_location: ctaLocation })}
           style={{ color: '#C8401A', textDecoration: 'underline', textUnderlineOffset: 4, textDecorationThickness: 2 }}
         >
-          Join {FACEBOOK_GROUP_NAME} {'→'}
+          Join {FACEBOOK_GROUP_NAME} on Facebook {'→'}
         </a>
       </h3>
       <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#78716C', margin: '0 auto', maxWidth: 440, lineHeight: 1.6 }}>{body}</p>
