@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Fragment, type ReactNode } from 'react'
 import { getPublishedRecipes } from '@/lib/publishing'
+import ChefJenStoryStrip from './ChefJenStoryStrip'
+import FacebookGroupCta from '../components/FacebookGroupCta'
 
 // Live: published recipes come from Supabase (set in /admin). Hand-built entries
 // below remain until each one is converted to its Supabase record.
@@ -52,7 +55,9 @@ function RecipeCard({ slug, title, description, photo }: { slug: string; title: 
   )
 }
 
-function CollectionSection({ title, subtitle, recipes }: { title: string; subtitle: string; recipes: typeof everydayFavorites }) {
+// `inserts` maps "after the Nth card of this section" -> a full-width element spliced
+// into the grid. Positions are counted from the displayed list, not tied to any record.
+function CollectionSection({ title, subtitle, recipes, inserts = {} }: { title: string; subtitle: string; recipes: typeof everydayFavorites; inserts?: Record<number, ReactNode> }) {
   return (
     <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 60px' }}>
       <div style={{ marginBottom: 28 }}>
@@ -60,11 +65,19 @@ function CollectionSection({ title, subtitle, recipes }: { title: string; subtit
         <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 15, color: '#78716C', margin: 0 }}>{subtitle}</p>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 28 }}>
-        {recipes.map((recipe) => <RecipeCard key={recipe.slug} {...recipe} />)}
+        {recipes.map((recipe, i) => (
+          <Fragment key={recipe.slug}>
+            <RecipeCard {...recipe} />
+            {inserts[i + 1]}
+          </Fragment>
+        ))}
       </div>
     </div>
   )
 }
+
+const STORY_AFTER = 6   // story strip appears after the 6th displayed recipe
+const GROUP_AFTER = 12  // Facebook CTA appears later, after more cards
 
 export default async function RecipesPage() {
   const live = await getPublishedRecipes()
@@ -73,6 +86,30 @@ export default async function RecipesPage() {
     ...live.filter((r) => r.collection === key).map(({ slug, title, description, photo }) => ({ slug, title, description, photo })),
     ...staticList.filter((r) => !liveSlugs.has(r.slug)),
   ]
+
+  const sections = [
+    { title: 'Everyday Favorites', subtitle: 'Easy, satisfying recipes made for real life.', recipes: merge('everyday-favorites', everydayFavorites) },
+    { title: 'Crowd-Pleaser Classics', subtitle: 'Familiar favorites worth making again and again.', recipes: merge('crowd-pleaser-classics', crowdPleaserClassics) },
+  ]
+  const total = sections.reduce((n, s) => n + s.recipes.length, 0)
+  // Facebook CTA goes after more cards; with a short list it lands on the last card,
+  // and it is skipped if that would put it right next to the story strip.
+  const groupAt = Math.min(GROUP_AFTER, total)
+  const showGroup = groupAt > STORY_AFTER
+
+  // Translate global positions into per-section positions.
+  let offset = 0
+  const sectionInserts = sections.map((s) => {
+    const inserts: Record<number, ReactNode> = {}
+    const place = (globalPos: number, node: ReactNode) => {
+      const local = globalPos - offset
+      if (local >= 1 && local <= s.recipes.length) inserts[local] = node
+    }
+    if (total >= 1) place(Math.min(STORY_AFTER, total), <ChefJenStoryStrip key="story" />)
+    if (showGroup) place(groupAt, <FacebookGroupCta key="group" variant="collection" sourceType="recipe_collection" ctaLocation="after_story" fullWidthInGrid />)
+    offset += s.recipes.length
+    return inserts
+  })
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#FFFDF9', fontFamily: 'Georgia, serif' }}>
@@ -99,13 +136,13 @@ export default async function RecipesPage() {
         <hr style={{ border: 'none', borderTop: '1px solid #F0EBE3' }} />
       </div>
 
-      <CollectionSection title="Everyday Favorites" subtitle="Easy, satisfying recipes made for real life." recipes={merge('everyday-favorites', everydayFavorites)} />
+      <CollectionSection {...sections[0]} inserts={sectionInserts[0]} />
 
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 48px' }}>
         <hr style={{ border: 'none', borderTop: '1px solid #F0EBE3' }} />
       </div>
 
-      <CollectionSection title="Crowd-Pleaser Classics" subtitle="Familiar favorites worth making again and again." recipes={merge('crowd-pleaser-classics', crowdPleaserClassics)} />
+      <CollectionSection {...sections[1]} inserts={sectionInserts[1]} />
 
       <div style={{ backgroundColor: '#FEF3E8', borderTop: '1px solid #F5D9C0', padding: '48px 24px', textAlign: 'center' }}>
         <h2 style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 700, color: '#2C1810', marginBottom: 12 }}>Want Chef Jen to cook for you?</h2>

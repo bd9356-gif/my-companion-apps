@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import FacebookGroupCta from '../components/FacebookGroupCta'
 
 export interface TipData {
   title: string
@@ -61,6 +62,9 @@ export default function TipPage({ tip }: { tip: TipData }) {
           </p>
         </div>
         )}
+
+        {/* Community — small, secondary to the tip itself */}
+        <FacebookGroupCta variant="tip" sourceType="chef_jen_tip" ctaLocation="after_tip" />
 
         {/* Chef Jen CTA */}
         <div style={{ backgroundColor: '#2C1810', borderRadius: 20, padding: '36px 28px', textAlign: 'center' }}>
