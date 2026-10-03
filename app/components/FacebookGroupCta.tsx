@@ -23,17 +23,18 @@ export default function FacebookGroupCta({ variant, sourceType, ctaLocation, ful
   return (
     <div style={{ ...(fullWidthInGrid ? { gridColumn: '1 / -1' } : {}), backgroundColor: '#FEF3E8', border: '1px solid #F5D9C0', borderRadius: 16, padding: big ? '28px 24px' : '20px 22px', textAlign: 'center', margin: big ? 0 : '0 0 32px' }}>
       <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: big ? 15 : 14, color: '#78716C', margin: '0 0 6px' }}>{heading}</p>
-      <h3 style={{ fontFamily: 'Georgia, serif', fontSize: big ? 22 : 18, fontWeight: 700, color: '#2C1810', margin: '0 0 8px' }}>Join {FACEBOOK_GROUP_NAME}</h3>
-      <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#78716C', margin: '0 auto 16px', maxWidth: 440, lineHeight: 1.6 }}>{body}</p>
-      <a
-        href={FACEBOOK_GROUP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={() => trackEvent('chef_jen_group_click', { source_page: window.location.pathname, source_type: sourceType, cta_location: ctaLocation })}
-        style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, fontWeight: 700, color: '#C8401A', textDecoration: 'none', borderBottom: '1px solid #C8401A', paddingBottom: 1 }}
-      >
-        Join the Facebook Group {'→'}
-      </a>
+      <h3 style={{ fontFamily: 'Georgia, serif', fontSize: big ? 22 : 18, fontWeight: 700, margin: '0 0 8px', lineHeight: 1.3 }}>
+        <a
+          href={FACEBOOK_GROUP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => trackEvent('chef_jen_group_click', { source_page: window.location.pathname, source_type: sourceType, cta_location: ctaLocation })}
+          style={{ color: '#C8401A', textDecoration: 'underline', textUnderlineOffset: 4, textDecorationThickness: 2 }}
+        >
+          Join {FACEBOOK_GROUP_NAME} {'→'}
+        </a>
+      </h3>
+      <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#78716C', margin: '0 auto', maxWidth: 440, lineHeight: 1.6 }}>{body}</p>
     </div>
   )
 }

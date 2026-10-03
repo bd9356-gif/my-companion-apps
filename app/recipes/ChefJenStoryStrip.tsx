@@ -49,15 +49,24 @@ export default function ChefJenStoryStrip() {
     return () => io.disconnect()
   }, [])
 
-  // Play only while visible; if the browser blocks autoplay the poster simply stays.
+  // Once near the viewport, give the video its src and explicitly load() it
+  // (Safari ignores a <source> added later when preload is "none"), then play
+  // only while visible. If autoplay is blocked the poster simply stays.
   useEffect(() => {
     const v = videoRef.current
     const el = wrapRef.current
-    if (!v || !el || !load || reduceMotion || !('IntersectionObserver' in window)) return
+    if (!v || !el || !load || reduceMotion) return
+    v.muted = true
+    v.defaultMuted = true
+    v.src = SRC
+    v.load()
+    const tryPlay = () => { v.play().catch(() => {}) }
+    if (!('IntersectionObserver' in window)) { tryPlay(); return }
     const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause() })
+      entries.forEach((e) => { if (e.isIntersecting) tryPlay(); else v.pause() })
     }, { threshold: 0.25 })
     io.observe(el)
+    v.addEventListener('canplay', () => { if (el.getBoundingClientRect().top < window.innerHeight && el.getBoundingClientRect().bottom > 0) tryPlay() }, { once: true })
     return () => io.disconnect()
   }, [load, reduceMotion])
 
@@ -73,14 +82,11 @@ export default function ChefJenStoryStrip() {
         muted
         loop
         playsInline
-        autoPlay={!reduceMotion}
         preload="none"
         controls={false}
         disablePictureInPicture
         style={{ width: '100%', maxWidth: 520, aspectRatio: '3 / 4', height: 'auto', display: 'block', borderRadius: 12, backgroundColor: '#2C1810' }}
-      >
-        {load && <source src={SRC} type="video/mp4" />}
-      </video>
+      />
     </div>
   )
 }
