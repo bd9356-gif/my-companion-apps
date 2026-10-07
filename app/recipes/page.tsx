@@ -5,8 +5,7 @@ import { getPublishedRecipes } from '@/lib/publishing'
 import ChefJenStoryStrip from './ChefJenStoryStrip'
 import FacebookGroupCta from '../components/FacebookGroupCta'
 
-// Live: published recipes come from Supabase (set in /admin). Hand-built entries
-// below remain until each one is converted to its Supabase record.
+// Live: the collection is exactly the recipes published in /admin (Supabase).
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
@@ -21,22 +20,7 @@ export const metadata: Metadata = {
   },
 }
 
-const everydayFavorites = [
-  { slug: 'sheet-pan-chicken-veggies', title: 'Sheet Pan Chicken and Veggies', description: 'A fuss-free one-pan dinner that comes together in under 30 minutes with minimal prep and cleanup.', photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1786301155111-lwln9gta79.jpg' },
-  { slug: 'spaghetti-stuffed-peppers', title: 'Spaghetti Stuffed Peppers', description: 'Colorful bell peppers filled with leftover spaghetti and baked until tender for an easy, comforting weeknight meal.', photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1788092848210-zwvm1y8jgkh.jpg' },
-  { slug: 'cheeseburger-casserole', title: 'Cheeseburger Casserole', description: 'A comforting one-dish meal that combines ground beef, cheese, and pasta for classic cheeseburger flavor.', photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1790363779869-86pjbm4sqct.jpg' },
-  { slug: 'creamy-garlic-pasta', title: 'Creamy Garlic Pasta with Lemon', description: 'Silky cream sauce with garlic and bright lemon tossed with pasta for an elegant yet simple weeknight dinner.', photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1788836652306-ugbghw515ui.jpg' },
-  { slug: 'banana-split-smoothie', title: 'Banana Split Smoothie', description: 'A creamy, dessert-inspired smoothie that captures all the classic flavors of a banana split in every sip.', photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1788735532783-h3ta8up6uk.jpg' },
-]
-
-const crowdPleaserClassics = [
-  { slug: 'florida-yellow-snapper', title: 'Pan-Seared Florida Yellow Snapper', description: 'A light and bright coastal favorite featuring fresh yellow snapper fillets topped with a zesty citrus butter sauce.', photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1786887794250-j2xsm988twq.jpg' },
-  { slug: 'shrimp-scampi-classic', title: 'Shrimp Scampi', description: 'Succulent garlic and white wine shrimp over pasta or crusty bread.', photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1790181603177-1mgxljd5d22.jpg' },
-  { slug: 'linguine-puttanesca-classic', title: 'Linguine Puttanesca', description: 'A bold and briny Italian pasta with olives, capers, anchovies, and tomatoes.', photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1789744616305-bbrv726qrn.jpg' },
-  { slug: 'italian-sausage-gnocchi', title: 'One Pan Italian Sausage Gnocchi', description: 'A creamy one-pan Italian sausage gnocchi ready in 25 minutes — weeknight dinner sorted.', photo: 'https://skinnyspatula.com/wp-content/uploads/2023/08/One_Pan_Italian_Sausage_Gnocchi_0-720x720.jpg' },
-  { slug: 'italian-cream-cake', title: 'Italian Cream Cake', description: "A rich, decadent layer cake with cream cheese frosting, coconut, and pecans that's pure indulgence.", photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1786301424971-7h0y4vp4uaw.jpg' },
-  { slug: 'lemon-pecorino-chicken', title: 'Lemon Pecorino Crusted Chicken', description: 'Golden-crusted chicken with a silky lemon cream sauce — indulgent yet quick enough for any weeknight.', photo: 'https://epgtahifcphwjifxmxst.supabase.co/storage/v1/object/public/personal_recipes/recipe-photos/1790366538582-a07lanj2fr.jpg' },
-]
+type RecipeCardData = { slug: string; title: string; description: string; photo: string }
 
 function RecipeCard({ slug, title, description, photo }: { slug: string; title: string; description: string; photo: string }) {
   return (
@@ -57,7 +41,7 @@ function RecipeCard({ slug, title, description, photo }: { slug: string; title: 
 
 // `inserts` maps "after the Nth card of this section" -> a full-width element spliced
 // into the grid. Positions are counted from the displayed list, not tied to any record.
-function CollectionSection({ title, subtitle, recipes, inserts = {} }: { title: string; subtitle: string; recipes: typeof everydayFavorites; inserts?: Record<number, ReactNode> }) {
+function CollectionSection({ title, subtitle, recipes, inserts = {} }: { title: string; subtitle: string; recipes: RecipeCardData[]; inserts?: Record<number, ReactNode> }) {
   return (
     <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 60px' }}>
       <div style={{ marginBottom: 28 }}>
@@ -81,15 +65,12 @@ const GROUP_AFTER = 12  // Facebook CTA appears later, after more cards
 
 export default async function RecipesPage() {
   const live = await getPublishedRecipes()
-  const liveSlugs = new Set(live.map((r) => r.slug))
-  const merge = (key: string, staticList: typeof everydayFavorites) => [
-    ...live.filter((r) => r.collection === key).map(({ slug, title, description, photo }) => ({ slug, title, description, photo })),
-    ...staticList.filter((r) => !liveSlugs.has(r.slug)),
-  ]
+  const inCollection = (key: string): RecipeCardData[] =>
+    live.filter((r) => r.collection === key).map(({ slug, title, description, photo }) => ({ slug, title, description, photo }))
 
   const sections = [
-    { title: 'Everyday Favorites', subtitle: 'Easy, satisfying recipes made for real life.', recipes: merge('everyday-favorites', everydayFavorites) },
-    { title: 'Crowd-Pleaser Classics', subtitle: 'Familiar favorites worth making again and again.', recipes: merge('crowd-pleaser-classics', crowdPleaserClassics) },
+    { title: 'Everyday Favorites', subtitle: 'Easy, satisfying recipes made for real life.', recipes: inCollection('everyday-favorites') },
+    { title: 'Crowd-Pleaser Classics', subtitle: 'Familiar favorites worth making again and again.', recipes: inCollection('crowd-pleaser-classics') },
   ]
   const total = sections.reduce((n, s) => n + s.recipes.length, 0)
   // Facebook CTA goes after more cards; with a short list it lands on the last card,
@@ -136,13 +117,15 @@ export default async function RecipesPage() {
         <hr style={{ border: 'none', borderTop: '1px solid #F0EBE3' }} />
       </div>
 
-      <CollectionSection {...sections[0]} inserts={sectionInserts[0]} />
+      {sections[0].recipes.length > 0 && <CollectionSection {...sections[0]} inserts={sectionInserts[0]} />}
 
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 48px' }}>
-        <hr style={{ border: 'none', borderTop: '1px solid #F0EBE3' }} />
-      </div>
+      {sections[0].recipes.length > 0 && sections[1].recipes.length > 0 && (
+        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 48px' }}>
+          <hr style={{ border: 'none', borderTop: '1px solid #F0EBE3' }} />
+        </div>
+      )}
 
-      <CollectionSection {...sections[1]} inserts={sectionInserts[1]} />
+      {sections[1].recipes.length > 0 && <CollectionSection {...sections[1]} inserts={sectionInserts[1]} />}
 
       <div style={{ backgroundColor: '#FEF3E8', borderTop: '1px solid #F5D9C0', padding: '48px 24px', textAlign: 'center' }}>
         <h2 style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 700, color: '#2C1810', marginBottom: 12 }}>Want Chef Jen to cook for you?</h2>

@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getPublishedTips } from '@/lib/publishing'
 
-// Live: published tips come from Supabase (set in /admin). Hand-built tips below
-// remain until each one is converted to its Supabase record.
+// Live: the tips list is exactly the tips published in /admin (Supabase).
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
@@ -17,22 +16,9 @@ export const metadata: Metadata = {
   },
 }
 
-const tips = [
-  { slug: 'best-wine-for-cooking', title: "What's the Best Wine for Cooking?", preview: 'Cook with wine you\'d actually drink. Dry whites for chicken and seafood, dry reds for braises and stews — and never sweet.', category: 'Kitchen Basics' },
-  { slug: 'cast-iron-vs-stainless-steel', title: 'Cast Iron vs Stainless Steel', preview: 'Both are excellent. The one you should grab depends entirely on what you\'re cooking — and once you know why, you\'ll never hesitate.', category: 'Kitchen Basics' },
-  { slug: 'restaurant-level-sauces', title: 'How to Build Restaurant-Level Sauces', preview: 'Restaurant sauces taste different because they\'re built differently. Layer flavor at every step and the result takes care of itself.', category: 'Techniques' },
-  { slug: 'how-to-use-instant-pot', title: "What's the Best Way to Use an Instant Pot?", preview: 'Most people use it for convenience and miss what it\'s actually best at — turning tough cuts into something extraordinary in a fraction of the time.', category: 'Tools' },
-  { slug: 'how-to-rescue-dry-chicken', title: 'How to Rescue Dry Chicken', preview: 'Dry chicken is one of the most common kitchen disappointments — and one of the most fixable. Here\'s what actually works.', category: 'Techniques' },
-  { slug: 'fix-over-salted-dish', title: 'How Do I Fix an Over-Salted Dish?', preview: 'The potato trick is a myth. Here\'s what actually works — dilute, add acid, or add fat. One of those three will fix almost anything.', category: 'Techniques' },
-]
-
 export default async function TipsPage() {
   const live = await getPublishedTips()
-  const liveSlugs = new Set(live.map((t) => t.slug))
-  const allTips = [
-    ...tips.filter((t) => !liveSlugs.has(t.slug)),
-    ...live.map((t) => ({ slug: t.slug, title: t.title, preview: t.preview, category: 'Chef Jen Tip' })),
-  ]
+  const allTips = live.map((t) => ({ slug: t.slug, title: t.title, preview: t.preview, category: 'Chef Jen Tip' }))
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#FFFDF9', fontFamily: 'Georgia, serif' }}>
