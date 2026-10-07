@@ -38,6 +38,7 @@ export default async function Page({ params }: Props) {
 
   const category = COLLECTIONS.find((c) => c.key === recipe.collection)?.title || 'Chef Jen Recipes'
   return <RecipePage recipe={{
+    slug: recipe.slug,
     title: recipe.title,
     description: recipe.description,
     photo: recipe.photo,
@@ -45,5 +46,9 @@ export default async function Page({ params }: Props) {
     shareUrl: '',
     ingredients: recipe.ingredients,
     instructions: recipe.instructions,
+    prepMinutes: recipe.prepMinutes,
+    cookMinutes: recipe.cookMinutes,
+    totalMinutes: recipe.totalMinutes,
+    servings: recipe.servings,
   }} />
 }

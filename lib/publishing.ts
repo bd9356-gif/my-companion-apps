@@ -48,6 +48,11 @@ export interface PublicRecipe {
   photo: string
   ingredients: string[]
   instructions: string[]
+  // Quick facts — only filled on the detail page query; 0 / null means "not set".
+  prepMinutes?: number | null
+  cookMinutes?: number | null
+  totalMinutes?: number | null
+  servings?: number | null
 }
 
 type RecipeRow = {
@@ -60,6 +65,15 @@ type RecipeRow = {
   web_slug: string
   web_collection: CollectionKey | null
   created_at: string | null
+  prep_time_minutes?: unknown
+  cook_time_minutes?: unknown
+  total_time_minutes?: unknown
+  servings?: unknown
+}
+
+function positiveNumber(v: unknown): number | null {
+  const n = typeof v === 'number' ? v : typeof v === 'string' ? parseFloat(v) : NaN
+  return Number.isFinite(n) && n > 0 ? n : null
 }
 
 function photoOf(url: string | null): string {
@@ -103,10 +117,15 @@ function toPublicRecipe(r: RecipeRow): PublicRecipe {
     photo: photoOf(r.photo_url),
     ingredients: ingredientsOf(r.ingredients),
     instructions: instructionsOf(r.instructions),
+    prepMinutes: positiveNumber(r.prep_time_minutes),
+    cookMinutes: positiveNumber(r.cook_time_minutes),
+    totalMinutes: positiveNumber(r.total_time_minutes),
+    servings: positiveNumber(r.servings),
   }
 }
 
 const RECIPE_COLUMNS = 'id, title, description, photo_url, ingredients, instructions, web_slug, web_collection, created_at'
+const RECIPE_DETAIL_COLUMNS = `${RECIPE_COLUMNS}, prep_time_minutes, cook_time_minutes, total_time_minutes, servings`
 
 export async function getPublishedRecipes(): Promise<PublicRecipe[]> {
   const sb = serviceClient()
@@ -125,15 +144,21 @@ export async function getPublishedRecipes(): Promise<PublicRecipe[]> {
 export async function getPublishedRecipe(slug: string): Promise<PublicRecipe | null> {
   const sb = serviceClient()
   if (!sb) return null
-  const { data, error } = await sb
+  const query = (columns: string) => sb
     .from('personal_recipes')
-    .select(RECIPE_COLUMNS)
+    .select(columns)
     .eq('web_slug', slug)
     .eq('published', true)
     .is('deleted_at', null)
     .maybeSingle()
+  let { data, error } = await query(RECIPE_DETAIL_COLUMNS)
+  // If the quick-facts columns ever fail, still deliver the recipe itself.
+  if (error) {
+    console.error('getPublishedRecipe (details)', error.message)
+    ;({ data, error } = await query(RECIPE_COLUMNS))
+  }
   if (error) { console.error('getPublishedRecipe', error.message); return null }
-  return data ? toPublicRecipe(data as RecipeRow) : null
+  return data ? toPublicRecipe(data as unknown as RecipeRow) : null
 }
 
 // Where a recipe address goes when the recipe is switched off: its share page in
