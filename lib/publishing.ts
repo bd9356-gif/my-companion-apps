@@ -136,6 +136,21 @@ export async function getPublishedRecipe(slug: string): Promise<PublicRecipe | n
   return data ? toPublicRecipe(data as RecipeRow) : null
 }
 
+// Where a recipe address goes when the recipe is switched off: its share page in
+// the app (so old Pinterest/Facebook links still land on the recipe), or the
+// collection if the recipe no longer exists.
+export async function unpublishedRecipeDestination(slug: string): Promise<string> {
+  const sb = serviceClient()
+  if (!sb) return '/recipes'
+  const { data } = await sb
+    .from('personal_recipes')
+    .select('id')
+    .eq('web_slug', slug)
+    .is('deleted_at', null)
+    .maybeSingle()
+  return data?.id ? `https://recipe.mycompanionapps.com/share/${data.id}` : '/recipes'
+}
+
 // ── Tips ───────────────────────────────────────────────────────────────
 
 export interface PublicTip {

@@ -1,12 +1,12 @@
 // Recipe pages served live from Supabase (MyRecipe Companion's own record).
 // The address (web_slug) is fixed the first time a recipe is published and never
 // changes, so edits in the app show up here at the same URL.
-// Hand-built folders under /recipes still win over this route until they're converted.
+// Every recipe page on the site now comes from here — no hand-typed copies remain.
 
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import RecipePage from '../RecipePage'
-import { getPublishedRecipe, COLLECTIONS } from '@/lib/publishing'
+import { getPublishedRecipe, unpublishedRecipeDestination, COLLECTIONS } from '@/lib/publishing'
 
 export const dynamic = 'force-dynamic'
 
@@ -32,8 +32,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { slug } = await params
   const recipe = await getPublishedRecipe(slug)
-  // Unpublished or unknown: send visitors to the collection instead of a dead end.
-  if (!recipe) redirect('/recipes')
+  // Switched off: send visitors to the recipe's share page in the app.
+  // Unknown or deleted: send them to the collection.
+  if (!recipe) redirect(await unpublishedRecipeDestination(slug))
 
   const category = COLLECTIONS.find((c) => c.key === recipe.collection)?.title || 'Chef Jen Recipes'
   return <RecipePage recipe={{
