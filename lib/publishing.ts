@@ -187,10 +187,10 @@ export interface PublicTip {
   preview: string
 }
 
-type NoteRow = { id: string; title: string | null; content: string | null; web_slug: string }
+type NoteRow = { id: string; title: string | null; question: string | null; content: string | null; web_slug: string }
 
 function clean(line: string): string {
-  return line.replace(/\*\*/g, '').replace(/^#+\s*/, '').replace(/^[-•*]\s+/, '• ').trim()
+  return line.replace(/\*\*/g, '').replace(/^#+\s*/, '').replace(/^[-•*]\s+/, '• ').replace(/\*/g, '').trim()
 }
 
 // Chef Jen answers use "**Heading**" lines (same rule the app's LearnView uses).
@@ -222,7 +222,11 @@ export function parseTip(title: string, content: string): Omit<PublicTip, 'slug'
 }
 
 function toPublicTip(n: NoteRow): PublicTip {
-  return { slug: n.web_slug, ...parseTip(n.title || 'Chef Jen Tip', n.content || '') }
+  // The app saves only the first 60 characters of the question as the title;
+  // the full question reads better as the page title and link preview.
+  const question = (n.question || '').trim()
+  const title = question && question.length <= 160 ? question : (n.title || 'Chef Jen Tip')
+  return { slug: n.web_slug, ...parseTip(title, n.content || '') }
 }
 
 export async function getPublishedTips(): Promise<PublicTip[]> {
@@ -230,7 +234,7 @@ export async function getPublishedTips(): Promise<PublicTip[]> {
   if (!sb) return []
   const { data, error } = await sb
     .from('notes')
-    .select('id, title, content, web_slug')
+    .select('id, title, question, content, web_slug')
     .eq('published', true)
     .not('web_slug', 'is', null)
     .order('created_at', { ascending: true })
@@ -243,7 +247,7 @@ export async function getPublishedTip(slug: string): Promise<PublicTip | null> {
   if (!sb) return null
   const { data, error } = await sb
     .from('notes')
-    .select('id, title, content, web_slug')
+    .select('id, title, question, content, web_slug')
     .eq('web_slug', slug)
     .eq('published', true)
     .maybeSingle()
