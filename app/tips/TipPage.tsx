@@ -13,13 +13,10 @@ export default function TipPage({ tip }: { tip: TipData }) {
     <div style={{ minHeight: '100vh', backgroundColor: '#FFFDF9', fontFamily: 'Georgia, serif' }}>
 
       {/* Header */}
-      <div style={{ backgroundColor: '#FFFDF9', borderBottom: '1px solid #F0EBE3', padding: '16px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div style={{ backgroundColor: '#FFFDF9', borderBottom: '1px solid #F0EBE3', padding: '16px 24px', display: 'flex', alignItems: 'center' }}>
         <Link href="/tips" style={{ textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 13, color: '#78716C', fontWeight: 500 }}>
           ← All Tips
         </Link>
-        <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ backgroundColor: '#C8401A', color: 'white', padding: '8px 18px', borderRadius: 10, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 13, fontWeight: 700 }}>
-          Get the App
-        </a>
       </div>
 
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 24px 80px' }}>
@@ -63,25 +60,11 @@ export default function TipPage({ tip }: { tip: TipData }) {
         </div>
         )}
 
-        {/* Community — small, secondary to the tip itself */}
+        {/* The one call to action after the tip: Chef Jen's Facebook group */}
         <FacebookGroupCta variant="tip" sourceType="chef_jen_tip" ctaLocation="after_tip" />
 
-        {/* Chef Jen CTA */}
-        <div style={{ backgroundColor: '#2C1810', borderRadius: 20, padding: '36px 28px', textAlign: 'center' }}>
-          <span style={{ fontSize: 36 }}>👩‍🍳</span>
-          <h2 style={{ color: 'white', fontSize: 22, fontWeight: 700, margin: '12px 0 8px' }}>
-            Want Chef Jen in your kitchen?
-          </h2>
-          <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#C9B8A8', margin: '0 0 24px', lineHeight: 1.6 }}>
-            Ask Chef Jen anything about cooking, get personalized recipes, and save your favorite tips — all in MyRecipe Companion.
-          </p>
-          <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ display: 'inline-block', backgroundColor: '#C8401A', color: 'white', padding: '14px 28px', borderRadius: 12, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 15, fontWeight: 700 }}>
-            Try MyRecipe Companion Free →
-          </a>
-        </div>
-
         {/* Back link */}
-        <div style={{ margin: '36px 0 0', textAlign: 'center' }}>
+        <div style={{ margin: '4px 0 0', textAlign: 'center' }}>
           <Link href="/tips" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#78716C', textDecoration: 'none' }}>
             ← Back to all Chef Jen tips
           </Link>
