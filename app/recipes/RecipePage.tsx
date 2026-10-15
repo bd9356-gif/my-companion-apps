@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import TrackedLink from './TrackedLink'
+import RecipeTips from './RecipeTips'
 
 // Public recipe page — "pickup counter" layout.
 // 1. Deliver the recipe (title, photo, description, quick facts, ingredients, instructions)
@@ -130,6 +131,9 @@ export default function RecipePage({ recipe }: { recipe: RecipeData }) {
             </ol>
           </section>
         </article>
+
+        {/* Tips: import into a recipe app, join the Facebook group */}
+        <RecipeTips slug={slug} />
 
         {/* ── SECTION 2: continue shopping ──────────────────────── */}
         <section style={{ margin: '48px 0 0', textAlign: 'center', padding: '28px 20px', border: '1px solid #F0EBE3', borderRadius: 16, backgroundColor: 'white' }}>
