@@ -5,8 +5,9 @@ import RecipeTips from './RecipeTips'
 // Public recipe page — "pickup counter" layout.
 // 1. Deliver the recipe (title, photo, description, quick facts, ingredients, instructions)
 //    with no sales block in the way.
-// 2. Continue shopping → /recipes            (GA4: recipe_collection_click)
-// 3. Make this recipe yours → the app        (GA4: recipe_app_click, cta_location after_recipe)
+// 2. Cards: Meet Chef Jen → Facebook group → Recipe Import Tip (RecipeTips)
+// 3. Continue shopping → /recipes            (GA4: recipe_collection_click)
+// The header keeps the small "Get the App" button.
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990'
 
@@ -32,16 +33,6 @@ function minutes(m: number) {
   const h = Math.floor(m / 60), r = m % 60
   return r ? `${h} hr ${r} min` : `${h} hr`
 }
-
-const MAKE_IT_YOURS = [
-  'Cooking for two?',
-  'Missing an ingredient?',
-  'Don’t like mushrooms?',
-  'Want it healthier?',
-  'Want to use chicken thighs instead?',
-  'Need to scale it for a crowd?',
-  'Have a question while you’re cooking?',
-]
 
 export default function RecipePage({ recipe }: { recipe: RecipeData }) {
   const slug = recipe.slug || ''
@@ -147,32 +138,6 @@ export default function RecipePage({ recipe }: { recipe: RecipeData }) {
             style={{ display: 'inline-block', fontFamily: sans, fontSize: 15, fontWeight: 700, color: '#C8401A', textDecoration: 'none', border: '2px solid #C8401A', borderRadius: 12, padding: '12px 22px' }}
           >
             Explore Chef Jen’s Recipe Collection →
-          </TrackedLink>
-        </section>
-
-        {/* ── SECTION 3: make this recipe yours ─────────────────── */}
-        <section style={{ margin: '24px 0 0', backgroundColor: '#2C1810', borderRadius: 20, padding: '32px 24px' }}>
-          <h2 style={{ color: 'white', fontSize: 22, fontWeight: 700, margin: '0 0 8px', lineHeight: 1.3 }}>
-            Found something you like? Make it yours.
-          </h2>
-          <p style={{ fontFamily: sans, fontSize: 15, color: '#E7DCD2', margin: '0 0 16px', lineHeight: 1.6 }}>
-            Chef Jen can help you change this recipe for the way you cook.
-          </p>
-          <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px', display: 'grid', gap: 8 }}>
-            {MAKE_IT_YOURS.map((q) => (
-              <li key={q} style={{ fontFamily: sans, fontSize: 15, color: '#C9B8A8', display: 'flex', gap: 10 }}>
-                <span style={{ color: '#E8825F' }}>✓</span>{q}
-              </li>
-            ))}
-          </ul>
-          <TrackedLink
-            href={APP_STORE_URL}
-            external
-            event="recipe_app_click"
-            params={{ source_recipe_slug: slug, cta_location: 'after_recipe' }}
-            style={{ display: 'inline-block', backgroundColor: '#C8401A', color: 'white', padding: '14px 26px', borderRadius: 12, textDecoration: 'none', fontFamily: sans, fontSize: 15, fontWeight: 700 }}
-          >
-            Try MyRecipe Companion Free →
           </TrackedLink>
         </section>
       </main>
