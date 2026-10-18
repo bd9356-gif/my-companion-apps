@@ -161,6 +161,7 @@ export default function Home() {
           <div className="flex gap-4">
             <a href="/myrecipe" className="text-sm text-stone-400 hover:text-stone-600">MyRecipe</a>
             <a href="/recipes" className="text-sm text-stone-400 hover:text-stone-600">Chef Jen Recipes</a>
+            <a href="/meet-chef-jen" className="text-sm text-stone-400 hover:text-stone-600">Meet Chef Jen</a>
             <a href="/golf" className="text-sm text-stone-400 hover:text-stone-600">MyGolf</a>
             <a href="/privacy" className="text-sm text-stone-400 hover:text-stone-600">Privacy</a>
             <a href="/terms" className="text-sm text-stone-400 hover:text-stone-600">Terms</a>
