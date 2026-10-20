@@ -26,9 +26,7 @@ export default function FacebookGroupCta({ variant, sourceType, ctaLocation, ful
       <h3 style={{ fontFamily: 'Georgia, serif', fontSize: big ? 22 : 18, fontWeight: 700, margin: '0 0 8px', lineHeight: 1.3 }}>
         <a
           href={FACEBOOK_GROUP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackEvent('chef_jen_group_click', { source_page: window.location.pathname, source_type: sourceType, cta_location: ctaLocation })}
+          onClick={() => trackEvent('chef_jen_group_click', { transport_type: 'beacon', source_page: window.location.pathname, source_type: sourceType, cta_location: ctaLocation })}
           style={{ color: '#C8401A', textDecoration: 'underline', textUnderlineOffset: 4, textDecorationThickness: 2 }}
         >
           Join {FACEBOOK_GROUP_NAME} on Facebook {'→'}

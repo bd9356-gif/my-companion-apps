@@ -37,9 +37,7 @@ export default function RecipeTips({ slug }: { slug: string }) {
             Enjoyed this recipe? Join{' '}
             <a
               href={FACEBOOK_GROUP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackEvent('chef_jen_group_click', { source_page: window.location.pathname, source_type: 'recipe_page', cta_location: 'recipe_tip', source_recipe_slug: slug })}
+              onClick={() => trackEvent('chef_jen_group_click', { transport_type: 'beacon', source_page: window.location.pathname, source_type: 'recipe_page', cta_location: 'recipe_tip', source_recipe_slug: slug })}
               style={{ color: '#C8401A', fontWeight: 600 }}
             >
               {FACEBOOK_GROUP_NAME}
