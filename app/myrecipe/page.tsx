@@ -323,22 +323,6 @@ export default function MyRecipePage() {
         </div>
       </section>
 
-      {/* PRICING */}
-      <section id="pricing" style={{ backgroundColor: '#F5EDE0', padding: '80px 32px', textAlign: 'center' }}>
-        <div style={{ maxWidth: 560, margin: '0 auto' }}>
-          <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, color: '#2C1810', marginBottom: 20, lineHeight: 1.2 }}>
-            Try MyRecipe Companion Free.
-          </h2>
-          <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 17, color: '#5C4A3A', lineHeight: 1.75, marginBottom: 36 }}>
-            Explore the Recipe Vault, save recipes, plan meals, build shopping lists, watch cooking videos, and meet Chef Jen.
-          </p>
-          <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" onClick={() => trackAppStore('Try It Free CTA')} style={{ display: 'inline-block', backgroundColor: '#C8401A', color: '#FFFDF9', padding: '16px 40px', borderRadius: 16, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 17, fontWeight: 700, boxShadow: '0 4px 20px rgba(200,64,26,0.3)', marginBottom: 16 }}>Try It Free</a>
-          <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 13, color: '#78716C', margin: 0 }}>
-            No credit card required. Optional upgrades are available when you want more.
-          </p>
-        </div>
-      </section>
-
       {/* FINAL CTA */}
       <section style={{ background: 'linear-gradient(160deg, #F5EDE0 0%, #FFFDF9 100%)', padding: '80px 32px', textAlign: 'center' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
