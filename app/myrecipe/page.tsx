@@ -136,20 +136,31 @@ export default function MyRecipePage() {
         <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Try It Free</a>
       </div>
 
+      {/* Phones only: tighter opening so the six sparks read as quick, consecutive lines */}
+      <style>{`
+        @media (max-width: 640px) {
+          .mr-hero { padding: 32px 20px 48px !important; gap: 40px !important; }
+          .mr-h1-last { margin-bottom: 8px !important; }
+          .mr-tagline { margin-bottom: 18px !important; }
+          .mr-sparks { gap: 6px !important; margin-bottom: 22px !important; }
+          .mr-spark { padding: 8px 12px !important; gap: 8px !important; }
+          .mr-spark-text { font-size: 14px !important; line-height: 1.4 !important; }
+        }
+      `}</style>
       {/* HERO */}
-      <section style={{ background: 'linear-gradient(135deg, #F2E8D9 0%, #F8F0E6 40%, #FDF6EE 100%)', padding: '72px 32px 64px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 64, flexWrap: 'wrap', minHeight: '80vh' }}>
+      <section className="mr-hero" style={{ background: 'linear-gradient(135deg, #F2E8D9 0%, #F8F0E6 40%, #FDF6EE 100%)', padding: '72px 32px 64px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 64, flexWrap: 'wrap', minHeight: '80vh' }}>
         {/* Left copy */}
         <div style={{ maxWidth: 640, flex: '1 1 320px' }}>
           <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(40px, 5vw, 62px)', fontWeight: 700, lineHeight: 1.06, color: '#2C1810', marginBottom: 6 }}>MyRecipe</h1>
-          <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(40px, 5vw, 62px)', fontWeight: 700, lineHeight: 1.06, color: '#2C1810', marginBottom: 16 }}>Companion</h1>
-          <p style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(20px, 2.5vw, 28px)', fontStyle: 'italic', color: '#C8401A', marginBottom: 28, lineHeight: 1.3 }}>More Than Recipes.</p>
+          <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(40px, 5vw, 62px)', fontWeight: 700, lineHeight: 1.06, color: '#2C1810', marginBottom: 16 }} className="mr-h1-last">Companion</h1>
+          <p style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(20px, 2.5vw, 28px)', fontStyle: 'italic', color: '#C8401A', marginBottom: 28, lineHeight: 1.3 }} className="mr-tagline">More Than Recipes.</p>
 
           {/* Benefit sparks — two columns on wide screens, one on phones */}
-          <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 28px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 10 }}>
+          <ul className="mr-sparks" style={{ listStyle: 'none', padding: 0, margin: '0 0 28px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 10 }}>
             {SPARKS.map((q) => (
-              <li key={q} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, backgroundColor: 'rgba(255,253,249,0.75)', border: '1px solid #F0E0CC', borderLeft: '3px solid #C8401A', borderRadius: 12, padding: '12px 14px' }}>
+              <li key={q} className="mr-spark" style={{ display: 'flex', alignItems: 'flex-start', gap: 10, backgroundColor: 'rgba(255,253,249,0.75)', border: '1px solid #F0E0CC', borderLeft: '3px solid #C8401A', borderRadius: 12, padding: '12px 14px' }}>
                 <span aria-hidden="true" style={{ fontSize: 16, lineHeight: 1.4, flexShrink: 0 }}>💡</span>
-                <span style={{ fontFamily: 'system-ui, sans-serif', fontSize: 15, lineHeight: 1.45, color: '#3C2415' }}>{q}</span>
+                <span className="mr-spark-text" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 15, lineHeight: 1.45, color: '#3C2415' }}>{q}</span>
               </li>
             ))}
           </ul>
