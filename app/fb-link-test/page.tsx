@@ -15,6 +15,9 @@ const LINKS: [string, string][] = [
   ['6', `fb://group/${ID}`],
   ['7', `fb://group?id=${ID}`],
   ['8', `fb://profile/${ID}`],
+  ['9', `x-safari-https://m.facebook.com/groups/${ID}`],
+  ['10', `x-safari-https://www.facebook.com/groups/${ID}`],
+  ['11', `x-safari-https://mycompanionapps.com/recipes`],
 ]
 
 export default function Page() {
