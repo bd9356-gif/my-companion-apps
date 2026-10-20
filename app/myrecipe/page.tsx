@@ -140,6 +140,7 @@ export default function MyRecipePage() {
       <style>{`
         @media (max-width: 640px) {
           .mr-hero { padding: 32px 20px 48px !important; gap: 40px !important; }
+          .mr-h1 { font-size: 31px !important; }
           .mr-h1-last { margin-bottom: 8px !important; }
           .mr-tagline { margin-bottom: 18px !important; }
           .mr-sparks { gap: 6px !important; margin-bottom: 22px !important; }
@@ -151,8 +152,8 @@ export default function MyRecipePage() {
       <section className="mr-hero" style={{ background: 'linear-gradient(135deg, #F2E8D9 0%, #F8F0E6 40%, #FDF6EE 100%)', padding: '72px 32px 64px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 64, flexWrap: 'wrap', minHeight: '80vh' }}>
         {/* Left copy */}
         <div style={{ maxWidth: 640, flex: '1 1 320px' }}>
-          <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(40px, 5vw, 62px)', fontWeight: 700, lineHeight: 1.06, color: '#2C1810', marginBottom: 6 }}>MyRecipe</h1>
-          <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(40px, 5vw, 62px)', fontWeight: 700, lineHeight: 1.06, color: '#2C1810', marginBottom: 16 }} className="mr-h1-last">Companion</h1>
+          <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(40px, 5vw, 62px)', fontWeight: 700, lineHeight: 1.06, color: '#2C1810', marginBottom: 6 }} className="mr-h1">MyRecipe</h1>
+          <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(40px, 5vw, 62px)', fontWeight: 700, lineHeight: 1.06, color: '#2C1810', marginBottom: 16 }} className="mr-h1 mr-h1-last">Companion</h1>
           <p style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(20px, 2.5vw, 28px)', fontStyle: 'italic', color: '#C8401A', marginBottom: 28, lineHeight: 1.3 }} className="mr-tagline">More Than Recipes.</p>
 
           {/* Benefit sparks — two columns on wide screens, one on phones */}
