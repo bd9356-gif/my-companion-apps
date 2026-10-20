@@ -8,7 +8,7 @@
 // same three cards.
 
 import Link from 'next/link'
-import { FACEBOOK_GROUP_URL, FACEBOOK_GROUP_NAME, trackEvent } from '@/lib/community'
+import { FACEBOOK_GROUP_URL, FACEBOOK_GROUP_NAME, trackEvent, openFacebookGroup } from '@/lib/community'
 
 const sans = 'system-ui, -apple-system, sans-serif'
 
@@ -37,7 +37,7 @@ export default function RecipeTips({ slug }: { slug: string }) {
             Enjoyed this recipe? Join{' '}
             <a
               href={FACEBOOK_GROUP_URL}
-              onClick={() => trackEvent('chef_jen_group_click', { transport_type: 'beacon', source_page: window.location.pathname, source_type: 'recipe_page', cta_location: 'recipe_tip', source_recipe_slug: slug })}
+              onClick={(e) => { trackEvent('chef_jen_group_click', { transport_type: 'beacon', source_page: window.location.pathname, source_type: 'recipe_page', cta_location: 'recipe_tip', source_recipe_slug: slug }); openFacebookGroup(e) }}
               style={{ color: '#C8401A', fontWeight: 600 }}
             >
               {FACEBOOK_GROUP_NAME}

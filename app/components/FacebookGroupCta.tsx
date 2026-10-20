@@ -3,7 +3,7 @@
 // Low-commitment close: join Chef Jen's Facebook group. Renders nothing until
 // FACEBOOK_GROUP_URL is set in lib/community.ts.
 
-import { FACEBOOK_GROUP_URL, FACEBOOK_GROUP_NAME, trackEvent } from '@/lib/community'
+import { FACEBOOK_GROUP_URL, FACEBOOK_GROUP_NAME, trackEvent, openFacebookGroup } from '@/lib/community'
 
 type Props = {
   variant: 'collection' | 'tip'
@@ -26,7 +26,7 @@ export default function FacebookGroupCta({ variant, sourceType, ctaLocation, ful
       <h3 style={{ fontFamily: 'Georgia, serif', fontSize: big ? 22 : 18, fontWeight: 700, margin: '0 0 8px', lineHeight: 1.3 }}>
         <a
           href={FACEBOOK_GROUP_URL}
-          onClick={() => trackEvent('chef_jen_group_click', { transport_type: 'beacon', source_page: window.location.pathname, source_type: sourceType, cta_location: ctaLocation })}
+          onClick={(e) => { trackEvent('chef_jen_group_click', { transport_type: 'beacon', source_page: window.location.pathname, source_type: sourceType, cta_location: ctaLocation }); openFacebookGroup(e) }}
           style={{ color: '#C8401A', textDecoration: 'underline', textUnderlineOffset: 4, textDecorationThickness: 2 }}
         >
           Join {FACEBOOK_GROUP_NAME} on Facebook {'→'}
