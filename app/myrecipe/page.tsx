@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import type React from 'react'
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990'
 const DEMO_URL = 'https://pin.it/wfzginTwe'
@@ -46,6 +47,32 @@ function trackWhatItDoes(buttonText: string) {
 }
 
 
+// Opening section: the two equal choices under the benefit sparks.
+function trackChoice(eventName: string) {
+  try {
+    const gtag = (window as Window & { gtag?: (...args: unknown[]) => void }).gtag
+    if (typeof gtag === 'function') {
+      gtag('event', eventName, {
+        send_to: 'G-YWGNHS7MP7',
+        source_type: 'myrecipe_home',
+        page_path: window.location.pathname,
+      })
+    }
+  } catch {}
+}
+
+const SPARKS = [
+  'Tired of hunting through Pinterest, Facebook, and websites for that one recipe?',
+  'Ever wonder what you could make with what’s already in your kitchen or create your own signature recipe?',
+  'Wish you had someone to bounce cooking ideas off?',
+  'Want to adjust a dish to match your family’s tastes or health needs?',
+  'Wish you could stretch one chicken into several meals?',
+  'Still have Mom’s handwritten recipes? Wish you could preserve the recipes and memories behind them?',
+]
+
+const CHOICE_STYLE: React.CSSProperties = { display: 'flex', flexDirection: 'column', gap: 4, backgroundColor: 'white', border: '1.5px solid #C8401A', borderRadius: 16, padding: '18px 20px', textDecoration: 'none', boxShadow: '0 4px 14px rgba(200,64,26,0.12)' }
+const CHOICE_TITLE: React.CSSProperties = { fontFamily: 'Georgia, serif', fontSize: 21, fontWeight: 700, color: '#C8401A' }
+const CHOICE_SUB: React.CSSProperties = { fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#5C4A3A' }
 
 const SCREENSHOTS = [
   { file: '0001-hub-iphone.png', label: 'My Kitchen' },
@@ -112,21 +139,33 @@ export default function MyRecipePage() {
       {/* HERO */}
       <section style={{ background: 'linear-gradient(135deg, #F2E8D9 0%, #F8F0E6 40%, #FDF6EE 100%)', padding: '72px 32px 64px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 64, flexWrap: 'wrap', minHeight: '80vh' }}>
         {/* Left copy */}
-        <div style={{ maxWidth: 460, flex: '1 1 300px' }}>
-          <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', color: '#C8401A', textTransform: 'uppercase', marginBottom: 16 }}>Now on iPhone & iPad</p>
+        <div style={{ maxWidth: 640, flex: '1 1 320px' }}>
           <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(40px, 5vw, 62px)', fontWeight: 700, lineHeight: 1.06, color: '#2C1810', marginBottom: 6 }}>MyRecipe</h1>
           <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(40px, 5vw, 62px)', fontWeight: 700, lineHeight: 1.06, color: '#2C1810', marginBottom: 16 }}>Companion</h1>
-          <p style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(20px, 2.5vw, 28px)', fontStyle: 'italic', color: '#C8401A', marginBottom: 24, lineHeight: 1.3 }}>More Than Recipes.</p>
-          <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 16, lineHeight: 1.75, color: '#5C4A3A', marginBottom: 36, maxWidth: 400 }}>
-            One place to collect the recipes you love, create new ones with Chef Jen, learn to cook, preserve family favorites, plan meals, and more.
-          </p>
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center', marginBottom: 20 }}>
-            <a href="#features" style={{ display: 'inline-block', backgroundColor: '#C8401A', color: '#FFFDF9', padding: '13px 24px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 15, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.3)' }} onClick={() => trackWhatItDoes('See What It Can Do')}>See What It Can Do →</a>
-            <a href="https://pin.it/wfzginTwe" target="_blank" rel="noopener noreferrer" onClick={() => trackDemoRoom('Watch the Demos Hero')} style={{ display: 'inline-block', backgroundColor: 'white', color: '#C8401A', padding: '13px 24px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 15, fontWeight: 700, border: '1.5px solid #C8401A' }}>Watch the Demos →</a>
-            <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" onClick={() => trackAppStore('Try Free Hero')} style={{ display: 'inline-block', color: '#78716C', padding: '13px 18px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 14, fontWeight: 600, border: '1px solid #D0C8C0' }}>Try Free →</a>
+          <p style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(20px, 2.5vw, 28px)', fontStyle: 'italic', color: '#C8401A', marginBottom: 28, lineHeight: 1.3 }}>More Than Recipes.</p>
 
+          {/* Benefit sparks — two columns on wide screens, one on phones */}
+          <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 28px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 10 }}>
+            {SPARKS.map((q) => (
+              <li key={q} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, backgroundColor: 'rgba(255,253,249,0.75)', border: '1px solid #F0E0CC', borderLeft: '3px solid #C8401A', borderRadius: 12, padding: '12px 14px' }}>
+                <span aria-hidden="true" style={{ fontSize: 16, lineHeight: 1.4, flexShrink: 0 }}>💡</span>
+                <span style={{ fontFamily: 'system-ui, sans-serif', fontSize: 15, lineHeight: 1.45, color: '#3C2415' }}>{q}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Two equal choices */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 14 }}>
+            <a href="/meet-chef-jen" onClick={() => trackChoice('meet_chef_jen_click')} style={CHOICE_STYLE}>
+              <span style={CHOICE_TITLE}>Meet Chef Jen →</span>
+              <span style={CHOICE_SUB}>Discover who can help you.</span>
+            </a>
+            {/* Temporary: points at "What It Does" until the My Kitchen page is built */}
+            <a href="#features" onClick={() => trackChoice('explore_kitchen_click')} style={CHOICE_STYLE}>
+              <span style={CHOICE_TITLE}>Explore My Kitchen →</span>
+              <span style={CHOICE_SUB}>Discover what’s possible.</span>
+            </a>
           </div>
-          <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#78716C' }}>✓ Free to start &nbsp;·&nbsp; ✓ No credit card needed &nbsp;·&nbsp; ✓ iPhone</p>
         </div>
 
         {/* Right — hero phone */}
@@ -140,7 +179,7 @@ export default function MyRecipePage() {
       <section id="gallery" style={{ backgroundColor: '#2C1810', padding: '72px 32px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', color: '#C8401A', textTransform: 'uppercase', marginBottom: 12, textAlign: 'center' }}>See Every Feature</p>
-          <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(26px, 4vw, 38px)', fontWeight: 700, textAlign: 'center', marginBottom: 48, color: '#FFFDF9' }}>More Than Recipes.</h2>
+          <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(26px, 4vw, 38px)', fontWeight: 700, textAlign: 'center', marginBottom: 48, color: '#FFFDF9' }}>Take a Look Inside</h2>
 
           {/* Main display */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24, marginBottom: 32 }}>
