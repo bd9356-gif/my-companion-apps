@@ -7,7 +7,7 @@ import { join } from 'node:path'
 import { ImageResponse } from 'next/og'
 import {
   CARD_W, CARD_H, TOP_BAR, PAD_TOP, PAD_LEFT, PAD_RIGHT, PAD_BOTTOM, LEFT_W, PHOTO_FRAME, GAP, RIGHT_W,
-  SUB_SIZE, CLOSE_SIZE, ING_LINE, ING_SPACING, BULLET, COL_GAP, type CardLayout,
+  TITLE_W, SUB_SIZE, CLOSE_SIZE, ING_LINE, ING_SPACING, BULLET, COL_GAP, type CardLayout,
 } from './layout'
 
 const C = { paper: '#FBF4E6', ink: '#2C1810', body: '#3C2415', muted: '#78716C', orange: '#C8401A', peach: '#F5D9C0', red: '#B91C1C', rule: 'rgba(185,28,28,0.06)' }
@@ -74,7 +74,7 @@ export async function renderRecipeCard(d: CardData, layout: CardLayout): Promise
 
       {/* Recipe column */}
       <div style={{ width: RIGHT_W, marginLeft: GAP, display: 'flex', flexDirection: 'column' }}>
-        <div style={{ display: 'flex', fontFamily: 'Serif', fontWeight: 700, fontSize: layout.title.size, lineHeight: 1.1, color: C.ink }}>
+        <div style={{ display: 'flex', width: TITLE_W, fontFamily: 'Serif', fontWeight: 700, fontSize: layout.title.size, lineHeight: 1.1, color: C.ink }}>
           {d.title}
         </div>
         <div style={{ display: 'flex', marginTop: 10, marginBottom: 12, fontFamily: 'Inter', fontWeight: 600, fontSize: SUB_SIZE, letterSpacing: 2.2, color: C.orange }}>

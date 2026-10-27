@@ -19,6 +19,9 @@ export const LEFT_W = 360 // photo column
 export const PHOTO_FRAME = 336
 export const GAP = 32
 export const RIGHT_W = CARD_W - PAD_LEFT - LEFT_W - GAP - PAD_RIGHT // 744
+// Facebook puts a round ⓘ button over the top-right corner of link images, so the
+// title stops short of that corner.
+export const TITLE_W = RIGHT_W - 96
 
 export const SUB_SIZE = 19 // "INGREDIENTS · 17 ITEMS" — sized to read on an iPhone
 export const SUB_BLOCK = SUB_SIZE + 10 + 12 // label + margins
@@ -95,10 +98,10 @@ export interface TitleFit { size: number; lines: number }
 /** Largest title size (44 → 28) that keeps the title to two lines. */
 export function fitTitle(title: string): TitleFit {
   for (let size = 44; size >= 28; size -= 2) {
-    const lines = lineCount(title, (RIGHT_W * WRAP_SAFETY) / size, serifWidth)
+    const lines = lineCount(title, (TITLE_W * WRAP_SAFETY) / size, serifWidth)
     if (lines <= 2) return { size, lines }
   }
-  return { size: 28, lines: Math.min(3, lineCount(title, (RIGHT_W * WRAP_SAFETY) / 28, serifWidth)) }
+  return { size: 28, lines: Math.min(3, lineCount(title, (TITLE_W * WRAP_SAFETY) / 28, serifWidth)) }
 }
 
 // ── Ingredients ────────────────────────────────────────────────────
@@ -176,7 +179,7 @@ export function fitCard(title: string, items: string[]): CardLayout | null {
 // Bump when the card's design changes, so every recipe gets a fresh image URL
 // (the CDN and Facebook cache cards by URL). Keep in step with the recipe app's
 // share page (jen-ai-companion app/share/[id]/page.js).
-export const CARD_DESIGN = 'b2'
+export const CARD_DESIGN = 'b3'
 
 export function cardVersion(...parts: unknown[]): string {
   const s = JSON.stringify([CARD_DESIGN, ...parts])
