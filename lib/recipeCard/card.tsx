@@ -77,7 +77,7 @@ export async function renderRecipeCard(d: CardData, layout: CardLayout): Promise
         <div style={{ display: 'flex', fontFamily: 'Serif', fontWeight: 700, fontSize: layout.title.size, lineHeight: 1.1, color: C.ink }}>
           {d.title}
         </div>
-        <div style={{ display: 'flex', marginTop: 12, marginBottom: 14, fontFamily: 'Inter', fontWeight: 600, fontSize: SUB_SIZE, letterSpacing: 1.8, color: C.orange }}>
+        <div style={{ display: 'flex', marginTop: 10, marginBottom: 12, fontFamily: 'Inter', fontWeight: 600, fontSize: SUB_SIZE, letterSpacing: 2.2, color: C.orange }}>
           INGREDIENTS<span style={{ color: C.muted, marginLeft: 6 }}>{`· ${d.ingredients.length} ${d.ingredients.length === 1 ? 'ITEM' : 'ITEMS'}`}</span>
         </div>
 

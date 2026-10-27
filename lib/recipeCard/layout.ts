@@ -20,10 +20,10 @@ export const PHOTO_FRAME = 336
 export const GAP = 32
 export const RIGHT_W = CARD_W - PAD_LEFT - LEFT_W - GAP - PAD_RIGHT // 744
 
-export const SUB_SIZE = 13
-export const SUB_BLOCK = SUB_SIZE + 12 + 14 // label + margins
-export const CLOSE_SIZE = 22
-export const CLOSE_BLOCK = Math.ceil(CLOSE_SIZE * 1.2) + 12
+export const SUB_SIZE = 19 // "INGREDIENTS · 17 ITEMS" — sized to read on an iPhone
+export const SUB_BLOCK = SUB_SIZE + 10 + 12 // label + margins
+export const CLOSE_SIZE = 34 // "Ready to cook?" — ~11pt on an iPhone feed
+export const CLOSE_BLOCK = Math.ceil(CLOSE_SIZE * 1.2) + 10
 
 export const ING_LINE = 1.28 // line-height (× font size)
 export const ING_SPACING = 0.36 // gap between ingredients (× font size)
@@ -173,8 +173,13 @@ export function fitCard(title: string, items: string[]): CardLayout | null {
 // ── Cache-busting version for the image URL ───────────────────────
 
 /** Short hash of what the card shows, so an edited recipe gets a fresh image URL. */
+// Bump when the card's design changes, so every recipe gets a fresh image URL
+// (the CDN and Facebook cache cards by URL). Keep in step with the recipe app's
+// share page (jen-ai-companion app/share/[id]/page.js).
+export const CARD_DESIGN = 'b2'
+
 export function cardVersion(...parts: unknown[]): string {
-  const s = JSON.stringify(parts)
+  const s = JSON.stringify([CARD_DESIGN, ...parts])
   let h = 0x811c9dc5
   for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) }
   return (h >>> 0).toString(36)
