@@ -41,6 +41,7 @@ export function serviceClient(): SupabaseClient | null {
 // ── Recipes ────────────────────────────────────────────────────────────
 
 export interface PublicRecipe {
+  id: string
   slug: string
   collection: CollectionKey | null
   title: string
@@ -81,6 +82,14 @@ function photoOf(url: string | null): string {
   return url
 }
 
+/** The photo a recipe shows (or the site's fallback image). May be a relative path. */
+export const recipePhotoUrl = photoOf
+
+/** Facebook preview image (recipe card) for a recipe — see app/api/og/recipe/[id]. */
+export function recipeCardImageUrl(id: string, version: string): string {
+  return `/api/og/recipe/${id}?v=${version}`
+}
+
 function ingredientsOf(raw: unknown): string[] {
   const list: unknown[] = Array.isArray(raw)
     ? raw
@@ -110,6 +119,7 @@ function instructionsOf(raw: unknown): string[] {
 
 function toPublicRecipe(r: RecipeRow): PublicRecipe {
   return {
+    id: r.id,
     slug: r.web_slug,
     collection: r.web_collection,
     title: r.title || 'Untitled Recipe',

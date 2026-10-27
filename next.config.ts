@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Fonts read at runtime by the Facebook recipe-card image route.
+  outputFileTracingIncludes: {
+    '/api/og/recipe/[id]': ['./assets/og-fonts/**'],
+  },
   async redirects() {
     return [
       {

@@ -6,7 +6,8 @@
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import RecipePage from '../RecipePage'
-import { getPublishedRecipe, unpublishedRecipeDestination, COLLECTIONS } from '@/lib/publishing'
+import { getPublishedRecipe, unpublishedRecipeDestination, recipeCardImageUrl, COLLECTIONS } from '@/lib/publishing'
+import { cardVersion } from '@/lib/recipeCard/layout'
 
 export const dynamic = 'force-dynamic'
 
@@ -22,7 +23,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${recipe.title} — Created by Chef Jen`,
       description: recipe.description,
-      images: [recipe.photo],
+      // Facebook preview: the recipe card (photo, title, every ingredient), generated
+      // automatically. Falls back to the photo itself if the card can't be made.
+      images: [{
+        url: recipeCardImageUrl(recipe.id, cardVersion(recipe.title, recipe.photo, recipe.ingredients, recipe.servings)),
+        width: 1200,
+        height: 630,
+        alt: recipe.title,
+      }],
       type: 'article',
       siteName: 'MyRecipe Companion',
     },
