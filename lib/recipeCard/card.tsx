@@ -33,8 +33,9 @@ function cleanName(text: string): string {
     if (next === s) break
     s = next
   }
+  // "Boneless, skinless chicken breasts" → "chicken breasts" (descriptors first, then cut at a comma)
+  s = s.replace(/^((fresh|freshly|frozen|toasted|chopped|minced|grated|shredded|finely|thinly|cooked|uncooked|raw|unsalted|boneless|skinless|extra[- ]virgin|ripe|large|small|medium)\b,?\s+)+/i, '')
   s = s.split(/,|\(| – | - /)[0].replace(/\s+/g, ' ').trim()
-  s = s.replace(/^((fresh|freshly|frozen|toasted|chopped|minced|grated|shredded|finely|thinly|cooked|uncooked|raw|unsalted|boneless|skinless|extra[- ]virgin|ripe|large|small|medium)\s+)+/i, '')
   return s ? s[0].toUpperCase() + s.slice(1) : ''
 }
 
@@ -120,26 +121,47 @@ const Arrow = ({ size, color }: { size: number; color: string }) => (
   </svg>
 )
 
-const KEY_SIZES = [25, 24, 23, 22]
+const KEY_SIZES = [25, 24, 23, 22, 21, 20]
 const KEY_COL_W = PANEL_W / 2
 const BULLET_W = 22
-const keyFits = (s: string, size: number) => interWidth(s) * size <= (KEY_COL_W - BULLET_W - 4) * 0.98
+const KEY_TEXT_W = KEY_COL_W - BULLET_W - 6
+const KEY_LINE = 1.25
+const KEY_ROW_GAP = 6
+const keyLines = (s: string, size: number) => lineCount(s, (KEY_TEXT_W * 0.97) / size, interWidth)
 
-/** Largest size (25 → 22) at which every key ingredient name fits on one line. */
-function keySize(names: string[]): number {
-  return KEY_SIZES.find((size) => names.every((n) => keyFits(n, size))) ?? KEY_SIZES[KEY_SIZES.length - 1]
-}
-
-/** Last resort for a very long name: drop trailing words so it stays on one line. */
-function oneLine(name: string, size: number): string {
-  if (keyFits(name, size)) return name
+/** Last resort for a very long name: drop trailing words so it fits in `maxLines`. */
+function shorten(name: string, size: number, maxLines: number): string {
+  if (keyLines(name, size) <= maxLines) return name
   const words = name.split(' ')
   while (words.length > 1) {
     words.pop()
     const s = words.join(' ').replace(/[,;:]$/, '') + '…'
-    if (keyFits(s, size)) return s
+    if (keyLines(s, size) <= maxLines) return s
   }
   return words[0]
+}
+
+/** Height (px) of the key-ingredient rows at `size`, names in pairs. */
+function rowsHeight(names: string[], size: number): number {
+  let h = 0
+  for (let i = 0; i < names.length; i += 2) {
+    const lines = Math.max(...names.slice(i, i + 2).map((n) => keyLines(n, size)))
+    h += lines * size * KEY_LINE + (i ? KEY_ROW_GAP : 0)
+  }
+  return h
+}
+
+/**
+ * Largest key-ingredient size (25 → 20) whose rows fit the room left under the title.
+ * Names may wrap to two lines; if even 20px won't fit, names are kept to one line.
+ */
+function fitKey(names: string[], room: number): { size: number; names: string[] } {
+  for (const size of KEY_SIZES) {
+    const two = names.map((n) => shorten(n, size, 2))
+    if (rowsHeight(two, size) <= room) return { size, names: two }
+  }
+  const size = KEY_SIZES[KEY_SIZES.length - 1]
+  return { size, names: names.map((n) => shorten(n, size, 1)) }
 }
 
 export interface CardData { title: string; photo: string; facts: string[]; key: string[] }
@@ -148,10 +170,10 @@ export interface CardData { title: string; photo: string; facts: string[]; key: 
 export async function renderRecipeCard(d: CardData): Promise<ArrayBuffer> {
   const t = fitTitle(d.title)
   const rows: string[][] = []
-  const kSize = keySize(d.key)
-  // Long names may wrap to a second line when the title leaves room (1–2 lines);
-  // with a 3-line title they're kept to one line so the card never overflows.
-  const key = t.lines <= 2 ? d.key : d.key.map((n) => oneLine(n, kSize))
+  // Panel height minus everything above/below the ingredient rows.
+  const panelH = H - BAND_H - 30 - 8 - 22
+  const fixed = 32 + 6 + Math.ceil(t.lines * t.size * 1.08) + (d.facts.length ? 14 + 30 : 0) + 34 + 17 + 8 + 12 + 26
+  const { size: kSize, names: key } = fitKey(d.key, panelH - fixed)
   for (let i = 0; i < key.length; i += 2) rows.push(key.slice(i, i + 2))
 
   const el = (
@@ -186,11 +208,11 @@ export async function renderRecipeCard(d: CardData): Promise<ArrayBuffer> {
           {rows.length > 0 && <div style={{ display: 'flex', fontFamily: 'Inter', fontWeight: 600, fontSize: 17, letterSpacing: 2, color: C.orange }}>YOU’LL NEED</div>}
           <div style={{ display: 'flex', flexDirection: 'column', marginTop: 8 }}>
             {rows.map((row, ri) => (
-              <div key={ri} style={{ display: 'flex', marginTop: ri ? 6 : 0 }}>
+              <div key={ri} style={{ display: 'flex', marginTop: ri ? KEY_ROW_GAP : 0 }}>
                 {row.map((n, ci) => (
-                  <div key={ci} style={{ display: 'flex', width: KEY_COL_W, fontFamily: 'Inter', fontWeight: 500, fontSize: kSize, lineHeight: 1.25, color: C.body }}>
+                  <div key={ci} style={{ display: 'flex', width: KEY_COL_W, fontFamily: 'Inter', fontWeight: 500, fontSize: kSize, lineHeight: KEY_LINE, color: C.body }}>
                     <span style={{ color: C.orange, width: BULLET_W, fontWeight: 600 }}>•</span>
-                    <span style={{ display: 'flex', width: KEY_COL_W - BULLET_W - 6 }}>{n}</span>
+                    <span style={{ display: 'flex', width: KEY_TEXT_W }}>{n}</span>
                   </div>
                 ))}
               </div>
