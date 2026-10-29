@@ -36,6 +36,8 @@ function minutes(m: number) {
 }
 
 export default function RecipePage({ recipe }: { recipe: RecipeData }) {
+  // Pinterest fills the Pin's description from this: title, short description, Chef Jen.
+  const pinDescription = `${recipe.title}${recipe.description ? ` — ${recipe.description}` : ''} From Chef Jen’s Kitchen.`.slice(0, 480)
   const slug = recipe.slug || ''
   const facts = [
     recipe.prepMinutes ? { label: 'Prep', value: minutes(recipe.prepMinutes) } : null,
@@ -74,7 +76,7 @@ export default function RecipePage({ recipe }: { recipe: RecipeData }) {
 
           <div style={{ margin: '18px 0 0', borderRadius: 16, overflow: 'hidden', aspectRatio: '4 / 3', maxHeight: 420, backgroundColor: '#F5F0EA' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={recipe.photo} alt={recipe.title} data-pin-media={recipe.pinImage} data-pin-description={recipe.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            <img src={recipe.photo} alt={recipe.title} data-pin-media={recipe.pinImage} data-pin-description={pinDescription} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
           </div>
 
           {recipe.description && (
@@ -125,7 +127,7 @@ export default function RecipePage({ recipe }: { recipe: RecipeData }) {
           {/* Pinterest: the tall recipe picture, offered when someone saves this page. Not shown on the page. */}
           {recipe.pinImage && (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={recipe.pinImage} alt={recipe.title} data-pin-description={recipe.title} width={1080} height={1350} loading="lazy" style={{ display: 'none' }} />
+            <img src={recipe.pinImage} alt={recipe.title} data-pin-description={pinDescription} width={1080} height={1350} loading="lazy" style={{ display: 'none' }} />
           )}
         </article>
 
