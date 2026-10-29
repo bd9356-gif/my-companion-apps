@@ -6,8 +6,8 @@
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import RecipePage from '../RecipePage'
-import { getPublishedRecipe, unpublishedRecipeDestination, recipeCardImageUrl, COLLECTIONS } from '@/lib/publishing'
-import { cardVersion } from '@/lib/recipeCard/layout'
+import { getPublishedRecipe, unpublishedRecipeDestination, recipeCardImageUrl, recipeTallImageUrl, COLLECTIONS } from '@/lib/publishing'
+import { cardVersion, tallVersion } from '@/lib/recipeCard/layout'
 
 export const dynamic = 'force-dynamic'
 
@@ -58,5 +58,7 @@ export default async function Page({ params }: Props) {
     cookMinutes: recipe.cookMinutes,
     totalMinutes: recipe.totalMinutes,
     servings: recipe.servings,
+    // Pinterest: the tall recipe picture is what gets pinned from this page.
+    pinImage: recipeTallImageUrl(recipe.id, tallVersion(recipe.title, recipe.photo)),
   }} />
 }

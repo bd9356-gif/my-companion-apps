@@ -28,9 +28,20 @@ export function lineCount(text: string, widthEm: number, measure: (s: string) =>
 // share page (jen-ai-companion app/share/[id]/page.js).
 export const CARD_DESIGN = 'c2'
 
+// Same idea for the tall picture (Facebook photo posts / Pinterest).
+export const TALL_DESIGN = 't1'
+
 /** Short hash of what the card shows, so an edited recipe gets a fresh image URL. */
 export function cardVersion(...parts: unknown[]): string {
   const s = JSON.stringify([CARD_DESIGN, ...parts])
+  let h = 0x811c9dc5
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) }
+  return (h >>> 0).toString(36)
+}
+
+/** Version for the tall picture's URL — changes when the title, photo or tall design does. */
+export function tallVersion(title: string, photo: string): string {
+  const s = JSON.stringify([TALL_DESIGN, title, photo])
   let h = 0x811c9dc5
   for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) }
   return (h >>> 0).toString(36)

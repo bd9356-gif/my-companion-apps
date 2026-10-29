@@ -24,6 +24,7 @@ export interface RecipeData {
   cookMinutes?: number | null
   totalMinutes?: number | null
   servings?: number | null
+  pinImage?: string // tall picture Pinterest saves instead of the photo
 }
 
 const sans = 'system-ui, -apple-system, sans-serif'
@@ -73,7 +74,7 @@ export default function RecipePage({ recipe }: { recipe: RecipeData }) {
 
           <div style={{ margin: '18px 0 0', borderRadius: 16, overflow: 'hidden', aspectRatio: '4 / 3', maxHeight: 420, backgroundColor: '#F5F0EA' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={recipe.photo} alt={recipe.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            <img src={recipe.photo} alt={recipe.title} data-pin-media={recipe.pinImage} data-pin-description={recipe.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
           </div>
 
           {recipe.description && (
@@ -121,6 +122,11 @@ export default function RecipePage({ recipe }: { recipe: RecipeData }) {
               ))}
             </ol>
           </section>
+          {/* Pinterest: the tall recipe picture, offered when someone saves this page. Not shown on the page. */}
+          {recipe.pinImage && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={recipe.pinImage} alt={recipe.title} data-pin-description={recipe.title} width={1080} height={1350} loading="lazy" style={{ display: 'none' }} />
+          )}
         </article>
 
         {/* Tips: import into a recipe app, join the Facebook group */}

@@ -87,6 +87,11 @@ function photoOf(url: string | null): string {
 /** The photo a recipe shows (or the site's fallback image). May be a relative path. */
 export const recipePhotoUrl = photoOf
 
+/** Tall recipe picture (Facebook photo posts / Pinterest) — see app/api/og/recipe/[id]/tall. */
+export function recipeTallImageUrl(id: string, version: string): string {
+  return `https://www.mycompanionapps.com/api/og/recipe/${id}/tall?v=${version}`
+}
+
 /** Facebook preview image (recipe card) for a recipe — see app/api/og/recipe/[id]. */
 export function recipeCardImageUrl(id: string, version: string): string {
   return `/api/og/recipe/${id}?v=${version}`
