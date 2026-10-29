@@ -23,10 +23,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${recipe.title} — Created by Chef Jen`,
       description: recipe.description,
-      // Facebook preview: the recipe card (photo, title, every ingredient), generated
+      // Facebook preview: the recipe card (photo, title, facts, key ingredients), generated
       // automatically. Falls back to the photo itself if the card can't be made.
       images: [{
-        url: recipeCardImageUrl(recipe.id, cardVersion(recipe.title, recipe.photo, recipe.ingredients, recipe.servings)),
+        url: recipeCardImageUrl(recipe.id, cardVersion(recipe.title, recipe.photo, recipe.ingredients, recipe.servings, recipe.prepMinutes, recipe.cookMinutes, recipe.totalMinutes, recipe.difficulty)),
         width: 1200,
         height: 630,
         alt: recipe.title,

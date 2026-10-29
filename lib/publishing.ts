@@ -54,6 +54,7 @@ export interface PublicRecipe {
   cookMinutes?: number | null
   totalMinutes?: number | null
   servings?: number | null
+  difficulty?: string | null // not shown on the page; feeds the Facebook preview card
 }
 
 type RecipeRow = {
@@ -70,6 +71,7 @@ type RecipeRow = {
   cook_time_minutes?: unknown
   total_time_minutes?: unknown
   servings?: unknown
+  difficulty?: string | null
 }
 
 function positiveNumber(v: unknown): number | null {
@@ -131,11 +133,12 @@ function toPublicRecipe(r: RecipeRow): PublicRecipe {
     cookMinutes: positiveNumber(r.cook_time_minutes),
     totalMinutes: positiveNumber(r.total_time_minutes),
     servings: positiveNumber(r.servings),
+    difficulty: r.difficulty || null,
   }
 }
 
 const RECIPE_COLUMNS = 'id, title, description, photo_url, ingredients, instructions, web_slug, web_collection, created_at'
-const RECIPE_DETAIL_COLUMNS = `${RECIPE_COLUMNS}, prep_time_minutes, cook_time_minutes, total_time_minutes, servings`
+const RECIPE_DETAIL_COLUMNS = `${RECIPE_COLUMNS}, prep_time_minutes, cook_time_minutes, total_time_minutes, servings, difficulty`
 
 export async function getPublishedRecipes(): Promise<PublicRecipe[]> {
   const sb = serviceClient()
