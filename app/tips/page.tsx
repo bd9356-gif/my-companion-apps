@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getPublishedTips } from '@/lib/publishing'
+import TrackedLink from '../recipes/TrackedLink'
 
 // Live: the tips list is exactly the tips published in /admin (Supabase).
 export const dynamic = 'force-dynamic'
@@ -75,14 +76,19 @@ export default async function TipsPage() {
       {/* Bottom CTA */}
       <div style={{ backgroundColor: '#FEF3E8', borderTop: '1px solid #F5D9C0', padding: '48px 24px', textAlign: 'center' }}>
         <h2 style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 700, color: '#2C1810', marginBottom: 12 }}>
-          Ask Chef Jen anything.
+          Got a cooking question of your own?
         </h2>
         <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 16, color: '#78716C', marginBottom: 28, maxWidth: 480, margin: '0 auto 28px' }}>
-          Get personalized cooking advice, create recipes, save your favorites, and learn at your own pace — all with Chef Jen.
+          Have a conversation with Chef Jen in MyRecipe Companion.
         </p>
-        <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ display: 'inline-block', backgroundColor: '#C8401A', color: 'white', padding: '14px 32px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 16, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.3)' }}>
-          Try MyRecipe Companion Free →
-        </a>
+        <TrackedLink
+          href="/meet-chef-jen"
+          event="meet_chef_jen_click"
+          params={{ source_type: 'tips_collection', destination_url: 'https://mycompanionapps.com/meet-chef-jen' }}
+          style={{ display: 'inline-block', backgroundColor: '#C8401A', color: 'white', padding: '14px 32px', borderRadius: 14, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 16, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.3)' }}
+        >
+          Meet Chef Jen →
+        </TrackedLink>
       </div>
 
       {/* Footer */}
