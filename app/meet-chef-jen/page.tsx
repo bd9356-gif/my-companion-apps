@@ -64,7 +64,7 @@ export default function MeetChefJenPage() {
         {/* Section A — Chef Jen's first reel */}
         <Story
           first
-          heading="Had Something Delicious? Let’s Make It!"
+          heading="Had Something Delicious? Let’s Create the Recipe!"
           src="/videos/web-recipe.mp4"
           poster="/videos/web-recipe-poster.jpg"
           label="Chef Jen helps recreate General Tso’s Jumbo Shrimp after a restaurant dinner."
