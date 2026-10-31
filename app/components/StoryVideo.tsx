@@ -13,7 +13,7 @@ type Props = {
   label: string
   width: number
   height: number
-  maxWidth?: number
+  maxWidth?: number | string // px, or any CSS width such as a min() expression
 }
 
 export default function StoryVideo({ src, poster, label, width, height, maxWidth = 520 }: Props) {

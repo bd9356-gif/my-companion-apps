@@ -22,16 +22,20 @@ const linkButton: React.CSSProperties = {
   color: '#C8401A', textDecoration: 'none', border: '2px solid #C8401A', borderRadius: 12, padding: '12px 22px',
 }
 
-function Story({ heading, src, poster, label, linkHref, linkText }: {
-  heading: string; src: string; poster: string; label: string; linkHref: string; linkText: string
+function Story({ heading, src, poster, label, linkHref, linkText, first = false }: {
+  heading: string; src: string; poster: string; label: string; linkHref: string; linkText: string; first?: boolean
 }) {
   return (
-    <section style={{ padding: '48px 0 0', textAlign: 'center' }}>
-      <h2 style={{ fontFamily: serif, fontSize: 'clamp(24px, 5vw, 32px)', fontWeight: 700, color: '#2C1810', margin: '0 0 24px', lineHeight: 1.25 }}>
+    <section style={{ padding: first ? '14px 0 0' : '48px 0 0', textAlign: 'center' }}>
+      <h2 style={{ fontFamily: serif, fontSize: first ? 'clamp(21px, 5vw, 30px)' : 'clamp(24px, 5vw, 32px)', fontWeight: 700, color: '#2C1810', margin: first ? '0 0 12px' : '0 0 24px', lineHeight: 1.25 }}>
         {heading}
       </h2>
-      <StoryVideo src={src} poster={poster} label={label} width={720} height={960} />
-      <Link href={linkHref} style={linkButton}>{linkText} →</Link>
+      {/* The first reel is sized to the screen height so it and its button both fit on
+          an iPhone's first screen — including inside Facebook's browser, whose toolbars
+          take part of the screen (svh = the visible height with those bars showing). */}
+      <StoryVideo src={src} poster={poster} label={label} width={720} height={960}
+        maxWidth={first ? 'min(520px, max(200px, calc((100svh - 330px) * 0.75)))' : 520} />
+      <Link href={linkHref} style={{ ...linkButton, marginTop: first ? 14 : 20 }}>{linkText} →</Link>
     </section>
   )
 }
@@ -41,24 +45,35 @@ export default function MeetChefJenPage() {
     <div style={{ minHeight: '100vh', backgroundColor: '#FFFDF9', fontFamily: serif }}>
 
       {/* Header */}
-      <div style={{ borderBottom: '1px solid #F0EBE3', padding: '16px 24px' }}>
-        <Link href="/" style={{ textDecoration: 'none', fontSize: 20, fontWeight: 700, color: '#2C1810' }}>MyCompanionApps</Link>
+      <div style={{ borderBottom: '1px solid #F0EBE3', padding: '9px 20px' }}>
+        <Link href="/" style={{ textDecoration: 'none', fontFamily: sans, fontSize: 14, fontWeight: 600, color: '#A89990' }}>MyCompanionApps</Link>
       </div>
 
       <main style={{ maxWidth: 720, margin: '0 auto', padding: '0 20px 72px' }}>
 
-        {/* Intro */}
-        <div style={{ textAlign: 'center', padding: '56px 0 8px' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, backgroundColor: '#FEF3E8', border: '1px solid #F5D9C0', borderRadius: 100, padding: '6px 16px', marginBottom: 20 }}>
-            <span style={{ fontSize: 16 }}>👩‍🍳</span>
-            <span style={{ fontFamily: sans, fontSize: 13, fontWeight: 600, color: '#C8401A' }}>Chef Jen</span>
-          </div>
-          <h1 style={{ fontSize: 'clamp(34px, 7vw, 52px)', fontWeight: 700, color: '#2C1810', margin: '0 0 12px', lineHeight: 1.15 }}>
-            Meet Chef Jen
+        {/* Welcome — compact, so Chef Jen's first reel and its button fit on an iPhone's first screen */}
+        <div style={{ textAlign: 'center', padding: '18px 0 0' }}>
+          <h1 style={{ fontSize: 'clamp(26px, 6.5vw, 44px)', fontWeight: 700, color: '#2C1810', margin: '0 0 4px', lineHeight: 1.15 }}>
+            Welcome to Chef Jen’s Kitchen!
           </h1>
-          <p style={{ fontSize: 'clamp(18px, 4vw, 22px)', color: '#C8401A', margin: '0 0 28px', fontStyle: 'italic' }}>
+          <p style={{ fontSize: 'clamp(16px, 4vw, 21px)', color: '#C8401A', margin: 0, fontStyle: 'italic' }}>
             Have a conversation. Make something wonderful.
           </p>
+        </div>
+
+        {/* Section A — Chef Jen's first reel */}
+        <Story
+          first
+          heading="Had Something Delicious? Let’s Make It!"
+          src="/videos/web-recipe.mp4"
+          poster="/videos/web-recipe-poster.jpg"
+          label="Chef Jen helps recreate General Tso’s Jumbo Shrimp after a restaurant dinner."
+          linkHref="/recipes"
+          linkText="Explore Chef Jen’s Recipe Collection"
+        />
+
+        {/* About Chef Jen — moved below the first reel */}
+        <div style={{ textAlign: 'center', padding: '44px 0 0' }}>
           <p style={{ fontFamily: sans, fontSize: 17, color: '#5C4A3A', lineHeight: 1.7, margin: '0 auto 16px', maxWidth: 560 }}>
             Wondering what to make for dinner? Remember something delicious you had at a restaurant? Or just trying to figure out why your chicken always comes out dry?
           </p>
@@ -66,16 +81,6 @@ export default function MeetChefJenPage() {
             Meet Chef Jen, your personal AI cooking companion. Ask a question, share an idea, or tell her what’s happening in your kitchen. She’s here to help.
           </p>
         </div>
-
-        {/* Section A */}
-        <Story
-          heading="Had Something Delicious? Let’s Make It!"
-          src="/videos/web-recipe.mp4"
-          poster="/videos/web-recipe-poster.jpg"
-          label="Chef Jen helps recreate General Tso’s Jumbo Shrimp after a restaurant dinner."
-          linkHref="/recipes"
-          linkText="Explore Chef Jen’s Recipe Collection"
-        />
 
         {/* Section B */}
         <Story
