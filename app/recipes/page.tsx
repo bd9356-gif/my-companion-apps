@@ -44,8 +44,8 @@ function RecipeCard({ slug, title, description, photo }: { slug: string; title: 
 function CollectionSection({ title, subtitle, recipes, inserts = {} }: { title: string; subtitle: string; recipes: RecipeCardData[]; inserts?: Record<number, ReactNode> }) {
   return (
     <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 60px' }}>
-      <div style={{ marginBottom: 28 }}>
-        <h2 style={{ fontSize: 'clamp(22px, 3vw, 30px)', fontWeight: 700, color: '#2C1810', margin: '0 0 6px' }}>{title}</h2>
+      <div style={{ marginBottom: 18 }}>
+        <h2 style={{ fontSize: 'clamp(22px, 3vw, 30px)', fontWeight: 700, color: '#2C1810', margin: '0 0 4px' }}>{title}</h2>
         <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 15, color: '#78716C', margin: 0 }}>{subtitle}</p>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 28 }}>
@@ -101,20 +101,10 @@ export default async function RecipesPage() {
         <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ backgroundColor: '#C8401A', color: 'white', padding: '8px 18px', borderRadius: 10, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 13, fontWeight: 700 }}>Get the App</a>
       </div>
 
-      <div style={{ textAlign: 'center', padding: '64px 24px 48px' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, backgroundColor: '#FEF3E8', border: '1px solid #F5D9C0', borderRadius: 100, padding: '6px 16px', marginBottom: 20 }}>
-          <span style={{ fontSize: 16 }}>👩‍🍳</span>
-          <span style={{ fontFamily: 'system-ui, sans-serif', fontSize: 13, fontWeight: 600, color: '#C8401A' }}>Created by Chef Jen</span>
-        </div>
-        <h1 style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 700, color: '#2C1810', margin: '0 0 16px', lineHeight: 1.2 }}>Chef Jen's Recipe Collection</h1>
-        <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 18, color: '#78716C', maxWidth: 560, margin: '0 auto 12px', lineHeight: 1.6 }}>Every recipe here was created by Chef Jen — your personal AI cooking companion. Tap any recipe to see the full details.</p>
-        <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#A89990', maxWidth: 480, margin: '0 auto' }}>
-          Want Chef Jen to create a recipe just for you? <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ color: '#C8401A', textDecoration: 'none', fontWeight: 600 }}>Download MyRecipe Companion →</a>
-        </p>
-      </div>
-
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 48px' }}>
-        <hr style={{ border: 'none', borderTop: '1px solid #F0EBE3' }} />
+      {/* Compact opening so the first recipe photo shows on an iPhone's first screen */}
+      <div style={{ textAlign: 'center', padding: '22px 20px 20px' }}>
+        <h1 style={{ fontSize: 'clamp(26px, 6.5vw, 46px)', fontWeight: 700, color: '#2C1810', margin: '0 0 8px', lineHeight: 1.2 }}>Chef Jen&rsquo;s Recipe Collection</h1>
+        <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 16, color: '#78716C', maxWidth: 520, margin: '0 auto', lineHeight: 1.5 }}>Delicious recipes from Chef Jen&rsquo;s kitchen. Find something you&rsquo;ll love to make!</p>
       </div>
 
       {sections[0].recipes.length > 0 && <CollectionSection {...sections[0]} inserts={sectionInserts[0]} />}
