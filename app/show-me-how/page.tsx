@@ -45,15 +45,16 @@ export default function ShowMeHowPage() {
           </p>
         </div>
 
-        {/* The player fits on an iPhone's first screen (incl. Facebook's browser — svh).
+        {/* Player kept compact (under half the screen height) so the closing message and
+            Try It Free show close behind it on an iPhone (incl. Facebook's browser — svh).
             Tapping play on an iPhone opens the full-screen player, which is the best way to
             watch a tall phone video; desktops play it in the page. */}
-        <div style={{ width: `min(100%, 420px, calc((100svh - 172px) * ${(886 / 1920).toFixed(4)}))`, margin: '0 auto' }}>
+        <div style={{ width: `min(100%, 200px, calc(46svh * ${(886 / 1920).toFixed(4)}))`, margin: '0 auto' }}>
           <DemoVideo {...VIDEO} />
         </div>
 
         {/* Closing message */}
-        <div style={{ padding: '28px 0 0' }}>
+        <div style={{ padding: '20px 0 0' }}>
           <h2 style={{ fontSize: 'clamp(22px, 5.5vw, 32px)', fontWeight: 700, color: '#2C1810', margin: '0 0 6px', lineHeight: 1.2 }}>
             Now Imagine What Chef Jen Could Create With&nbsp;You!
           </h2>
