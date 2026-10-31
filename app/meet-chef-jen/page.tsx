@@ -18,28 +18,7 @@ export const metadata: Metadata = {
 const serif = 'Georgia, serif'
 const sans = 'system-ui, -apple-system, sans-serif'
 
-const linkButton: React.CSSProperties = {
-  display: 'inline-block', marginTop: 20, fontFamily: sans, fontSize: 15, fontWeight: 700,
-  color: '#C8401A', textDecoration: 'none', border: '2px solid #C8401A', borderRadius: 12, padding: '12px 22px',
-}
-
-function Story({ heading, src, poster, label, linkHref, linkText }: {
-  heading: string; src: string; poster: string; label: string; linkHref: string; linkText: string
-}) {
-  return (
-    <section style={{ padding: '48px 0 0', textAlign: 'center' }}>
-      <h2 style={{ fontFamily: serif, fontSize: 'clamp(24px, 5vw, 32px)', fontWeight: 700, color: '#2C1810', margin: '0 0 24px', lineHeight: 1.25 }}>
-        {heading}
-      </h2>
-      <StoryVideo src={src} poster={poster} label={label} width={720} height={960} />
-      <Link href={linkHref} style={linkButton}>{linkText} →</Link>
-    </section>
-  )
-}
-
-// "Show Me How →" opens Chef Jen's recipe-creation demonstration. Set this to the
-// demo page's address once it's built; until then the button stays hidden so no one
-// lands on an unfinished page.
+// "Show Me How →" opens Chef Jen's recipe-creation demonstration (null hides the button).
 const SHOW_ME_HOW_URL: string | null = '/show-me-how'
 
 const choiceButton: React.CSSProperties = {
@@ -95,41 +74,6 @@ export default function MeetChefJenPage() {
           </div>
         </section>
 
-        {/* About Chef Jen — moved below the first reel */}
-        <div style={{ textAlign: 'center', padding: '44px 0 0' }}>
-          <p style={{ fontFamily: sans, fontSize: 17, color: '#5C4A3A', lineHeight: 1.7, margin: '0 auto 16px', maxWidth: 560 }}>
-            Wondering what to make for dinner? Remember something delicious you had at a restaurant? Or just trying to figure out why your chicken always comes out dry?
-          </p>
-          <p style={{ fontFamily: sans, fontSize: 17, color: '#5C4A3A', lineHeight: 1.7, margin: '0 auto', maxWidth: 560 }}>
-            Meet Chef Jen, your personal AI cooking companion. Ask a question, share an idea, or tell her what’s happening in your kitchen. She’s here to help.
-          </p>
-        </div>
-
-        {/* Section B */}
-        <Story
-          heading="Why Does My Chicken Always Come Out Dry?"
-          src="/videos/web-tips.mp4"
-          poster="/videos/web-tips-poster.jpg"
-          label="Chef Jen answers why chicken comes out dry and how to keep it juicy."
-          linkHref="/tips"
-          linkText="Explore Chef Jen’s Cooking Tips"
-        />
-
-        {/* Closing */}
-        <section style={{ margin: '64px 0 0', textAlign: 'center', backgroundColor: '#FEF3E8', border: '1px solid #F5D9C0', borderRadius: 20, padding: '36px 24px' }}>
-          <h2 style={{ fontSize: 'clamp(22px, 5vw, 28px)', fontWeight: 700, color: '#2C1810', margin: '0 0 14px', lineHeight: 1.3 }}>
-            Your Kitchen. Your Questions. Chef Jen.
-          </h2>
-          <p style={{ fontFamily: sans, fontSize: 16, color: '#5C4A3A', lineHeight: 1.7, margin: '0 auto 8px', maxWidth: 520 }}>
-            Whether you’re planning dinner, recreating a favorite dish, or learning something new, Chef Jen is ready to help.
-          </p>
-          <p style={{ fontFamily: sans, fontSize: 16, color: '#5C4A3A', lineHeight: 1.7, margin: '0 0 18px' }}>
-            Just start a conversation.
-          </p>
-          <Link href="/myrecipe" style={{ fontFamily: sans, fontSize: 14, fontWeight: 600, color: '#C8401A', textDecoration: 'underline', textUnderlineOffset: 3 }}>
-            Learn about MyRecipe Companion
-          </Link>
-        </section>
       </main>
 
       {/* Footer */}
