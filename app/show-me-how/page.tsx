@@ -35,8 +35,8 @@ export default function ShowMeHowPage() {
         <Link href="/" style={{ textDecoration: 'none', fontFamily: sans, fontSize: 14, fontWeight: 600, color: '#A89990' }}>MyCompanionApps</Link>
       </div>
 
-      <main style={{ maxWidth: 720, margin: '0 auto', padding: '0 20px 56px', textAlign: 'center' }}>
-        <div style={{ padding: '16px 0 12px' }}>
+      <main style={{ maxWidth: 720, margin: '0 auto', padding: '0 20px calc(96px + env(safe-area-inset-bottom))', textAlign: 'center' }}>
+        <div style={{ padding: '12px 0 10px' }}>
           <h1 style={{ fontSize: 'clamp(26px, 6.5vw, 44px)', fontWeight: 700, color: '#2C1810', margin: '0 0 4px', lineHeight: 1.15 }}>
             Watch Chef Jen Create a&nbsp;Recipe!
           </h1>
@@ -49,41 +49,42 @@ export default function ShowMeHowPage() {
             Try It Free show close behind it on an iPhone (incl. Facebook's browser — svh).
             Tapping play on an iPhone opens the full-screen player, which is the best way to
             watch a tall phone video; desktops play it in the page. */}
-        <div style={{ width: `min(100%, 200px, calc(46svh * ${(886 / 1920).toFixed(4)}))`, margin: '0 auto' }}>
+        <div style={{ width: `min(100%, 180px, calc(34svh * ${(886 / 1920).toFixed(4)}))`, margin: '0 auto' }}>
           <DemoVideo {...VIDEO} />
         </div>
 
         {/* Closing message */}
-        <div style={{ padding: '20px 0 0' }}>
-          <h2 style={{ fontSize: 'clamp(22px, 5.5vw, 32px)', fontWeight: 700, color: '#2C1810', margin: '0 0 6px', lineHeight: 1.2 }}>
+        <div style={{ padding: '14px 0 0' }}>
+          <h2 style={{ fontSize: 'clamp(20px, 5vw, 30px)', fontWeight: 700, color: '#2C1810', margin: '0 0 6px', lineHeight: 1.2 }}>
             Now Imagine What Chef Jen Could Create With&nbsp;You!
           </h2>
-          <p style={{ fontFamily: sans, fontSize: 16, color: '#5C4A3A', margin: 0, lineHeight: 1.5 }}>
+          <p style={{ fontFamily: sans, fontSize: 15, color: '#5C4A3A', margin: 0, lineHeight: 1.4 }}>
             Your next great recipe could start with a simple conversation.
           </p>
         </div>
 
-        {/* Next steps — Try It Free leads */}
-        <div style={{ margin: '24px auto 0', maxWidth: 440, display: 'flex', flexDirection: 'column', gap: 18 }}>
-          <div>
-            <p style={{ fontFamily: sans, fontSize: 15, fontWeight: 600, color: '#2C1810', margin: '0 0 8px' }}>Ready to Create Your Own?</p>
+        {/* Next steps — side by side so both fit above Safari/Facebook's bottom bars.
+            Try It Free (filled) leads; Learn More is outlined. */}
+        <div style={{ margin: '14px auto 0', maxWidth: 480, display: 'flex', gap: 10, alignItems: 'stretch' }}>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+            <p style={{ fontFamily: sans, fontSize: 13, fontWeight: 600, color: '#2C1810', margin: '0 0 6px', lineHeight: 1.3, flex: 1, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>Ready to Create Your Own?</p>
             <TrackedLink
               href={APP_STORE_URL}
               external
               event="app_store_click"
               params={{ source_type: 'show_me_how', button_text: 'Try It Free' }}
-              style={{ display: 'block', backgroundColor: '#C8401A', color: '#FFFFFF', padding: '15px 20px', borderRadius: 14, textDecoration: 'none', fontFamily: sans, fontSize: 17, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.3)' }}
+              style={{ display: 'block', backgroundColor: '#C8401A', color: '#FFFFFF', padding: '13px 8px', borderRadius: 14, textDecoration: 'none', fontFamily: sans, fontSize: 16, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.3)', border: '2px solid #C8401A' }}
             >
               Try It Free →
             </TrackedLink>
           </div>
-          <div>
-            <p style={{ fontFamily: sans, fontSize: 14, color: '#78716C', margin: '0 0 8px' }}>Want to Know What Else MyRecipe Companion Can Do?</p>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+            <p style={{ fontFamily: sans, fontSize: 13, color: '#78716C', margin: '0 0 6px', lineHeight: 1.3, flex: 1, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>Want to Know What Else MyRecipe Companion Can Do?</p>
             <TrackedLink
               href="/myrecipe"
               event="learn_more_click"
               params={{ source_type: 'show_me_how' }}
-              style={{ display: 'block', color: '#C8401A', backgroundColor: '#FFFFFF', padding: '12px 20px', borderRadius: 12, textDecoration: 'none', fontFamily: sans, fontSize: 15, fontWeight: 700, border: '2px solid #C8401A' }}
+              style={{ display: 'block', color: '#C8401A', backgroundColor: '#FFFFFF', padding: '13px 8px', borderRadius: 14, textDecoration: 'none', fontFamily: sans, fontSize: 16, fontWeight: 700, border: '2px solid #C8401A' }}
             >
               Learn More →
             </TrackedLink>
