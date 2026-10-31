@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import StoryVideo from '../components/StoryVideo'
+import TrackedLink from '../recipes/TrackedLink'
 
 export const metadata: Metadata = {
   title: 'Meet Chef Jen — MyRecipe Companion',
@@ -22,22 +23,28 @@ const linkButton: React.CSSProperties = {
   color: '#C8401A', textDecoration: 'none', border: '2px solid #C8401A', borderRadius: 12, padding: '12px 22px',
 }
 
-function Story({ heading, src, poster, label, linkHref, linkText, first = false }: {
-  heading: string; src: string; poster: string; label: string; linkHref: string; linkText: string; first?: boolean
+function Story({ heading, src, poster, label, linkHref, linkText }: {
+  heading: string; src: string; poster: string; label: string; linkHref: string; linkText: string
 }) {
   return (
-    <section style={{ padding: first ? '14px 0 0' : '48px 0 0', textAlign: 'center' }}>
-      <h2 style={{ fontFamily: serif, fontSize: first ? 'clamp(21px, 5vw, 30px)' : 'clamp(24px, 5vw, 32px)', fontWeight: 700, color: '#2C1810', margin: first ? '0 0 12px' : '0 0 24px', lineHeight: 1.25 }}>
+    <section style={{ padding: '48px 0 0', textAlign: 'center' }}>
+      <h2 style={{ fontFamily: serif, fontSize: 'clamp(24px, 5vw, 32px)', fontWeight: 700, color: '#2C1810', margin: '0 0 24px', lineHeight: 1.25 }}>
         {heading}
       </h2>
-      {/* The first reel is sized to the screen height so it and its button both fit on
-          an iPhone's first screen — including inside Facebook's browser, whose toolbars
-          take part of the screen (svh = the visible height with those bars showing). */}
-      <StoryVideo src={src} poster={poster} label={label} width={720} height={960}
-        maxWidth={first ? 'min(520px, max(200px, calc((100svh - 330px) * 0.75)))' : 520} />
-      <Link href={linkHref} style={{ ...linkButton, marginTop: first ? 14 : 20 }}>{linkText} →</Link>
+      <StoryVideo src={src} poster={poster} label={label} width={720} height={960} />
+      <Link href={linkHref} style={linkButton}>{linkText} →</Link>
     </section>
   )
+}
+
+// "Show Me How →" opens Chef Jen's recipe-creation demonstration. Set this to the
+// demo page's address once it's built; until then the button stays hidden so no one
+// lands on an unfinished page.
+const SHOW_ME_HOW_URL: string | null = null
+
+const choiceButton: React.CSSProperties = {
+  flex: '1 1 150px', maxWidth: 260, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', fontFamily: sans, fontSize: 15, fontWeight: 700,
+  color: '#C8401A', backgroundColor: '#FFFFFF', textDecoration: 'none', border: '2px solid #C8401A', borderRadius: 12, padding: '12px 10px',
 }
 
 export default function MeetChefJenPage() {
@@ -51,26 +58,42 @@ export default function MeetChefJenPage() {
 
       <main style={{ maxWidth: 720, margin: '0 auto', padding: '0 20px 72px' }}>
 
-        {/* Welcome — compact, so Chef Jen's first reel and its button fit on an iPhone's first screen */}
-        <div style={{ textAlign: 'center', padding: '18px 0 0' }}>
-          <h1 style={{ fontSize: 'clamp(26px, 6.5vw, 44px)', fontWeight: 700, color: '#2C1810', margin: '0 0 4px', lineHeight: 1.15 }}>
-            Welcome to Chef Jen’s Kitchen!
+        {/* Welcome — compact, so the reel and both choices fit on an iPhone's first screen */}
+        <div style={{ textAlign: 'center', padding: '16px 0 0' }}>
+          <h1 style={{ fontSize: 'clamp(26px, 6.5vw, 44px)', fontWeight: 700, color: '#2C1810', margin: 0, lineHeight: 1.15 }}>
+            Welcome to Chef Jen’s&nbsp;Kitchen!
           </h1>
+          <h2 style={{ fontSize: 'clamp(21px, 5vw, 30px)', fontWeight: 700, color: '#2C1810', margin: '8px 0 2px', lineHeight: 1.2 }}>
+            What Should I Make Tonight?
+          </h2>
           <p style={{ fontSize: 'clamp(16px, 4vw, 21px)', color: '#C8401A', margin: 0, fontStyle: 'italic' }}>
-            Have a conversation. Make something wonderful.
+            Have a conversation. Let’s create the recipe!
           </p>
         </div>
 
-        {/* Section A — Chef Jen's first reel */}
-        <Story
-          first
-          heading="Had Something Delicious? Let’s Create the Recipe!"
-          src="/videos/web-recipe.mp4"
-          poster="/videos/web-recipe-poster.jpg"
-          label="Chef Jen helps recreate General Tso’s Jumbo Shrimp after a restaurant dinner."
-          linkHref="/recipes"
-          linkText="Explore Chef Jen’s Recipe Collection"
-        />
+        {/* Chef Jen's first reel, then the two choices */}
+        <section style={{ padding: '12px 0 0', textAlign: 'center' }}>
+          {/* Sized to the screen height so the reel and the choices fit on an iPhone's first
+              screen — including Facebook's browser (svh = visible height with its bars). */}
+          <StoryVideo
+            src="/videos/web-recipe.mp4"
+            poster="/videos/web-recipe-poster.jpg"
+            label="Chef Jen helps recreate General Tso’s Jumbo Shrimp after a restaurant dinner."
+            width={720}
+            height={960}
+            maxWidth="min(520px, max(200px, calc((100svh - 340px) * 0.75)))"
+          />
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 10, marginTop: 14 }}>
+            {SHOW_ME_HOW_URL && (
+              <TrackedLink href={SHOW_ME_HOW_URL} event="show_me_how_click" params={{ source_type: 'meet_chef_jen' }} style={choiceButton}>
+                Show Me How →
+              </TrackedLink>
+            )}
+            <TrackedLink href="/recipes" event="recipe_collection_click" params={{ source_type: 'meet_chef_jen' }} style={choiceButton}>
+              Show Me More Recipes →
+            </TrackedLink>
+          </div>
+        </section>
 
         {/* About Chef Jen — moved below the first reel */}
         <div style={{ textAlign: 'center', padding: '44px 0 0' }}>
