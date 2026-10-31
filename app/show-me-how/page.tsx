@@ -4,13 +4,11 @@ import TrackedLink from '../recipes/TrackedLink'
 import DemoVideo from './DemoVideo'
 
 // "Watch Chef Jen Create a Recipe!" — destination for "Show Me How →" on /meet-chef-jen.
-// Not linked anywhere and not indexed until it's approved (then: remove `robots`
-// below and set SHOW_ME_HOW_URL on the Meet Chef Jen page).
+// Linked from "Show Me How →" on the Meet Chef Jen page.
 
 export const metadata: Metadata = {
   title: 'Watch Chef Jen Create a Recipe — MyRecipe Companion',
   description: 'Have a conversation. Watch the magic happen. See Chef Jen turn a simple request into a finished recipe.',
-  robots: { index: false, follow: false },
   openGraph: {
     title: 'Watch Chef Jen Create a Recipe!',
     description: 'Have a conversation. Watch the magic happen.',

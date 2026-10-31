@@ -40,7 +40,7 @@ function Story({ heading, src, poster, label, linkHref, linkText }: {
 // "Show Me How →" opens Chef Jen's recipe-creation demonstration. Set this to the
 // demo page's address once it's built; until then the button stays hidden so no one
 // lands on an unfinished page.
-const SHOW_ME_HOW_URL: string | null = null
+const SHOW_ME_HOW_URL: string | null = '/show-me-how'
 
 const choiceButton: React.CSSProperties = {
   flex: '1 1 150px', maxWidth: 260, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', fontFamily: sans, fontSize: 15, fontWeight: 700,
