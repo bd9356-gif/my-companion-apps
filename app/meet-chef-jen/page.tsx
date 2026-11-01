@@ -39,12 +39,9 @@ export default function MeetChefJenPage() {
 
         {/* Welcome — compact, so the reel and both choices fit on an iPhone's first screen */}
         <div style={{ textAlign: 'center', padding: '16px 0 0' }}>
-          <h1 style={{ fontSize: 'clamp(26px, 6.5vw, 44px)', fontWeight: 700, color: '#2C1810', margin: 0, lineHeight: 1.15 }}>
-            Welcome to Chef Jen’s&nbsp;Kitchen!
-          </h1>
-          <h2 style={{ fontSize: 'clamp(21px, 5vw, 30px)', fontWeight: 700, color: '#2C1810', margin: '8px 0 4px', lineHeight: 1.2 }}>
+          <h1 style={{ fontSize: 'clamp(26px, 6.5vw, 42px)', fontWeight: 700, color: '#2C1810', margin: '0 0 6px', lineHeight: 1.15 }}>
             What Should I Make Tonight? Need&nbsp;a&nbsp;Recipe?
-          </h2>
+          </h1>
           <p style={{ fontSize: 'clamp(15px, 3.8vw, 19px)', color: '#C8401A', margin: '0 auto', maxWidth: 560, fontStyle: 'italic', lineHeight: 1.4 }}>
             Have a conversation with Chef Jen. Tell her what you have, what you’re craving, or what you feel like cooking. She’ll help you create a recipe that’s right for you.
           </p>
@@ -54,7 +51,7 @@ export default function MeetChefJenPage() {
         <section style={{ padding: '12px 0 0', textAlign: 'center' }}>
           {/* Sized to the screen height so the slideshow and the choices fit on an iPhone's
               first screen — including Facebook's browser (svh = visible height with its bars). */}
-          <Slideshow maxWidth="min(520px, max(190px, calc((100svh - 470px) * 0.75)))" />
+          <Slideshow maxWidth="min(520px, max(190px, calc((100svh - 450px) * 0.75)))" />
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 10, marginTop: 8 }}>
             {SHOW_ME_HOW_URL && (
               <TrackedLink href={SHOW_ME_HOW_URL} event="show_me_how_click" params={{ source_type: 'meet_chef_jen' }} style={choiceButton}>

@@ -2,10 +2,11 @@
 
 // Chef Jen's welcome slideshow — the six scenes from the former auto-playing reel
 // (web-recipe.mp4), same images and order, shown as stills the visitor moves through
-// by hand: swipe, tap the arrows, or tap a dot. Never advances on its own.
+// by hand (swipe, arrows, dots) or with Play ▶, which steps through them with the
+// reel's own timing until Pause ⏸. Opens on the first scene and waits for the visitor.
 // Same rounded card look as the reel; scenes cross-fade like the reel did.
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { trackEvent } from '@/lib/community'
 
 const SLIDES = [
@@ -17,6 +18,9 @@ const SLIDES = [
   { src: '/meet-chef-jen/slide-6.jpg', alt: 'Explore Chef Jen’s Recipe Collection' },
 ]
 
+// Seconds each scene showed in the original reel (web-recipe.mp4).
+const SECONDS = [3.8, 2.7, 3.3, 3.5, 2.5, 2.4]
+
 const arrow: React.CSSProperties = {
   position: 'absolute', top: '50%', transform: 'translateY(-50%)', width: 34, height: 34, borderRadius: 999,
   border: 'none', backgroundColor: 'rgba(255,253,249,0.8)', boxShadow: '0 2px 8px rgba(44,24,16,0.25)',
@@ -25,12 +29,25 @@ const arrow: React.CSSProperties = {
 
 export default function Slideshow({ maxWidth }: { maxWidth: string }) {
   const [i, setI] = useState(0)
+  const [playing, setPlaying] = useState(false)
   const touch = useRef<number | null>(null)
   const go = (n: number, how: string) => {
     const next = Math.max(0, Math.min(SLIDES.length - 1, n))
     if (next === i) return
     setI(next)
     trackEvent('chef_jen_slide_view', { slide: String(next + 1), how })
+  }
+
+  // While playing, move to the next scene after this one's time; loops like the reel did.
+  useEffect(() => {
+    if (!playing) return
+    const t = setTimeout(() => setI((n) => (n + 1) % SLIDES.length), SECONDS[i] * 1000)
+    return () => clearTimeout(t)
+  }, [playing, i])
+
+  const togglePlay = () => {
+    setPlaying((p) => !p)
+    trackEvent(playing ? 'chef_jen_slideshow_pause' : 'chef_jen_slideshow_play', { slide: String(i + 1) })
   }
 
   return (
@@ -72,7 +89,20 @@ export default function Slideshow({ maxWidth }: { maxWidth: string }) {
           </button>
         )}
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 4, marginTop: 6 }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 4, marginTop: 6 }}>
+        <button
+          type="button"
+          onClick={togglePlay}
+          aria-label={playing ? 'Pause the slideshow' : 'Play the slideshow'}
+          style={{ display: 'flex', alignItems: 'center', gap: 5, marginRight: 6, padding: '4px 11px', border: '1.5px solid #C8401A', borderRadius: 999, backgroundColor: playing ? '#FFFFFF' : '#C8401A', color: playing ? '#C8401A' : '#FFFFFF', fontFamily: 'system-ui, -apple-system, sans-serif', fontSize: 13, fontWeight: 700, cursor: 'pointer', lineHeight: 1 }}
+        >
+          {playing ? (
+            <svg width="11" height="11" viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor" /></svg>
+          ) : (
+            <svg width="11" height="11" viewBox="0 0 24 24"><path d="M7 4v16l13-8z" fill="currentColor" /></svg>
+          )}
+          {playing ? 'Pause' : 'Play'}
+        </button>
         {SLIDES.map((s, n) => (
           <button
             key={s.src}
