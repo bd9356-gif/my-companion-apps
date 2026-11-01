@@ -47,7 +47,7 @@ function trackWhatItDoes(buttonText: string) {
 }
 
 
-// Opening section: the two equal choices under the benefit sparks.
+// Opening section: clicks on the two image doors.
 function trackChoice(eventName: string) {
   try {
     const gtag = (window as Window & { gtag?: (...args: unknown[]) => void }).gtag
@@ -61,18 +61,14 @@ function trackChoice(eventName: string) {
   } catch {}
 }
 
-const SPARKS = [
-  'Tired of hunting through Pinterest, Facebook, and websites for that one recipe?',
-  'Ever wonder what you could make with what’s already in your kitchen or create your own signature recipe?',
-  'Wish you had someone to bounce cooking ideas off?',
-  'Want to adjust a dish to match your family’s tastes or health needs?',
-  'Wish you could stretch one chicken into several meals?',
-  'Still have Mom’s handwritten recipes? Wish you could preserve the recipes and memories behind them?',
+// Entrance: two image doors. The artwork already carries its headline, text and button.
+// Destinations reuse the links the previous entrance used (Explore My Kitchen → #features,
+// Meet Chef Jen → /meet-chef-jen) until the new presentation rooms exist.
+// The six lightbulb questions that were here are saved in docs/more-than-recipes-questions.md.
+const DOORS = [
+  { href: '#features', img: '/home/kitchen.jpg', event: 'explore_kitchen_click', label: 'Explore Your Kitchen — turn what you have into something delicious tonight. Explore now.' },
+  { href: '/meet-chef-jen', img: '/home/recipes.jpg', event: 'meet_chef_jen_click', label: 'Discover More Than Recipes — get meal ideas, recreate favorites, adjust to your tastes. See what Chef Jen can do.' },
 ]
-
-const CHOICE_STYLE: React.CSSProperties = { display: 'flex', flexDirection: 'column', gap: 4, backgroundColor: 'white', border: '1.5px solid #C8401A', borderRadius: 16, padding: '18px 20px', textDecoration: 'none', boxShadow: '0 4px 14px rgba(200,64,26,0.12)' }
-const CHOICE_TITLE: React.CSSProperties = { fontFamily: 'Georgia, serif', fontSize: 21, fontWeight: 700, color: '#C8401A' }
-const CHOICE_SUB: React.CSSProperties = { fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#5C4A3A' }
 
 const SCREENSHOTS = [
   { file: '0001-hub-iphone.png', label: 'My Kitchen' },
@@ -136,7 +132,7 @@ export default function MyRecipePage() {
         <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>App Store</a>
       </div>
 
-      {/* Phones only: tighter opening so the six sparks read as quick, consecutive lines */}
+      {/* Phones only: tighter opening so the two image doors come up quickly */}
       <style>{`
         @media (max-width: 640px) {
           .mr-hero { padding: 32px 20px 48px !important; gap: 40px !important; }
@@ -144,9 +140,6 @@ export default function MyRecipePage() {
           .mr-h1-first { margin-right: 0.25em; }
           .mr-h1-last { margin-bottom: 8px !important; }
           .mr-tagline { margin-bottom: 18px !important; }
-          .mr-sparks { gap: 6px !important; margin-bottom: 22px !important; }
-          .mr-spark { padding: 8px 12px !important; gap: 8px !important; }
-          .mr-spark-text { font-size: 14px !important; line-height: 1.4 !important; }
         }
       `}</style>
       {/* HERO */}
@@ -157,27 +150,14 @@ export default function MyRecipePage() {
           <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(40px, 5vw, 62px)', fontWeight: 700, lineHeight: 1.06, color: '#2C1810', marginBottom: 16 }} className="mr-h1 mr-h1-last">Companion</h1>
           <p style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(20px, 2.5vw, 28px)', fontStyle: 'italic', color: '#C8401A', marginBottom: 28, lineHeight: 1.3 }} className="mr-tagline">More Than Recipes.</p>
 
-          {/* Benefit sparks — two columns on wide screens, one on phones */}
-          <ul className="mr-sparks" style={{ listStyle: 'none', padding: 0, margin: '0 0 28px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 10 }}>
-            {SPARKS.map((q) => (
-              <li key={q} className="mr-spark" style={{ display: 'flex', alignItems: 'flex-start', gap: 10, backgroundColor: 'rgba(255,253,249,0.75)', border: '1px solid #F0E0CC', borderLeft: '3px solid #C8401A', borderRadius: 12, padding: '12px 14px' }}>
-                <span aria-hidden="true" style={{ fontSize: 16, lineHeight: 1.4, flexShrink: 0 }}>💡</span>
-                <span className="mr-spark-text" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 15, lineHeight: 1.45, color: '#3C2415' }}>{q}</span>
-              </li>
+          {/* Two image doors — whole image is the link; never cropped (width 100%, height auto) */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 560 }}>
+            {DOORS.map((d) => (
+              <a key={d.img} href={d.href} onClick={() => trackChoice(d.event)} aria-label={d.label} style={{ display: 'block', borderRadius: 18, overflow: 'hidden', boxShadow: '0 6px 22px rgba(44,24,16,0.14)', lineHeight: 0 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={d.img} alt={d.label} width={1018} height={850} style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'contain' }} />
+              </a>
             ))}
-          </ul>
-
-          {/* Two equal choices */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 14 }}>
-            <a href="/meet-chef-jen" onClick={() => trackChoice('meet_chef_jen_click')} style={CHOICE_STYLE}>
-              <span style={CHOICE_TITLE}>Meet Chef Jen →</span>
-              <span style={CHOICE_SUB}>Discover who can help you.</span>
-            </a>
-            {/* Temporary: points at "What It Does" until the My Kitchen page is built */}
-            <a href="#features" onClick={() => trackChoice('explore_kitchen_click')} style={CHOICE_STYLE}>
-              <span style={CHOICE_TITLE}>Explore My Kitchen →</span>
-              <span style={CHOICE_SUB}>Discover what’s possible.</span>
-            </a>
           </div>
         </div>
 
