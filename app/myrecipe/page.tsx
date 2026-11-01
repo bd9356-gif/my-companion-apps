@@ -144,7 +144,6 @@ export default function MyRecipePage() {
           .mr-h1-first { margin-right: 0.25em; }
           .mr-h1-last { margin-bottom: 8px !important; }
           .mr-tagline { margin-bottom: 12px !important; }
-          .mr-doors { gap: 10px !important; }
         }
       `}</style>
       {/* HERO */}
@@ -158,7 +157,7 @@ export default function MyRecipePage() {
           {/* Two image doors — whole image is the link; never cropped (width 100%, height auto).
               WebP with clear corners (the artwork's own rounded border shows cleanly);
               the original PNG is the fallback. width/height reserve space, so no jumping. */}
-          <div className="mr-doors" style={{ display: 'flex', flexDirection: 'column', gap: 14, maxWidth: 520, margin: '0 auto' }}>
+          <div className="mr-doors" style={{ display: 'flex', flexDirection: 'column', gap: 14, width: '80%', maxWidth: 440, margin: '0 auto' }}>
             {DOORS.map((d) => (
               <a key={d.img} href={d.href} onClick={() => trackChoice(d.event)} aria-label={d.label} style={{ display: 'block', lineHeight: 0 }}>
                 <picture>
@@ -298,7 +297,10 @@ export default function MyRecipePage() {
 
       </>}
 
-      {/* FEATURES GRID */}
+      {/* FEATURES GRID — not shown on the homepage. It appears only when someone follows a
+          link to #features (the Explore Your Kitchen door, the 'What It Does' menu item), so
+          those links keep working. Delete the rule below to show it on the page again. */}
+      <style>{`#features:not(:target) { display: none; }`}</style>
       <section id="features" style={{ backgroundColor: '#FFFDF9', padding: '72px 32px' }}>
         <div style={{ maxWidth: 960, margin: '0 auto' }}>
           <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', color: '#C8401A', textTransform: 'uppercase', marginBottom: 12, textAlign: 'center' }}>Everything You Need</p>
