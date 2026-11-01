@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import StoryVideo from '../components/StoryVideo'
+import Slideshow from './Slideshow'
 import TrackedLink from '../recipes/TrackedLink'
 
 export const metadata: Metadata = {
@@ -42,27 +42,20 @@ export default function MeetChefJenPage() {
           <h1 style={{ fontSize: 'clamp(26px, 6.5vw, 44px)', fontWeight: 700, color: '#2C1810', margin: 0, lineHeight: 1.15 }}>
             Welcome to Chef Jen’s&nbsp;Kitchen!
           </h1>
-          <h2 style={{ fontSize: 'clamp(21px, 5vw, 30px)', fontWeight: 700, color: '#2C1810', margin: '8px 0 2px', lineHeight: 1.2 }}>
-            What Should I Make Tonight?
+          <h2 style={{ fontSize: 'clamp(21px, 5vw, 30px)', fontWeight: 700, color: '#2C1810', margin: '8px 0 4px', lineHeight: 1.2 }}>
+            What Should I Make Tonight? Need&nbsp;a&nbsp;Recipe?
           </h2>
-          <p style={{ fontSize: 'clamp(16px, 4vw, 21px)', color: '#C8401A', margin: 0, fontStyle: 'italic' }}>
-            Have a conversation. Let’s create the recipe!
+          <p style={{ fontSize: 'clamp(15px, 3.8vw, 19px)', color: '#C8401A', margin: '0 auto', maxWidth: 560, fontStyle: 'italic', lineHeight: 1.4 }}>
+            Have a conversation with Chef Jen. Tell her what you have, what you’re craving, or what you feel like cooking. She’ll help you create a recipe that’s right for you.
           </p>
         </div>
 
-        {/* Chef Jen's first reel, then the two choices */}
+        {/* Chef Jen's slideshow (moved by hand), then the two choices */}
         <section style={{ padding: '12px 0 0', textAlign: 'center' }}>
-          {/* Sized to the screen height so the reel and the choices fit on an iPhone's first
-              screen — including Facebook's browser (svh = visible height with its bars). */}
-          <StoryVideo
-            src="/videos/web-recipe.mp4"
-            poster="/videos/web-recipe-poster.jpg"
-            label="Chef Jen helps recreate General Tso’s Jumbo Shrimp after a restaurant dinner."
-            width={720}
-            height={960}
-            maxWidth="min(520px, max(200px, calc((100svh - 340px) * 0.75)))"
-          />
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 10, marginTop: 14 }}>
+          {/* Sized to the screen height so the slideshow and the choices fit on an iPhone's
+              first screen — including Facebook's browser (svh = visible height with its bars). */}
+          <Slideshow maxWidth="min(520px, max(190px, calc((100svh - 470px) * 0.75)))" />
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 10, marginTop: 8 }}>
             {SHOW_ME_HOW_URL && (
               <TrackedLink href={SHOW_ME_HOW_URL} event="show_me_how_click" params={{ source_type: 'meet_chef_jen' }} style={choiceButton}>
                 Show Me How →

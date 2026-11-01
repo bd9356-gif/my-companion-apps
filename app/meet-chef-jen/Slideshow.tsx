@@ -1,0 +1,96 @@
+'use client'
+
+// Chef Jen's welcome slideshow — the six scenes from the former auto-playing reel
+// (web-recipe.mp4), same images and order, shown as stills the visitor moves through
+// by hand: swipe, tap the arrows, or tap a dot. Never advances on its own.
+// Same rounded card look as the reel; scenes cross-fade like the reel did.
+
+import { useRef, useState } from 'react'
+import { trackEvent } from '@/lib/community'
+
+const SLIDES = [
+  { src: '/meet-chef-jen/slide-1.jpg', alt: 'What should I make tonight? Something quick, leftover pasta, chicken, tacos, shrimp scampi — or something new?' },
+  { src: '/meet-chef-jen/slide-2.jpg', alt: 'Chef Jen: Hi, I’m Chef Jen. Let’s make something together!' },
+  { src: '/meet-chef-jen/slide-3.jpg', alt: 'I had General Tso’s Jumbo Shrimp at a restaurant. Can you help me make it at home?' },
+  { src: '/meet-chef-jen/slide-4.jpg', alt: 'Chef Jen: Absolutely! I’ll show you how to make this at home with simple ingredients.' },
+  { src: '/meet-chef-jen/slide-5.jpg', alt: 'Just like the restaurant… now you can make it at home!' },
+  { src: '/meet-chef-jen/slide-6.jpg', alt: 'Explore Chef Jen’s Recipe Collection' },
+]
+
+const arrow: React.CSSProperties = {
+  position: 'absolute', top: '50%', transform: 'translateY(-50%)', width: 34, height: 34, borderRadius: 999,
+  border: 'none', backgroundColor: 'rgba(255,253,249,0.8)', boxShadow: '0 2px 8px rgba(44,24,16,0.25)',
+  display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', padding: 0,
+}
+
+export default function Slideshow({ maxWidth }: { maxWidth: string }) {
+  const [i, setI] = useState(0)
+  const touch = useRef<number | null>(null)
+  const go = (n: number, how: string) => {
+    const next = Math.max(0, Math.min(SLIDES.length - 1, n))
+    if (next === i) return
+    setI(next)
+    trackEvent('chef_jen_slide_view', { slide: String(next + 1), how })
+  }
+
+  return (
+    <div style={{ width: '100%', maxWidth, margin: '0 auto' }}>
+      <div
+        role="region"
+        aria-roledescription="slideshow"
+        aria-label="Chef Jen helps recreate a restaurant dish"
+        onTouchStart={(e) => { touch.current = e.touches[0].clientX }}
+        onTouchEnd={(e) => {
+          if (touch.current === null) return
+          const dx = e.changedTouches[0].clientX - touch.current
+          touch.current = null
+          if (Math.abs(dx) > 40) go(dx < 0 ? i + 1 : i - 1, 'swipe')
+        }}
+        style={{ position: 'relative', width: '100%', aspectRatio: '720 / 960', borderRadius: 16, overflow: 'hidden', backgroundColor: '#F5F0EA', boxShadow: '0 4px 24px rgba(44,24,16,0.12)', touchAction: 'pan-y' }}
+      >
+        {SLIDES.map((s, n) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={s.src}
+            src={s.src}
+            alt={s.alt}
+            width={720}
+            height={960}
+            loading={n === 0 ? 'eager' : 'lazy'}
+            aria-hidden={n !== i}
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: n === i ? 1 : 0, transition: 'opacity 450ms ease' }}
+          />
+        ))}
+        {i > 0 && (
+          <button type="button" aria-label="Previous picture" onClick={() => go(i - 1, 'arrow')} style={{ ...arrow, left: 6 }}>
+            <svg width="17" height="17" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" stroke="#C8401A" strokeWidth="2.6" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </button>
+        )}
+        {i < SLIDES.length - 1 && (
+          <button type="button" aria-label="Next picture" onClick={() => go(i + 1, 'arrow')} style={{ ...arrow, right: 6 }}>
+            <svg width="17" height="17" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="#C8401A" strokeWidth="2.6" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </button>
+        )}
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 4, marginTop: 6 }}>
+        {SLIDES.map((s, n) => (
+          <button
+            key={s.src}
+            type="button"
+            aria-label={`Picture ${n + 1} of ${SLIDES.length}`}
+            aria-current={n === i}
+            onClick={() => go(n, 'dot')}
+            style={{ width: 22, height: 22, border: 'none', background: 'transparent', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+          >
+            <span style={{ width: n === i ? 18 : 8, height: 8, borderRadius: 999, backgroundColor: n === i ? '#C8401A' : '#E5D5C5', transition: 'width 200ms ease' }} />
+          </button>
+        ))}
+      </div>
+      {/* Preload the next picture so the next swipe is instant */}
+      {i < SLIDES.length - 1 && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={SLIDES[i + 1].src} alt="" aria-hidden width={1} height={1} style={{ display: 'none' }} />
+      )}
+    </div>
+  )
+}
