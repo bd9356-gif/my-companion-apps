@@ -65,9 +65,13 @@ function trackChoice(eventName: string) {
 // Destinations reuse the links the previous entrance used (Explore My Kitchen → #features,
 // Meet Chef Jen → /meet-chef-jen) until the new presentation rooms exist.
 // The six lightbulb questions that were here are saved in docs/more-than-recipes-questions.md.
+// Older homepage sections (phone poster, gallery, feature highlights, closing App Store
+// panel) are kept in the code but not shown. Set to true to bring them back.
+const SHOW_LEGACY_SECTIONS = false
+
 const DOORS = [
-  { href: '#features', img: '/home/kitchen.jpg', event: 'explore_kitchen_click', label: 'Explore Your Kitchen — turn what you have into something delicious tonight. Explore now.' },
-  { href: '/meet-chef-jen', img: '/home/recipes.jpg', event: 'meet_chef_jen_click', label: 'Discover More Than Recipes — get meal ideas, recreate favorites, adjust to your tastes. See what Chef Jen can do.' },
+  { href: '#features', img: '/home/kitchen', event: 'explore_kitchen_click', label: 'Explore Your Kitchen — turn what you have into something delicious tonight. Explore now.' },
+  { href: '/meet-chef-jen', img: '/home/recipes', event: 'meet_chef_jen_click', label: 'Discover More Than Recipes — get meal ideas, recreate favorites, adjust to your tastes. See what Chef Jen can do.' },
 ]
 
 const SCREENSHOTS = [
@@ -135,39 +139,45 @@ export default function MyRecipePage() {
       {/* Phones only: tighter opening so the two image doors come up quickly */}
       <style>{`
         @media (max-width: 640px) {
-          .mr-hero { padding: 32px 20px 48px !important; gap: 40px !important; }
+          .mr-hero { padding: 14px 16px 28px !important; gap: 24px !important; }
           .mr-h1 { font-size: min(31px, calc((100vw - 40px) / 10.2)) !important; display: inline-block; white-space: nowrap; }
           .mr-h1-first { margin-right: 0.25em; }
           .mr-h1-last { margin-bottom: 8px !important; }
-          .mr-tagline { margin-bottom: 18px !important; }
+          .mr-tagline { margin-bottom: 12px !important; }
+          .mr-doors { gap: 10px !important; }
         }
       `}</style>
       {/* HERO */}
-      <section className="mr-hero" style={{ background: 'linear-gradient(135deg, #F2E8D9 0%, #F8F0E6 40%, #FDF6EE 100%)', padding: '72px 32px 64px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 64, flexWrap: 'wrap', minHeight: '80vh' }}>
+      <section className="mr-hero" style={{ background: 'linear-gradient(135deg, #F2E8D9 0%, #F8F0E6 40%, #FDF6EE 100%)', padding: '40px 32px 48px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 64, flexWrap: 'wrap' }}>
         {/* Left copy */}
-        <div style={{ maxWidth: 640, flex: '1 1 320px' }}>
+        <div style={{ maxWidth: 560, flex: '1 1 320px', textAlign: 'center' }}>
           <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(40px, 5vw, 62px)', fontWeight: 700, lineHeight: 1.06, color: '#2C1810', marginBottom: 6 }} className="mr-h1 mr-h1-first">MyRecipe</h1>
           <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(40px, 5vw, 62px)', fontWeight: 700, lineHeight: 1.06, color: '#2C1810', marginBottom: 16 }} className="mr-h1 mr-h1-last">Companion</h1>
           <p style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(20px, 2.5vw, 28px)', fontStyle: 'italic', color: '#C8401A', marginBottom: 28, lineHeight: 1.3 }} className="mr-tagline">More Than Recipes.</p>
 
-          {/* Two image doors — whole image is the link; never cropped (width 100%, height auto) */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 560 }}>
+          {/* Two image doors — whole image is the link; never cropped (width 100%, height auto).
+              WebP with clear corners (the artwork's own rounded border shows cleanly);
+              the original PNG is the fallback. width/height reserve space, so no jumping. */}
+          <div className="mr-doors" style={{ display: 'flex', flexDirection: 'column', gap: 14, maxWidth: 520, margin: '0 auto' }}>
             {DOORS.map((d) => (
-              <a key={d.img} href={d.href} onClick={() => trackChoice(d.event)} aria-label={d.label} style={{ display: 'block', borderRadius: 18, overflow: 'hidden', boxShadow: '0 6px 22px rgba(44,24,16,0.14)', lineHeight: 0 }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={d.img} alt={d.label} width={1018} height={850} style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'contain' }} />
+              <a key={d.img} href={d.href} onClick={() => trackChoice(d.event)} aria-label={d.label} style={{ display: 'block', lineHeight: 0 }}>
+                <picture>
+                  <source srcSet={`${d.img}.webp`} type="image/webp" />
+                  <img src={`${d.img}.png`} alt={d.label} width={1018} height={850} style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 4px 12px rgba(44,24,16,0.14))' }} />
+                </picture>
               </a>
             ))}
           </div>
         </div>
 
-        {/* Right — hero phone */}
-        <div style={{ flex: '0 0 auto' }}>
+        {/* Right — hero phone (hidden with the older sections) */}
+        {SHOW_LEGACY_SECTIONS && <div style={{ flex: '0 0 auto' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/0001-hub-iphone.png" alt="MyRecipe App" style={{ width: 'clamp(260px, 28vw, 340px)', borderRadius: 32, boxShadow: '0 48px 100px rgba(44,24,16,0.20)', display: 'block' }} />
-        </div>
+        </div>}
       </section>
 
+      {SHOW_LEGACY_SECTIONS && <>
       {/* INTERACTIVE GALLERY */}
       <section id="gallery" style={{ backgroundColor: '#2C1810', padding: '72px 32px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
@@ -286,6 +296,8 @@ export default function MyRecipePage() {
         </div>
       </section>
 
+      </>}
+
       {/* FEATURES GRID */}
       <section id="features" style={{ backgroundColor: '#FFFDF9', padding: '72px 32px' }}>
         <div style={{ maxWidth: 960, margin: '0 auto' }}>
@@ -303,6 +315,7 @@ export default function MyRecipePage() {
         </div>
       </section>
 
+      {SHOW_LEGACY_SECTIONS && <>
       {/* FINAL CTA */}
       <section style={{ background: 'linear-gradient(160deg, #F5EDE0 0%, #FFFDF9 100%)', padding: '80px 32px', textAlign: 'center' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -314,6 +327,7 @@ export default function MyRecipePage() {
                 <div style={{ textAlign: 'left' }}><div style={{ fontSize: 9, fontFamily: 'system-ui, sans-serif', opacity: 0.65, letterSpacing: '0.06em' }}>DOWNLOAD ON THE</div><div style={{ fontSize: 17, fontFamily: 'system-ui, sans-serif', fontWeight: 700, lineHeight: 1.1 }}>App Store</div></div>
               </a>
       </section>
+      </>}
 
       {/* FOOTER */}
       <footer style={{ backgroundColor: '#2C1810', padding: '32px 32px' }}>
