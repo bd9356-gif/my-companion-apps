@@ -12,14 +12,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Watch Chef Jen Create a Recipe!',
     description: 'Have a conversation. Watch the magic happen.',
-    images: ['/videos/chef-jen-shrimp-scampi-poster.jpg'],
+    images: ['/videos/chef-jen-creates-poster.jpg'],
     type: 'website',
     siteName: 'MyRecipe Companion',
   },
 }
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990'
-const VIDEO = { src: '/videos/chef-jen-shrimp-scampi.mp4', poster: '/videos/chef-jen-shrimp-scampi-poster.jpg', width: 886, height: 1920 }
+const VIDEO = { src: '/videos/chef-jen-creates.mp4', poster: '/videos/chef-jen-creates-poster.jpg', width: 720, height: 1280, name: 'chef_jen_creates' }
 
 const serif = 'Georgia, serif'
 const sans = 'system-ui, -apple-system, sans-serif'
@@ -47,7 +47,7 @@ export default function ShowMeHowPage() {
             Try It Free show close behind it on an iPhone (incl. Facebook's browser — svh).
             Tapping play on an iPhone opens the full-screen player, which is the best way to
             watch a tall phone video; desktops play it in the page. */}
-        <div style={{ width: `min(100%, 180px, calc(34svh * ${(886 / 1920).toFixed(4)}))`, margin: '0 auto' }}>
+        <div style={{ width: `min(100%, 180px, calc(34svh * ${(VIDEO.width / VIDEO.height).toFixed(4)}))`, margin: '0 auto' }}>
           <DemoVideo {...VIDEO} />
         </div>
 

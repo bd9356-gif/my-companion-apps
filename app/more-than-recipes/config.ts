@@ -21,7 +21,7 @@ export const EXPLORE_MORE_HOTSPOT = { left: 22, top: 79, width: 56, height: 14 }
  */
 export const BOOTHS: { id: string; img: string; alt: string; href: string | null }[] = [
   { id: 'talk_to_chef_jen', img: 'talk', alt: 'Talk to Chef Jen — cooking questions, ideas, substitutions, and help.', href: null },
-  { id: 'create_a_recipe', img: 'create', alt: 'Create a Recipe — turn an idea or restaurant dish into a recipe.', href: null },
+  { id: 'create_a_recipe', img: 'create', alt: 'Create a Recipe — turn an idea or restaurant dish into a recipe.', href: '/show-me-how' },
   { id: 'cooking_school', img: 'cooking-school', alt: 'Cooking School — learn, practice, videos, and keep your notes.', href: null },
   { id: 'recipe_vault', img: 'recipe-vault', alt: 'Recipe Vault — find, import, and organize your recipes.', href: null },
   { id: 'recipe_box', img: 'recipe-box', alt: 'Recipe Box — preserve family recipes and memories.', href: null },

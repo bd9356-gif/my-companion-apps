@@ -1,6 +1,6 @@
 'use client'
 
-// The Shrimp Scampi demonstration video. Never autoplays. Tapping play opens the
+// The Chef Jen demonstration video (chef-jen-creates.mp4). Never autoplays. Tapping play opens the
 // full-screen player — also inside Facebook's in-app browser, which would otherwise
 // play it small inside the page.
 // GA4: demo_video_play the first time it starts, demo_video_complete at the end.
@@ -32,7 +32,7 @@ function enterFullScreen(v: IOSVideo) {
   } catch {}
 }
 
-export default function DemoVideo({ src, poster, width, height }: { src: string; poster: string; width: number; height: number }) {
+export default function DemoVideo({ src, poster, width, height, name }: { src: string; poster: string; width: number; height: number; name: string }) {
   const sent = useRef({ play: false, end: false })
   const ref = useRef<HTMLVideoElement>(null)
   const [started, setStarted] = useState(false)
@@ -61,10 +61,10 @@ export default function DemoVideo({ src, poster, width, height }: { src: string;
         // Started from the player's own controls (e.g. after the first play): go full screen too.
         const v = e.currentTarget as IOSVideo
         if (v.webkitDisplayingFullscreen === false) enterFullScreen(v)
-        if (!sent.current.play) { sent.current.play = true; trackEvent('demo_video_play', { video: 'shrimp_scampi', transport_type: 'beacon' }) }
+        if (!sent.current.play) { sent.current.play = true; trackEvent('demo_video_play', { video: name, transport_type: 'beacon' }) }
       }}
       onEnded={(e) => {
-        if (!sent.current.end) { sent.current.end = true; trackEvent('demo_video_complete', { video: 'shrimp_scampi', transport_type: 'beacon' }) }
+        if (!sent.current.end) { sent.current.end = true; trackEvent('demo_video_complete', { video: name, transport_type: 'beacon' }) }
         backToPage(e.currentTarget)
       }}
       onTimeUpdate={(e) => {
