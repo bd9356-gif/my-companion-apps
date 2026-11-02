@@ -63,7 +63,7 @@ function trackChoice(eventName: string) {
 
 // Entrance: two image doors. The artwork already carries its headline, text and button.
 // Destinations reuse the links the previous entrance used (Explore My Kitchen → #features,
-// Meet Chef Jen → /meet-chef-jen) until the new presentation rooms exist.
+// Discover More Than Recipes → /more-than-recipes, the presentation & showroom).
 // The six lightbulb questions that were here are saved in docs/more-than-recipes-questions.md.
 // Older homepage sections (phone poster, gallery, feature highlights, closing App Store
 // panel) are kept in the code but not shown. Set to true to bring them back.
@@ -71,7 +71,7 @@ const SHOW_LEGACY_SECTIONS = false
 
 const DOORS = [
   { href: '#features', img: '/home/kitchen', event: 'explore_kitchen_click', label: 'Explore Your Kitchen — turn what you have into something delicious tonight. Explore now.' },
-  { href: '/meet-chef-jen', img: '/home/recipes', event: 'meet_chef_jen_click', label: 'Discover More Than Recipes — get meal ideas, recreate favorites, adjust to your tastes. See what Chef Jen can do.' },
+  { href: '/more-than-recipes', img: '/home/recipes', event: 'more_than_recipes_click', label: 'Discover More Than Recipes — get meal ideas, recreate favorites, adjust to your tastes. See what Chef Jen can do.' },
 ]
 
 const SCREENSHOTS = [
