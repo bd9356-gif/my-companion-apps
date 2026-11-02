@@ -39,7 +39,7 @@ export default function ShowMeHowPage() {
             Watch Chef Jen Create a&nbsp;Recipe!
           </h1>
           <p style={{ fontSize: 'clamp(16px, 4vw, 21px)', color: '#C8401A', margin: 0, fontStyle: 'italic' }}>
-            Have a conversation. Watch the magic happen.
+            One simple request. Watch Chef Jen bring it to life.
           </p>
         </div>
 
@@ -57,7 +57,7 @@ export default function ShowMeHowPage() {
             Now Imagine What Chef Jen Could Create With&nbsp;You!
           </h2>
           <p style={{ fontFamily: sans, fontSize: 15, color: '#5C4A3A', margin: 0, lineHeight: 1.4 }}>
-            Your next great recipe could start with a simple conversation.
+            Your next great recipe could start with one simple idea.
           </p>
         </div>
 
