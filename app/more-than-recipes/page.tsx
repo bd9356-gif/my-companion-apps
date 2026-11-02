@@ -24,15 +24,15 @@ export default function MoreThanRecipesPage() {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#FFFDF9', fontFamily: 'Georgia, serif' }}>
       {/* Same quiet header as Meet Chef Jen */}
-      <div style={{ borderBottom: '1px solid #F0EBE3', padding: '9px 20px' }}>
+      <div style={{ borderBottom: '1px solid #F0EBE3', padding: '6px 16px' }}>
         <Link href="/myrecipe" style={{ textDecoration: 'none', fontFamily: sans, fontSize: 14, fontWeight: 600, color: '#A89990' }}>MyRecipe Companion</Link>
       </div>
 
-      <main style={{ maxWidth: 720, margin: '0 auto', padding: '14px 16px 48px' }}>
+      <main style={{ maxWidth: 720, margin: '0 auto', padding: '6px 16px 40px' }}>
         <Presentation />
 
         {/* Booths — "Explore More →" on the last slide scrolls here */}
-        <section id="booths" aria-label="Explore what Chef Jen can help with" style={{ paddingTop: 22, scrollMarginTop: 12 }}>
+        <section id="booths" aria-label="Explore what Chef Jen can help with" style={{ paddingTop: 10, scrollMarginTop: 8 }}>
           <Booths />
         </section>
       </main>
