@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Presentation from './Presentation'
 import Booths from './Booths'
+import { BOOTHS_BANNER } from './config'
 
 // More Than Recipes — four-slide introduction, then the six showroom booths.
 // Reached from the homepage's "Discover More Than Recipes" card. Settings: ./config.ts
@@ -29,6 +30,19 @@ export default function MoreThanRecipesPage() {
       </div>
 
       <main style={{ maxWidth: 720, margin: '0 auto', padding: '6px 16px 40px' }}>
+        {/* More Than Recipes banner: introduces the whole presentation. Shown at its
+            own size (never stretched), centered, smaller on narrow phones. */}
+        <picture>
+          <source type="image/webp" srcSet={`/more-than-recipes/${BOOTHS_BANNER.img}.webp`} />
+          <img
+            src={`/more-than-recipes/${BOOTHS_BANNER.img}.png`}
+            alt={BOOTHS_BANNER.alt}
+            width={BOOTHS_BANNER.width}
+            height={BOOTHS_BANNER.height}
+            style={{ display: 'block', width: '100%', maxWidth: BOOTHS_BANNER.width, height: 'auto', margin: '2px auto 8px' }}
+          />
+        </picture>
+
         <Presentation />
 
         {/* Booths — "Explore More →" on the last slide scrolls here */}

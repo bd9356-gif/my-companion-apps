@@ -7,7 +7,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { trackEvent } from '@/lib/community'
-import { BOOTHS, BOOTHS_BANNER, type BoothVideo } from './config'
+import { BOOTHS, type BoothVideo } from './config'
 
 const coverStyle: React.CSSProperties = {
   display: 'block', width: '100%', height: 'auto', objectFit: 'contain',
@@ -26,19 +26,16 @@ export default function Booths() {
       <style>{`
         .mtr-booths { display: grid; grid-template-columns: 1fr; gap: 10px; }
         @media (min-width: 600px) { .mtr-booths { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+        .mtr-choose { font-family: Georgia, serif; font-weight: 600; color: #374151; text-align: center; font-size: 17.5px; line-height: 1.3; margin: 4px 0 12px; }
+        @media (min-width: 600px) { .mtr-choose { font-size: 20px; margin: 6px 0 14px; } }
       `}</style>
 
-      {/* Banner: shown at its own size (never stretched), smaller on narrow phones */}
-      <picture>
-        <source type="image/webp" srcSet={`/more-than-recipes/${BOOTHS_BANNER.img}.webp`} />
-        <img
-          src={`/more-than-recipes/${BOOTHS_BANNER.img}.png`}
-          alt={BOOTHS_BANNER.alt}
-          width={BOOTHS_BANNER.width}
-          height={BOOTHS_BANNER.height}
-          style={{ display: 'block', width: '100%', maxWidth: BOOTHS_BANNER.width, height: 'auto', margin: '0 auto 10px' }}
-        />
-      </picture>
+      {/* Invitation above the cards */}
+      {/* Each sentence stays whole: one line on wide screens, two tidy lines on phones */}
+      <h2 className="mtr-choose">
+        <span style={{ display: 'inline-block' }}>Choose What Interests You.</span>{' '}
+        <span style={{ display: 'inline-block' }}>See What’s Possible.</span>
+      </h2>
 
       <div className="mtr-booths">
         {BOOTHS.map((b, n) => {

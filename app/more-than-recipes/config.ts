@@ -14,7 +14,7 @@ export const SLIDES = [
 /** Where the "Explore More →" button sits on slide 4, as % of the picture. */
 export const EXPLORE_MORE_HOTSPOT = { left: 22, top: 79, width: 56, height: 14 }
 
-/** "More Than Recipes" banner above the six cards (500 × 100). */
+/** "More Than Recipes" banner at the top of the page, above the slideshow (500 × 100). */
 export const BOOTHS_BANNER = { img: 'banner', width: 500, height: 100, alt: 'More Than Recipes — See what MyRecipe Companion can do for you.' }
 
 /** A booth video: opens in a pop-up player when the card is tapped. */
