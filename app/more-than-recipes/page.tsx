@@ -39,14 +39,14 @@ export default function MoreThanRecipesPage() {
             alt={BOOTHS_BANNER.alt}
             width={BOOTHS_BANNER.width}
             height={BOOTHS_BANNER.height}
-            style={{ display: 'block', width: '100%', maxWidth: BOOTHS_BANNER.width, height: 'auto', margin: '2px auto 8px' }}
+            style={{ display: 'block', width: '100%', maxWidth: BOOTHS_BANNER.width, height: 'auto', margin: '0 auto 6px' }}
           />
         </picture>
 
         <Presentation />
 
         {/* Booths — "Explore More →" on the last slide scrolls here */}
-        <section id="booths" aria-label="Explore what Chef Jen can help with" style={{ paddingTop: 10, scrollMarginTop: 8 }}>
+        <section id="booths" aria-label="Explore what Chef Jen can help with" style={{ paddingTop: 4, scrollMarginTop: 8 }}>
           <Booths />
         </section>
       </main>

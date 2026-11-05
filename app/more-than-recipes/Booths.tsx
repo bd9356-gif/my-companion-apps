@@ -24,10 +24,10 @@ export default function Booths() {
   return (
     <>
       <style>{`
-        .mtr-booths { display: grid; grid-template-columns: 1fr; gap: 10px; }
-        @media (min-width: 600px) { .mtr-booths { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
-        .mtr-choose { font-family: Georgia, serif; font-weight: 600; color: #374151; text-align: center; font-size: 17.5px; line-height: 1.3; margin: 4px 0 12px; }
-        @media (min-width: 600px) { .mtr-choose { font-size: 20px; margin: 6px 0 14px; } }
+        .mtr-booths { display: grid; grid-template-columns: 1fr; gap: 8px; }
+        @media (min-width: 600px) { .mtr-booths { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+        .mtr-choose { font-family: Georgia, serif; font-weight: 600; color: #374151; text-align: center; font-size: 17.5px; line-height: 1.3; margin: 2px 0 8px; }
+        @media (min-width: 600px) { .mtr-choose { font-size: 20px; margin: 4px 0 10px; } }
       `}</style>
 
       {/* Invitation above the cards */}
