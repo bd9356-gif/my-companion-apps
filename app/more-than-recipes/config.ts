@@ -14,16 +14,25 @@ export const SLIDES = [
 /** Where the "Explore More →" button sits on slide 4, as % of the picture. */
 export const EXPLORE_MORE_HOTSPOT = { left: 22, top: 79, width: 56, height: 14 }
 
+/** "More Than Recipes" banner above the six cards (500 × 100). */
+export const BOOTHS_BANNER = { img: 'banner', width: 500, height: 100, alt: 'More Than Recipes — See what MyRecipe Companion can do for you.' }
+
+/** A booth video: opens in a pop-up player when the card is tapped. */
+export type BoothVideo = { src: string; poster: string; width: number; height: number }
+
 /**
- * The six booths, in order. `href` is where the cover goes; null = not ready yet
- * (the cover shows but isn't a link, so nobody lands on a missing page).
- * Connect a booth later by setting its href, e.g. '/more-than-recipes/talk'.
+ * The six booths (the "playbill"), in order. Card images are 600 × 280.
+ * - `href`: the card is a link to that page.
+ * - `video`: the card opens that video in a pop-up player.
+ * - neither: the card shows but isn't clickable yet (nobody lands on a missing page).
+ * Connect a booth later by setting its href or video.
  */
-export const BOOTHS: { id: string; img: string; alt: string; href: string | null }[] = [
-  { id: 'talk_to_chef_jen', img: 'talk', alt: 'Talk to Chef Jen — cooking questions, ideas, substitutions, and help.', href: null },
-  { id: 'create_a_recipe', img: 'create', alt: 'Create a Recipe — turn an idea or restaurant dish into a recipe.', href: '/show-me-how' },
-  { id: 'cooking_school', img: 'cooking-school', alt: 'Cooking School — learn, practice, videos, and keep your notes.', href: null },
-  { id: 'recipe_vault', img: 'recipe-vault', alt: 'Recipe Vault — find, import, and organize your recipes.', href: null },
-  { id: 'recipe_box', img: 'recipe-box', alt: 'Recipe Box — preserve family recipes and memories.', href: null },
-  { id: 'plan_your_meals', img: 'plan-meals', alt: 'Plan Your Meals — dinner ideas, shopping lists, and everyday planning.', href: null },
+export const BOOTHS: { id: string; img: string; alt: string; href: string | null; video?: BoothVideo }[] = [
+  { id: 'talk_to_chef_jen', img: 'need-help', alt: 'Need a little help in the kitchen? Talk to Chef Jen for ideas, tips, and solutions.', href: null,
+    video: { src: '/videos/chef-jen-tips.mp4', poster: '/videos/chef-jen-tips-poster.jpg', width: 720, height: 1450 } },
+  { id: 'create_a_recipe', img: 'got-recipe', alt: 'Got a recipe idea? Turn it into a recipe with Chef Jen.', href: '/show-me-how' },
+  { id: 'cooking_school', img: 'want-to-cook', alt: 'Want to learn to cook? Build your skills with easy lessons, videos, and tips.', href: null },
+  { id: 'recipe_vault', img: 'tired-of', alt: 'Tired of losing recipes? Save, find, and organize all your favorites in one place.', href: null },
+  { id: 'recipe_box', img: 'ever-lose', alt: 'Ever lose a family recipe? Preserve your recipes and the memories behind them.', href: null },
+  { id: 'plan_your_meals', img: 'ever-want', alt: 'Ever want to save time and money? Plan your meals, shop smarter, and get more from what you have.', href: null },
 ]
