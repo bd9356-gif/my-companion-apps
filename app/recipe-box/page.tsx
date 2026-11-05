@@ -26,8 +26,11 @@ export default function RecipeBoxPage() {
       subtitle={<>Some recipes are more than food. They’re memories worth&nbsp;keeping.</>}
       video={VIDEO}
       closingTitle={<>
-        <span style={{ display: 'block' }}>The Recipe Vault Saves What You&nbsp;Cook.</span>
-        <span style={{ display: 'block' }}>The Recipe Box Saves Why It&nbsp;Matters.&nbsp;❤️</span>
+        {/* Phones: the two sentences flow together (3 lines instead of 4).
+            Wider screens: one sentence per line. */}
+        <style>{`.rb-line { display: inline; } @media (min-width: 600px) { .rb-line { display: block; } }`}</style>
+        <span className="rb-line">The Recipe Vault Saves What You&nbsp;Cook.</span>{' '}
+        <span className="rb-line">The Recipe Box Saves Why It&nbsp;Matters.&nbsp;❤️</span>
       </>}
       closingText="Keep your favorite recipes together with the photographs, handwritten cards, and personal stories that make them special."
       tryLabel="Ready to Preserve Your Family Recipes?"
