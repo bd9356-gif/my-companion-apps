@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import type React from 'react'
+import Show from '../more-than-recipes/Show'
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990'
 const DEMO_URL = 'https://pin.it/wfzginTwe'
@@ -69,6 +70,11 @@ function trackChoice(eventName: string) {
 // panel) are kept in the code but not shown. Set to true to bring them back.
 const SHOW_LEGACY_SECTIONS = false
 
+// The More Than Recipes presentation is the homepage (Nov 2026): banner, Chef Jen
+// slideshow, invitation and the six cards, right under the menu. ROLLBACK: set to
+// false to bring back the previous opening (the two image doors) unchanged.
+const SHOW_PRESENTATION = true
+
 const DOORS = [
   { href: '#features', img: '/home/kitchen', event: 'explore_kitchen_click', label: 'Explore Your Kitchen — turn what you have into something delicious tonight. Explore now.' },
   { href: '/more-than-recipes', img: '/home/recipes', event: 'more_than_recipes_click', label: 'Discover More Than Recipes — get meal ideas, recreate favorites, adjust to your tastes. See what Chef Jen can do.' },
@@ -107,7 +113,7 @@ export default function MyRecipePage() {
     <div style={{ backgroundColor: '#FFFDF9', fontFamily: 'Georgia, serif', color: '#2C1810', overflowX: 'hidden' }}>
 
       {/* NAV */}
-      <nav style={{ backgroundColor: 'rgba(255,253,249,0.95)', backdropFilter: 'blur(8px)', borderBottom: '1px solid #E8E0D4', padding: '12px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 50 }}>
+      <nav style={{ backgroundColor: 'rgba(255,253,249,0.95)', backdropFilter: 'blur(8px)', borderBottom: '1px solid #E8E0D4', padding: '8px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 50 }}>
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/recipe-icon.png" alt="" style={{ width: 32, height: 32, objectFit: 'contain', flexShrink: 0 }} />
@@ -126,8 +132,8 @@ export default function MyRecipePage() {
           <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" onClick={() => trackAppStore('Try It Free Nav')} style={{ fontSize: 13, color: '#FFFDF9', backgroundColor: '#C8401A', padding: '8px 16px', borderRadius: 20, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>App Store</a>
         </div>
       </nav>
-      <style>{`@media (max-width: 768px) { .nav-links { display: none !important; } } @media (min-width: 769px) { .mobile-nav { display: none !important; } }`}</style>
-      <div className="mobile-nav" style={{ backgroundColor: '#FFFDF9', borderBottom: '1px solid #E8E0D4', padding: '10px 20px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24, overflowX: 'auto' }}>
+      <style>{`@media (max-width: 768px) { .nav-links { display: none !important; } } @media (min-width: 769px) { .mobile-nav { display: none !important; } } .mobile-nav > :first-child { margin-left: auto; } .mobile-nav > :last-child { margin-right: auto; }`}</style>
+      <div className="mobile-nav" style={{ backgroundColor: '#FFFDF9', borderBottom: '1px solid #E8E0D4', padding: '7px 16px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 24, overflowX: 'auto' }}>
         <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }} onClick={() => trackWhatItDoes('What It Does Nav')}>What It Does</a>
         <a href="https://pin.it/wfzginTwe" target="_blank" rel="noopener noreferrer" onClick={() => trackDemoRoom('Demo Room Nav')} style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Demo Room</a>
         <a href="/recipes" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Recipes</a>
@@ -146,8 +152,14 @@ export default function MyRecipePage() {
           .mr-tagline { margin-bottom: 12px !important; }
         }
       `}</style>
-      {/* HERO */}
-      <section className="mr-hero" style={{ background: 'linear-gradient(135deg, #F2E8D9 0%, #F8F0E6 40%, #FDF6EE 100%)', padding: '40px 32px 48px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 64, flexWrap: 'wrap' }}>
+      {SHOW_PRESENTATION && (
+        <main style={{ maxWidth: 720, margin: '0 auto', padding: '8px 16px 28px' }}>
+          <Show scrollOffset={64} />
+        </main>
+      )}
+
+      {/* HERO (previous opening: the two image doors) */}
+      {!SHOW_PRESENTATION && <section className="mr-hero" style={{ background: 'linear-gradient(135deg, #F2E8D9 0%, #F8F0E6 40%, #FDF6EE 100%)', padding: '40px 32px 48px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 64, flexWrap: 'wrap' }}>
         {/* Left copy */}
         <div style={{ maxWidth: 560, flex: '1 1 320px', textAlign: 'center' }}>
           <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(40px, 5vw, 62px)', fontWeight: 700, lineHeight: 1.06, color: '#2C1810', marginBottom: 6 }} className="mr-h1 mr-h1-first">MyRecipe</h1>
@@ -174,7 +186,7 @@ export default function MyRecipePage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/0001-hub-iphone.png" alt="MyRecipe App" style={{ width: 'clamp(260px, 28vw, 340px)', borderRadius: 32, boxShadow: '0 48px 100px rgba(44,24,16,0.20)', display: 'block' }} />
         </div>}
-      </section>
+      </section>}
 
       {SHOW_LEGACY_SECTIONS && <>
       {/* INTERACTIVE GALLERY */}
