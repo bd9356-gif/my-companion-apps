@@ -28,8 +28,7 @@ export type BoothVideo = { src: string; poster: string; width: number; height: n
  * Connect a booth later by setting its href or video.
  */
 export const BOOTHS: { id: string; img: string; alt: string; href: string | null; video?: BoothVideo }[] = [
-  { id: 'talk_to_chef_jen', img: 'need-help', alt: 'Need a little help in the kitchen? Talk to Chef Jen for ideas, tips, and solutions.', href: null,
-    video: { src: '/videos/chef-jen-tips.mp4', poster: '/videos/chef-jen-tips-poster.jpg', width: 720, height: 1450 } },
+  { id: 'talk_to_chef_jen', img: 'need-help', alt: 'Need a little help in the kitchen? Talk to Chef Jen for ideas, tips, and solutions.', href: '/cooking-tips' },
   { id: 'create_a_recipe', img: 'got-recipe', alt: 'Got a recipe idea? Turn it into a recipe with Chef Jen.', href: '/show-me-how' },
   { id: 'cooking_school', img: 'want-to-cook', alt: 'Want to learn to cook? Build your skills with easy lessons, videos, and tips.', href: null },
   { id: 'recipe_vault', img: 'tired-of', alt: 'Tired of losing recipes? Save, find, and organize all your favorites in one place.', href: null },
