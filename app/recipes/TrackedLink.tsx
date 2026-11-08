@@ -5,16 +5,17 @@
 import Link from 'next/link'
 import { trackEvent } from '@/lib/community'
 
-export default function TrackedLink({ href, event, params, external, style, children }: {
+export default function TrackedLink({ href, event, params, external, style, className, children }: {
   href: string
   event: string
   params: Record<string, string>
   external?: boolean
   style?: React.CSSProperties
+  className?: string
   children: React.ReactNode
 }) {
   const onClick = () => trackEvent(event, { ...params, transport_type: 'beacon' })
   return external
-    ? <a href={href} onClick={onClick} style={style}>{children}</a>
-    : <Link href={href} onClick={onClick} style={style}>{children}</Link>
+    ? <a href={href} onClick={onClick} style={style} className={className}>{children}</a>
+    : <Link href={href} onClick={onClick} style={style} className={className}>{children}</Link>
 }

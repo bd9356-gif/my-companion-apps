@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
 import TrackedLink from '../recipes/TrackedLink'
+import TryItFreeButton, { APP_STORE_URL } from '../components/TryItFreeButton'
 import DemoVideo from './DemoVideo'
 
 // Shared layout for the Chef Jen demonstration pages:
@@ -9,7 +10,7 @@ import DemoVideo from './DemoVideo'
 // Headline + orange subheading, a compact video player, a closing message, and two
 // next steps (Try It Free → App Store, Learn More → /myrecipe).
 
-export const APP_STORE_URL = 'https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990'
+export { APP_STORE_URL }
 
 const serif = 'Georgia, serif'
 const sans = 'system-ui, -apple-system, sans-serif'
@@ -82,15 +83,7 @@ export default function DemoPage({ back, title, subtitle, video, closingTitle, c
         <div className="demo-next">
           <div>
             <p style={{ fontFamily: sans, fontSize: 13, fontWeight: 600, color: '#2C1810', margin: '0 0 6px', lineHeight: 1.3 }}>{tryLabel}</p>
-            <TrackedLink
-              href={APP_STORE_URL}
-              external
-              event="app_store_click"
-              params={{ source_type: source, button_text: 'Try It Free' }}
-              style={{ display: 'block', backgroundColor: '#C8401A', color: '#FFFFFF', padding: '13px 8px', borderRadius: 14, textDecoration: 'none', fontFamily: sans, fontSize: 16, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.3)', border: '2px solid #C8401A' }}
-            >
-              Try It Free →
-            </TrackedLink>
+            <TryItFreeButton source={source} />
           </div>
           <div>
             <p style={{ fontFamily: sans, fontSize: 13, color: '#78716C', margin: '0 0 6px', lineHeight: 1.3 }}>{learnLabel}</p>
