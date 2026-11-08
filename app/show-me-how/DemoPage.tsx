@@ -19,7 +19,7 @@ export type DemoPageProps = {
   back: { href: string; label: string }
   title: ReactNode
   subtitle: ReactNode
-  /** `inline`: plays in the page (no full screen). Same compact size as the other demo pages. */
+  /** `inline`: plays in the page (no full screen); compact player, about 230px wide. */
   video: { src: string; poster: string; width: number; height: number; name: string; inline?: boolean }
   closingTitle: ReactNode
   closingText: ReactNode
@@ -52,7 +52,9 @@ export default function DemoPage({ back, title, subtitle, video, closingTitle, c
             Try It Free show close behind it on an iPhone (incl. Facebook's browser — svh).
             Tapping play on an iPhone opens the full-screen player, which is the best way to
             watch a tall phone video; desktops play it in the page. */}
-        <div style={{ width: `min(100%, 180px, calc(34svh * ${(video.width / video.height).toFixed(4)}))`, margin: '0 auto' }}>
+        <div style={{ width: video.inline
+          ? `min(100%, 230px, calc(60svh * ${(video.width / video.height).toFixed(4)}))`
+          : `min(100%, 180px, calc(34svh * ${(video.width / video.height).toFixed(4)}))`, margin: '0 auto' }}>
           <DemoVideo {...video} />
         </div>
 
