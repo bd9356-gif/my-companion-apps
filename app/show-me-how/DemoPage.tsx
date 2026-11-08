@@ -69,33 +69,20 @@ export default function DemoPage({ back, title, subtitle, video, closingTitle, c
           </p>
         </div>
 
-        {/* Next steps. Side by side on wider screens; on phones the two groups stack so
-            each label sits clearly over its own button. Try It Free (filled) leads. */}
-        <style>{`
-          .demo-next { margin: 14px auto 0; max-width: 480px; display: flex; gap: 16px; align-items: stretch; }
-          .demo-next > div { flex: 1; display: flex; flex-direction: column; }
-          .demo-next p { flex: 1; display: flex; align-items: flex-end; justify-content: center; }
-          @media (max-width: 480px) {
-            .demo-next { flex-direction: column; gap: 14px; max-width: 340px; }
-            .demo-next p { flex: none; }
-          }
-        `}</style>
-        <div className="demo-next">
-          <div>
-            <p style={{ fontFamily: sans, fontSize: 13, fontWeight: 600, color: '#2C1810', margin: '0 0 6px', lineHeight: 1.3 }}>{tryLabel}</p>
-            <TryItFreeButton source={source} />
-          </div>
-          <div>
-            <p style={{ fontFamily: sans, fontSize: 13, color: '#78716C', margin: '0 0 6px', lineHeight: 1.3 }}>{learnLabel}</p>
-            <TrackedLink
-              href="/myrecipe"
-              event="learn_more_click"
-              params={{ source_type: source }}
-              style={{ display: 'block', color: '#C8401A', backgroundColor: '#FFFFFF', padding: '13px 8px', borderRadius: 14, textDecoration: 'none', fontFamily: sans, fontSize: 16, fontWeight: 700, border: '2px solid #C8401A' }}
-            >
-              Learn More →
-            </TrackedLink>
-          </div>
+        {/* Next steps, centered under the description: a compact Try It Free button,
+            then a simple Learn More text link. Visual priority: Play → Try It Free → Learn More. */}
+        <div style={{ margin: '14px auto 0', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <p style={{ fontFamily: sans, fontSize: 13, fontWeight: 600, color: '#2C1810', margin: '0 0 6px', lineHeight: 1.3 }}>{tryLabel}</p>
+          <TryItFreeButton source={source} style={{ display: 'inline-block', padding: '12px 30px', minHeight: 48, boxSizing: 'border-box' }} />
+          <p style={{ fontFamily: sans, fontSize: 13, color: '#78716C', margin: '16px 0 0', lineHeight: 1.3 }}>{learnLabel}</p>
+          <TrackedLink
+            href="/myrecipe"
+            event="learn_more_click"
+            params={{ source_type: source }}
+            style={{ display: 'inline-block', color: '#C8401A', padding: '8px 12px', textDecoration: 'none', fontFamily: sans, fontSize: 16, fontWeight: 700 }}
+          >
+            Learn More →
+          </TrackedLink>
         </div>
       </main>
 
