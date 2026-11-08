@@ -3,8 +3,7 @@ import DemoPage from '../show-me-how/DemoPage'
 
 // "Cooking School" — the Cooking School introduction (Learn. Practice. Master. With your
 // teacher, Chef Jen). Opened from homepage card #3 (Want to Learn to Cook?).
-// Same layout as the other demonstration pages (shared DemoPage); this video plays in
-// the page (inline) rather than opening the full-screen player.
+// Same layout and full-screen player as the other demonstration pages (shared DemoPage).
 
 export const metadata: Metadata = {
   title: 'Cooking School — MyRecipe Companion',
@@ -21,7 +20,7 @@ export const metadata: Metadata = {
 const VIDEO = {
   src: '/videos/chef-jen-cooking-school.mp4',
   poster: '/videos/chef-jen-cooking-school-poster.jpg',
-  width: 720, height: 1450, name: 'chef_jen_cooking_school', inline: true,
+  width: 720, height: 1450, name: 'chef_jen_cooking_school',
 }
 
 export default function CookingSchoolPage() {
