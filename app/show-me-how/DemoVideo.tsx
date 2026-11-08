@@ -89,7 +89,7 @@ export default function DemoVideo({ src, poster, width, height, name, inline = f
         aria-label={inline ? 'Play the video' : 'Play the video full screen'}
         style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: 'none', cursor: 'pointer', borderRadius: 16 }}
       >
-        <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 64, height: 64, borderRadius: 999, backgroundColor: 'rgba(200,64,26,0.92)', boxShadow: '0 4px 14px rgba(0,0,0,0.3)' }}>
+        <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 64, height: 64, borderRadius: 999, backgroundColor: 'rgba(22,163,74,0.95)', boxShadow: '0 4px 14px rgba(0,0,0,0.3)' }}>
           <svg width="26" height="26" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#FFFFFF" /></svg>
         </span>
       </button>
