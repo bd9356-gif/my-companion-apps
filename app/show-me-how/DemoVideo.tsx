@@ -1,8 +1,9 @@
 'use client'
 
-// The Chef Jen demonstration video (chef-jen-creates.mp4). Never autoplays. Tapping play opens the
-// full-screen player — also inside Facebook's in-app browser, which would otherwise
-// play it small inside the page.
+// The Chef Jen demonstration video player. Never autoplays.
+// Default: tapping play opens the full-screen player — also inside Facebook's in-app
+// browser, which would otherwise play it small inside the page.
+// `inline`: plays right in the page (no full screen), with the normal controls.
 // GA4: demo_video_play the first time it starts, demo_video_complete at the end.
 
 import { useEffect, useRef, useState } from 'react'
@@ -32,7 +33,7 @@ function enterFullScreen(v: IOSVideo) {
   } catch {}
 }
 
-export default function DemoVideo({ src, poster, width, height, name }: { src: string; poster: string; width: number; height: number; name: string }) {
+export default function DemoVideo({ src, poster, width, height, name, inline = false }: { src: string; poster: string; width: number; height: number; name: string; inline?: boolean }) {
   const sent = useRef({ play: false, end: false })
   const ref = useRef<HTMLVideoElement>(null)
   const [started, setStarted] = useState(false)
@@ -44,7 +45,7 @@ export default function DemoVideo({ src, poster, width, height, name }: { src: s
     if (!v) return
     setStarted(true)
     v.play().catch(() => {})
-    enterFullScreen(v)
+    if (!inline) enterFullScreen(v)
   }
 
   return (
@@ -56,18 +57,20 @@ export default function DemoVideo({ src, poster, width, height, name }: { src: s
       width={width}
       height={height}
       controls={started}
+      playsInline={inline}
       preload="metadata"
       onPlay={(e) => {
         // Started from the player's own controls (e.g. after the first play): go full screen too.
         const v = e.currentTarget as IOSVideo
-        if (v.webkitDisplayingFullscreen === false) enterFullScreen(v)
+        if (!inline && v.webkitDisplayingFullscreen === false) enterFullScreen(v)
         if (!sent.current.play) { sent.current.play = true; trackEvent('demo_video_play', { video: name, transport_type: 'beacon' }) }
       }}
       onEnded={(e) => {
         if (!sent.current.end) { sent.current.end = true; trackEvent('demo_video_complete', { video: name, transport_type: 'beacon' }) }
-        backToPage(e.currentTarget)
+        if (!inline) backToPage(e.currentTarget)
       }}
       onTimeUpdate={(e) => {
+        if (inline) return
         const v = e.currentTarget
         if (v.duration && v.currentTime >= v.duration - 0.25 && !v.dataset.leaving) {
           v.dataset.leaving = '1'
@@ -75,13 +78,15 @@ export default function DemoVideo({ src, poster, width, height, name }: { src: s
         }
       }}
       onSeeking={(e) => { if (e.currentTarget.currentTime < e.currentTarget.duration - 1) delete e.currentTarget.dataset.leaving }}
-      style={{ display: 'block', width: '100%', height: 'auto', aspectRatio: `${width} / ${height}`, borderRadius: 16, backgroundColor: '#F5F0EA', boxShadow: '0 4px 24px rgba(44,24,16,0.12)' }}
+      // inline: the box is exactly the video's shape, so 'cover' never crops the video; it only
+      // lets an opening image of a slightly different shape fill the box (edges trimmed).
+      style={{ display: 'block', width: '100%', height: 'auto', aspectRatio: `${width} / ${height}`, objectFit: inline ? 'cover' : undefined, borderRadius: 16, backgroundColor: '#F5F0EA', boxShadow: '0 4px 24px rgba(44,24,16,0.12)' }}
     />
     {!started && (
       <button
         type="button"
         onClick={start}
-        aria-label="Play the video full screen"
+        aria-label={inline ? 'Play the video' : 'Play the video full screen'}
         style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: 'none', cursor: 'pointer', borderRadius: 16 }}
       >
         <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 64, height: 64, borderRadius: 999, backgroundColor: 'rgba(200,64,26,0.92)', boxShadow: '0 4px 14px rgba(0,0,0,0.3)' }}>
