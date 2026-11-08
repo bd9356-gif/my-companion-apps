@@ -154,7 +154,7 @@ export default function MyRecipePage() {
       `}</style>
       {SHOW_PRESENTATION && (
         <main style={{ maxWidth: 720, margin: '0 auto', padding: '8px 16px 28px' }}>
-          <Show scrollOffset={64} />
+          <Show scrollOffset={64} playbill />
         </main>
       )}
 
