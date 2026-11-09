@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import FacebookGroupCta from '../components/FacebookGroupCta'
+import TrackedLink from '../recipes/TrackedLink'
 
 export interface TipData {
   title: string
@@ -62,6 +63,18 @@ export default function TipPage({ tip }: { tip: TipData }) {
 
         {/* The one call to action after the tip: Chef Jen's Facebook group */}
         <FacebookGroupCta variant="tip" sourceType="chef_jen_tip" ctaLocation="after_tip" />
+
+        {/* Invitation to the MyRecipe Companion homepage (Playbill), same style as Meet Chef Jen */}
+        <div style={{ margin: '-8px 0 20px', textAlign: 'center' }}>
+          <TrackedLink
+            href="/myrecipe"
+            event="myrecipe_homepage_click"
+            params={{ source_type: 'chef_jen_tip', cta_location: 'below_facebook', tip_title: tip.title }}
+            style={{ display: 'inline-block', padding: '10px 12px', fontFamily: 'system-ui, sans-serif', fontSize: 18, fontWeight: 700, color: '#2C1810', textDecoration: 'underline', textUnderlineOffset: 4 }}
+          >
+            Explore More Than Recipes →
+          </TrackedLink>
+        </div>
 
         {/* Back link */}
         <div style={{ margin: '4px 0 0', textAlign: 'center' }}>
