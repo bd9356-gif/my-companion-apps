@@ -30,7 +30,6 @@ const arrow: React.CSSProperties = {
 export default function Slideshow({ maxWidth }: { maxWidth: string }) {
   const [i, setI] = useState(0)
   const [playing, setPlaying] = useState(false)
-  const [started, setStarted] = useState(false) // big Play button on the picture until the first play
   const touch = useRef<number | null>(null)
   const go = (n: number, how: string) => {
     const next = Math.max(0, Math.min(SLIDES.length - 1, n))
@@ -47,7 +46,6 @@ export default function Slideshow({ maxWidth }: { maxWidth: string }) {
   }, [playing, i])
 
   const togglePlay = () => {
-    setStarted(true)
     setPlaying((p) => !p)
     trackEvent(playing ? 'chef_jen_slideshow_pause' : 'chef_jen_slideshow_play', { slide: String(i + 1) })
   }
@@ -88,17 +86,6 @@ export default function Slideshow({ maxWidth }: { maxWidth: string }) {
         {i < SLIDES.length - 1 && (
           <button type="button" aria-label="Next picture" onClick={() => go(i + 1, 'arrow')} style={{ ...arrow, right: 6 }}>
             <svg width="17" height="17" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="#C8401A" strokeWidth="2.6" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </button>
-        )}
-        {/* Big green Play button on Chef Jen's picture: makes it obvious the story plays */}
-        {!started && (
-          <button
-            type="button"
-            onClick={togglePlay}
-            aria-label="Play the slideshow"
-            style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', width: 72, height: 72, borderRadius: 999, border: '2px solid rgba(255,255,255,0.9)', backgroundColor: '#4CAF50', boxShadow: '0 4px 16px rgba(0,0,0,0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', padding: 0 }}
-          >
-            <svg width="30" height="30" viewBox="0 0 24 24" style={{ marginLeft: 3 }}><path d="M8 5v14l11-7z" fill="#FFFFFF" /></svg>
           </button>
         )}
       </div>
