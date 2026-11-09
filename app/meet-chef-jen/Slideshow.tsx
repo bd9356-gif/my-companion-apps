@@ -30,6 +30,7 @@ const arrow: React.CSSProperties = {
 export default function Slideshow({ maxWidth }: { maxWidth: string }) {
   const [i, setI] = useState(0)
   const [playing, setPlaying] = useState(false)
+  const [started, setStarted] = useState(false) // big Play button on the picture until the first play
   const touch = useRef<number | null>(null)
   const go = (n: number, how: string) => {
     const next = Math.max(0, Math.min(SLIDES.length - 1, n))
@@ -46,6 +47,7 @@ export default function Slideshow({ maxWidth }: { maxWidth: string }) {
   }, [playing, i])
 
   const togglePlay = () => {
+    setStarted(true)
     setPlaying((p) => !p)
     trackEvent(playing ? 'chef_jen_slideshow_pause' : 'chef_jen_slideshow_play', { slide: String(i + 1) })
   }
@@ -88,18 +90,29 @@ export default function Slideshow({ maxWidth }: { maxWidth: string }) {
             <svg width="17" height="17" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="#C8401A" strokeWidth="2.6" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
         )}
+        {/* Big green Play button on Chef Jen's picture: makes it obvious the story plays */}
+        {!started && (
+          <button
+            type="button"
+            onClick={togglePlay}
+            aria-label="Play the slideshow"
+            style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', width: 72, height: 72, borderRadius: 999, border: '2px solid rgba(255,255,255,0.9)', backgroundColor: '#4CAF50', boxShadow: '0 4px 16px rgba(0,0,0,0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', padding: 0 }}
+          >
+            <svg width="30" height="30" viewBox="0 0 24 24" style={{ marginLeft: 3 }}><path d="M8 5v14l11-7z" fill="#FFFFFF" /></svg>
+          </button>
+        )}
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 4, marginTop: 6 }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 4, marginTop: 8 }}>
         <button
           type="button"
           onClick={togglePlay}
           aria-label={playing ? 'Pause the slideshow' : 'Play the slideshow'}
-          style={{ display: 'flex', alignItems: 'center', gap: 5, marginRight: 6, padding: '4px 11px', border: '1.5px solid #C8401A', borderRadius: 999, backgroundColor: playing ? '#FFFFFF' : '#C8401A', color: playing ? '#C8401A' : '#FFFFFF', fontFamily: 'system-ui, -apple-system, sans-serif', fontSize: 13, fontWeight: 700, cursor: 'pointer', lineHeight: 1 }}
+          style={{ display: 'flex', alignItems: 'center', gap: 6, marginRight: 8, padding: '9px 18px', minHeight: 40, border: '2px solid #4CAF50', borderRadius: 999, backgroundColor: playing ? '#FFFFFF' : '#4CAF50', color: playing ? '#2E7D32' : '#FFFFFF', fontFamily: 'system-ui, -apple-system, sans-serif', fontSize: 16, fontWeight: 700, cursor: 'pointer', lineHeight: 1 }}
         >
           {playing ? (
-            <svg width="11" height="11" viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor" /></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor" /></svg>
           ) : (
-            <svg width="11" height="11" viewBox="0 0 24 24"><path d="M7 4v16l13-8z" fill="currentColor" /></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24"><path d="M7 4v16l13-8z" fill="currentColor" /></svg>
           )}
           {playing ? 'Pause' : 'Play'}
         </button>
