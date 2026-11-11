@@ -43,7 +43,7 @@ export default function TipFooter({ tipTitle }: { tipTitle: string }) {
             onClick={(e) => { track('chef_jen_group_click', { cta_location: 'tip_footer' }); openFacebookGroup(e) }}
             style={heading('#262626')}
           >
-            👥 Join What’s for Dinner? with&nbsp;Chef&nbsp;Jen&nbsp;→
+            👥 Join Chef Jen’s Cooking&nbsp;Group&nbsp;→
           </a>
           <p style={body}>Join the conversation.</p>
         </section>
