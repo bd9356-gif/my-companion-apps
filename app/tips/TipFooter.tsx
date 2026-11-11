@@ -23,14 +23,14 @@ export default function TipFooter({ tipTitle }: { tipTitle: string }) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 26 }}>
         <section>
           <Link href="/tips" onClick={() => track('learn_more_click', { cta_location: 'tip_footer', destination_url: '/tips' })} style={heading('#5F8A70')}>
-            👩‍🍳 More Chef Jen Kitchen Tips →
+            👩‍🍳 More Chef Jen Kitchen&nbsp;Tips&nbsp;→
           </Link>
           <p style={body}>Cooking made easier.</p>
         </section>
 
         <section>
           <Link href="/myrecipe" onClick={() => track('myrecipe_homepage_click', { cta_location: 'tip_footer_dinner_idea' })} style={heading('#557FA3')}>
-            🍽️ Find Your Next Dinner Idea →
+            🍽️ Find Your Next Dinner&nbsp;Idea&nbsp;→
           </Link>
           <p style={body}>What’s for dinner tonight?</p>
         </section>
@@ -43,7 +43,7 @@ export default function TipFooter({ tipTitle }: { tipTitle: string }) {
             onClick={(e) => { track('chef_jen_group_click', { cta_location: 'tip_footer' }); openFacebookGroup(e) }}
             style={heading('#262626')}
           >
-            👥 Join What’s for Dinner? with Chef Jen →
+            👥 Join What’s for Dinner? with&nbsp;Chef&nbsp;Jen&nbsp;→
           </a>
           <p style={body}>Join the conversation.</p>
         </section>
