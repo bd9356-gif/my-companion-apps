@@ -22,7 +22,8 @@ export type DemoPageProps = {
   subtitle: ReactNode
   /** `inline`: plays in the page (no full screen); compact player, about 230px wide. */
   video: { src: string; poster: string; width: number; height: number; name: string; inline?: boolean }
-  closingTitle: ReactNode
+  /** Optional bold line above the closing text (left out when the page has none). */
+  closingTitle?: ReactNode
   closingText: ReactNode
   tryLabel: string
   learnLabel: string
@@ -61,9 +62,11 @@ export default function DemoPage({ back, title, subtitle, video, closingTitle, c
 
         {/* Closing message */}
         <div style={{ padding: '14px 0 0' }}>
+          {closingTitle && (
           <h2 style={{ fontSize: 'clamp(20px, 5vw, 30px)', fontWeight: 700, color: '#2C1810', margin: '0 0 6px', lineHeight: 1.2 }}>
             {closingTitle}
           </h2>
+          )}
           <p style={{ fontFamily: sans, fontSize: 15, color: '#5C4A3A', margin: 0, lineHeight: 1.4 }}>
             {closingText}
           </p>
