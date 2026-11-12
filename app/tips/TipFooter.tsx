@@ -32,7 +32,7 @@ export default function TipFooter({ tipTitle }: { tipTitle: string }) {
           <Link href="/myrecipe" onClick={() => track('myrecipe_homepage_click', { cta_location: 'tip_footer_dinner_idea' })} style={heading('#557FA3')}>
             🍽️ Find Your Next Dinner&nbsp;Idea&nbsp;→
           </Link>
-          <p style={body}>What’s for dinner tonight?</p>
+          <p style={body}>Or get help with any cooking question, just by asking.</p>
         </section>
 
         <section>
