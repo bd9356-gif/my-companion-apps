@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 import DemoPage from '../show-me-how/DemoPage'
 
 // "Recipe Vault" — the Recipe Vault demonstration. Opened from homepage card #4
-// (Tired of Losing Recipes?). Same layout as the other demonstration pages (shared DemoPage);
-// the video plays in the page.
+// (Tired of Losing Recipes?). Same layout and full-screen player as Cooking School (shared DemoPage).
 
 export const metadata: Metadata = {
   title: 'Recipe Vault — MyRecipe Companion',
@@ -20,7 +19,7 @@ export const metadata: Metadata = {
 const VIDEO = {
   src: '/videos/chef-jen-recipe-vault.mp4',
   poster: '/videos/chef-jen-recipe-vault-poster.jpg',
-  width: 720, height: 1450, name: 'chef_jen_recipe_vault', inline: true,
+  width: 720, height: 1450, name: 'chef_jen_recipe_vault',
 }
 
 export default function RecipeVaultPage() {
