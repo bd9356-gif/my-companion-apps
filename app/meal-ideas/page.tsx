@@ -3,7 +3,7 @@ import DemoPage from '../show-me-how/DemoPage'
 
 // "From Meal Ideas to Shopping Made Simple" — the My Meal Ideas + Shopping List demonstration.
 // Opened from homepage card #6 (Ever Want to Save Time and Money?). Same layout as the other
-// demonstration pages (shared DemoPage); the video plays in the page.
+// demonstration pages (shared DemoPage), with the same full-screen player as Cooking School.
 
 export const metadata: Metadata = {
   title: 'From Meal Ideas to Shopping Made Simple — MyRecipe Companion',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const VIDEO = {
   src: '/videos/chef-jen-meal-shop.mp4',
   poster: '/videos/chef-jen-meal-shop-poster.jpg',
-  width: 720, height: 1450, name: 'chef_jen_meal_shop', inline: true,
+  width: 720, height: 1450, name: 'chef_jen_meal_shop',
 }
 
 export default function MealIdeasPage() {
