@@ -33,5 +33,5 @@ export const BOOTHS: { id: string; img: string; alt: string; href: string | null
   { id: 'cooking_school', img: 'want-to-cook', alt: 'Want to learn to cook? Build your skills with easy lessons, videos, and tips.', href: '/cooking-school' },
   { id: 'recipe_vault', img: 'tired-of', alt: 'Tired of losing recipes? Save, find, and organize all your favorites in one place.', href: '/recipe-vault' },
   { id: 'recipe_box', img: 'ever-lose', alt: 'Ever lose a family recipe? Preserve your recipes and the memories behind them.', href: '/recipe-box' },
-  { id: 'plan_your_meals', img: 'ever-want', alt: 'Ever want to save time and money? Plan your meals, shop smarter, and get more from what you have.', href: null },
+  { id: 'plan_your_meals', img: 'ever-want', alt: 'Ever want to save time and money? Plan your meals, shop smarter, and get more from what you have.', href: '/meal-ideas' },
 ]
