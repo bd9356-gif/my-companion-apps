@@ -66,6 +66,40 @@ export default function RootLayout({
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', 'G-YWGNHS7MP7');
+
+          // Engagement time goes to the right page (Nov 2026 fix). Next.js changes pages without
+          // reloading, and GA4 attaches the time spent on a page to the NEXT event it sends — on a
+          // plain link that was the next page's page_view, so a tip's time was credited to the tips
+          // list. Just before each page change, send a small page_leave event that still carries the
+          // page being left; the time lands there and the next page starts from zero.
+          (function () {
+            var lastHref = location.href, lastTitle = document.title;
+            function leave() {
+              gtag('event', 'page_leave', { page_location: lastHref, page_title: lastTitle });
+            }
+            var push = history.pushState;
+            history.pushState = function (state, unused, url) {
+              var next = url == null ? location.href : new URL(String(url), location.href).href;
+              if (next.split('#')[0] !== location.href.split('#')[0]) { lastHref = location.href; lastTitle = document.title; leave(); }
+              var result = push.apply(this, arguments);
+              lastHref = location.href;
+              return result;
+            };
+            var replace = history.replaceState;
+            history.replaceState = function () {
+              var result = replace.apply(this, arguments);
+              lastHref = location.href;
+              return result;
+            };
+            // Back / forward: the address has already changed, so use the page we were on.
+            window.addEventListener('popstate', function () {
+              if (location.href.split('#')[0] !== lastHref.split('#')[0]) leave();
+              lastHref = location.href;
+            }, true);
+            // Keep the title current once the new page has set it.
+            new MutationObserver(function () { if (location.href === lastHref) lastTitle = document.title; })
+              .observe(document.querySelector('head') || document.documentElement, { subtree: true, childList: true, characterData: true });
+          })();
         `}</Script>
         {children}
       </body>
