@@ -10,13 +10,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Watch Chef Jen Create a Recipe!',
     description: 'Have a conversation. Watch the magic happen.',
-    images: ['/videos/chef-jen-creates-poster.jpg'],
+    images: ['/videos/chef-jen-got-a-recipe-poster.jpg'],
     type: 'website',
     siteName: 'MyRecipe Companion',
   },
 }
 
-const VIDEO = { src: '/videos/chef-jen-creates.mp4', poster: '/videos/chef-jen-creates-poster.jpg', width: 720, height: 1280, name: 'chef_jen_creates' }
+// "Got a Recipe Idea?" video (Nov 2026, 02-got-a-recipe.mp4). The GA4 video name stays
+// chef_jen_creates so play/complete events keep reporting under the same name.
+const VIDEO = { src: '/videos/chef-jen-got-a-recipe.mp4', poster: '/videos/chef-jen-got-a-recipe-poster.jpg', width: 720, height: 1450, name: 'chef_jen_creates' }
 
 export default function ShowMeHowPage() {
   return (
