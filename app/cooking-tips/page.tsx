@@ -7,27 +7,29 @@ import DemoPage from '../show-me-how/DemoPage'
 
 export const metadata: Metadata = {
   title: 'Cooking Questions? Let’s Talk! — MyRecipe Companion',
-  description: 'Have a question? See how Chef Jen helps you find the answer.',
+  description: 'Have ingredients, questions, or an idea? Talk it through with Chef Jen.',
   openGraph: {
     title: 'Cooking Questions? Let’s Talk!',
-    description: 'Have a question? See how Chef Jen helps you find the answer.',
-    images: ['/videos/chef-jen-tips-poster.jpg'],
+    description: 'Have ingredients, questions, or an idea? Talk it through with Chef Jen.',
+    images: ['/videos/chef-jen-talk-poster.jpg'],
     type: 'website',
     siteName: 'MyRecipe Companion',
   },
 }
 
-const VIDEO = { src: '/videos/chef-jen-tips.mp4', poster: '/videos/chef-jen-tips-poster.jpg', width: 720, height: 1450, name: 'chef_jen_tips' }
+// "Talk with Chef Jen" video (Nov 2026). The GA4 video name stays chef_jen_tips so the
+// play/complete events keep reporting under the same name as before.
+const VIDEO = { src: '/videos/chef-jen-talk.mp4', poster: '/videos/chef-jen-talk-poster.jpg', width: 720, height: 1450, name: 'chef_jen_tips' }
 
 export default function CookingTipsPage() {
   return (
     <DemoPage
       back={{ href: '/myrecipe', label: 'MyRecipe Companion' }}
       title={<>Cooking Questions? Let’s&nbsp;Talk!</>}
-      subtitle={<>Have a question? See how Chef Jen helps you find the&nbsp;answer.</>}
+      subtitle={<>Have ingredients, questions, or an idea? Talk it through with Chef&nbsp;Jen.</>}
       video={VIDEO}
-      closingTitle={<>Imagine Having Chef Jen There Whenever You Need a Little&nbsp;Help!</>}
-      closingText="From simple questions to cooking challenges, Chef Jen is ready to help."
+      closingTitle={<>Imagine Having Chef Jen in Your&nbsp;Kitchen!</>}
+      closingText="From a simple question to a recipe you can call your own."
       tryLabel="Ready to Get Cooking Help?"
       learnLabel="Want to See What Else MyRecipe Companion Can Do?"
       source="cooking_tips"
