@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getPublishedTips } from '@/lib/publishing'
 import TrackedLink from '../recipes/TrackedLink'
+import { TIP_OG_IMAGE } from './ogImage'
 
 // Live: the tips list is exactly the tips published in /admin (Supabase).
 export const dynamic = 'force-dynamic'
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     description: 'Practical cooking tips and kitchen wisdom from Chef Jen.',
     type: 'website',
     siteName: 'MyRecipe Companion',
+    images: [TIP_OG_IMAGE],
   },
 }
 

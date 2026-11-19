@@ -1,5 +1,5 @@
 // Tall recipe picture (1080x1350, 4:5) for Facebook photo posts and Pinterest —
-// title, "From Chef Jen's Kitchen" and the food photo. Generated automatically from
+// Chef Jen AI logo, the food photo and the title. Generated automatically from
 // the recipe's own title and photo, for any recipe (website or shared).
 // Served as a compressed JPEG and cached at the CDN (pages add ?v=<content hash>).
 // If the picture can't be made, this redirects to the recipe's original photo.

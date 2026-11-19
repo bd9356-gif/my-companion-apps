@@ -1,6 +1,6 @@
 // Facebook link-preview image for a recipe: the "photo first" recipe card (1200x630),
-// generated automatically from the recipe's own data — photo, title, time /
-// difficulty / servings, up to 6 key ingredients, and the
+// generated automatically from the recipe's own data — photo, Chef Jen AI logo, title,
+// time / difficulty / servings, and the
 // "TAP THE PICTURE FOR THE FULL RECIPE" band.
 // Used as og:image by the website recipe pages and by the recipe app's share pages
 // (recipe.mycompanionapps.com/share/<id>, the "Share Full Recipe" link).

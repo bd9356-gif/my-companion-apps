@@ -1,10 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Fonts read at runtime by the Facebook recipe-card image route.
+  // Fonts and the Chef Jen logo, read at runtime by the recipe-picture image routes.
   outputFileTracingIncludes: {
-    '/api/og/recipe/[id]': ['./assets/og-fonts/**'],
-    '/api/og/recipe/[id]/tall': ['./assets/og-fonts/**'],
+    '/api/og/recipe/[id]': ['./assets/og-fonts/**', './assets/og-brand/**'],
+    '/api/og/recipe/[id]/tall': ['./assets/og-fonts/**', './assets/og-brand/**'],
   },
   async redirects() {
     return [

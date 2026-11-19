@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import TipPage from '../TipPage'
 import { getPublishedTip } from '@/lib/publishing'
+import { TIP_OG_IMAGE } from '../ogImage'
 
 export const dynamic = 'force-dynamic'
 
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${tip.title} — Chef Jen | MyRecipe Companion`,
     description: tip.preview,
-    openGraph: { title: `${tip.title} — Chef Jen`, description: tip.preview, images: ['/cooking-tip-og.jpg'], type: 'article', siteName: 'MyRecipe Companion' },
+    openGraph: { title: `${tip.title} — Chef Jen`, description: tip.preview, images: [TIP_OG_IMAGE], type: 'article', siteName: 'MyRecipe Companion' },
   }
 }
 

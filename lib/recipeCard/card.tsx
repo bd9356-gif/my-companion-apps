@@ -1,14 +1,16 @@
-// Facebook recipe preview card ("photo first", 1200x630) — approved Oct 2026.
-// Big food photo, title, time · difficulty · servings, up to 6 key ingredients by
-// name ("Full ingredient list inside →"), and a full-width
+// Facebook recipe preview card ("photo first", 1200x630) — Chef Jen AI branding approved Nov 2026 (B2).
+// Big food photo; on the right a large Chef Jen AI logo, the title, time · difficulty ·
+// servings and "Full ingredient list inside →"; and a full-width
 // "TAP THE PICTURE FOR THE FULL RECIPE" band as the strongest call to action.
+// The short ingredient list was dropped for the logo — it was too small to read in the feed.
 // Rendered with next/og (Satori: flexbox only, inline styles).
 
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { ImageResponse } from 'next/og'
 import { lineCount } from './layout'
-import { serifWidth, interWidth } from './fontMetrics'
+import { serifWidth } from './fontMetrics'
+import { chefJenLogo, LOGO_RATIO } from './brand'
 
 const W = 1200
 const H = 630
@@ -19,7 +21,11 @@ const PANEL_PAD_R = 44
 const PANEL_W = W - PHOTO_W - PANEL_PAD_L - PANEL_PAD_R // 466
 const TITLE_W = PANEL_W - 10
 
-const C = { cream: '#FBF4E6', ink: '#2C1810', body: '#3C2415', muted: '#78716C', orange: '#C8401A', orangeDark: '#A8320F', peach: '#F5D9C0', red: '#B91C1C', rule: 'rgba(185,28,28,0.06)' }
+const C = { cream: '#FBF4E6', ink: '#2C1810', body: '#3C2415', muted: '#78716C', orange: '#C8401A', orangeDark: '#A8320F', red: '#B91C1C', rule: 'rgba(185,28,28,0.06)' }
+
+// Large Chef Jen AI logo, centered at the top of the recipe panel.
+const LOGO_W = 370
+const LOGO_H = Math.round(LOGO_W / LOGO_RATIO) // 229
 
 // ── Key ingredients ─────────────────────────────────────────────
 const UNITS = /^(cups?|c\.|tablespoons?|tbsps?|tbs|tbsp\.|teaspoons?|tsps?|tsp\.|pounds?|lbs?\.?|ounces?|oz\.?|grams?|g|kg|ml|liters?|litres?|cloves?|cans?|packages?|pkgs?|sticks?|pinch(es)?|dash(es)?|large|medium|small|whole|bunch(es)?|heads?|slices?|pieces?|sprigs?|handfuls?|jars?|bottles?|quarts?|pints?|each|of)\b\.?\s*/i
@@ -101,9 +107,9 @@ function fonts() {
 async function loadFonts() {
   const dir = join(process.cwd(), 'assets/og-fonts')
   const f = (n: string) => readFile(join(dir, n))
-  const [m, sb, xb, serif, serifI, hand] = await Promise.all([
+  const [m, sb, xb, serif, serifI] = await Promise.all([
     f('Inter-Medium.ttf'), f('Inter-SemiBold.ttf'), f('Inter-ExtraBold.ttf'),
-    f('SourceSerif4-Bold.ttf'), f('SourceSerif4-SemiBoldItalic.ttf'), f('Caveat-Bold.ttf'),
+    f('SourceSerif4-Bold.ttf'), f('SourceSerif4-SemiBoldItalic.ttf'),
   ])
   return [
     { name: 'Inter', data: m, weight: 500 as const, style: 'normal' as const },
@@ -111,7 +117,6 @@ async function loadFonts() {
     { name: 'Inter', data: xb, weight: 800 as const, style: 'normal' as const },
     { name: 'Serif', data: serif, weight: 700 as const, style: 'normal' as const },
     { name: 'Serif', data: serifI, weight: 600 as const, style: 'italic' as const },
-    { name: 'Hand', data: hand, weight: 700 as const, style: 'normal' as const },
   ]
 }
 
@@ -121,60 +126,13 @@ const Arrow = ({ size, color }: { size: number; color: string }) => (
   </svg>
 )
 
-const KEY_SIZES = [25, 24, 23, 22, 21, 20]
-const KEY_COL_W = PANEL_W / 2
-const BULLET_W = 22
-const KEY_TEXT_W = KEY_COL_W - BULLET_W - 6
-const KEY_LINE = 1.25
-const KEY_ROW_GAP = 6
-const keyLines = (s: string, size: number) => lineCount(s, (KEY_TEXT_W * 0.97) / size, interWidth)
-
-/** Last resort for a very long name: drop trailing words so it fits in `maxLines`. */
-function shorten(name: string, size: number, maxLines: number): string {
-  if (keyLines(name, size) <= maxLines) return name
-  const words = name.split(' ')
-  while (words.length > 1) {
-    words.pop()
-    const s = words.join(' ').replace(/[,;:]$/, '') + '…'
-    if (keyLines(s, size) <= maxLines) return s
-  }
-  return words[0]
-}
-
-/** Height (px) of the key-ingredient rows at `size`, names in pairs. */
-function rowsHeight(names: string[], size: number): number {
-  let h = 0
-  for (let i = 0; i < names.length; i += 2) {
-    const lines = Math.max(...names.slice(i, i + 2).map((n) => keyLines(n, size)))
-    h += lines * size * KEY_LINE + (i ? KEY_ROW_GAP : 0)
-  }
-  return h
-}
-
-/**
- * Largest key-ingredient size (25 → 20) whose rows fit the room left under the title.
- * Names may wrap to two lines; if even 20px won't fit, names are kept to one line.
- */
-function fitKey(names: string[], room: number): { size: number; names: string[] } {
-  for (const size of KEY_SIZES) {
-    const two = names.map((n) => shorten(n, size, 2))
-    if (rowsHeight(two, size) <= room) return { size, names: two }
-  }
-  const size = KEY_SIZES[KEY_SIZES.length - 1]
-  return { size, names: names.map((n) => shorten(n, size, 1)) }
-}
-
-export interface CardData { title: string; photo: string; facts: string[]; key: string[] }
+// `key` (main ingredients) is no longer drawn on the card; kept so callers don't change.
+export interface CardData { title: string; photo: string; facts: string[]; key?: string[] }
 
 /** Renders the card and returns PNG bytes. Throws if anything fails. */
 export async function renderRecipeCard(d: CardData): Promise<ArrayBuffer> {
   const t = fitTitle(d.title)
-  const rows: string[][] = []
-  // Panel height minus everything above/below the ingredient rows.
-  const panelH = H - BAND_H - 30 - 8 - 22
-  const fixed = 32 + 6 + Math.ceil(t.lines * t.size * 1.08) + (d.facts.length ? 14 + 30 : 0) + 34 + 17 + 8 + 12 + 26
-  const { size: kSize, names: key } = fitKey(d.key, panelH - fixed)
-  for (let i = 0; i < key.length; i += 2) rows.push(key.slice(i, i + 2))
+  const [logo, fontList] = await Promise.all([chefJenLogo(), fonts()])
 
   const el = (
     <div style={{ width: W, height: H, display: 'flex', flexDirection: 'column', backgroundColor: C.cream }}>
@@ -190,8 +148,9 @@ export async function renderRecipeCard(d: CardData): Promise<ArrayBuffer> {
           backgroundImage: `repeating-linear-gradient(180deg, transparent 0px, transparent 33px, ${C.rule} 33px, ${C.rule} 34px)`,
           borderTop: `8px solid ${C.red}`,
         }}>
-          <div style={{ display: 'flex', fontFamily: 'Hand', fontWeight: 700, fontSize: 32, color: C.orange }}>From Chef Jen’s kitchen</div>
-          <div style={{ display: 'flex', width: TITLE_W, marginTop: 6, fontFamily: 'Serif', fontWeight: 700, fontSize: t.size, lineHeight: 1.08, color: C.ink }}>{d.title}</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={logo} alt="" width={LOGO_W} height={LOGO_H} style={{ width: LOGO_W, height: LOGO_H, marginTop: -18, alignSelf: 'center' }} />
+          <div style={{ display: 'flex', width: TITLE_W, marginTop: 4, fontFamily: 'Serif', fontWeight: 700, fontSize: t.size, lineHeight: 1.08, color: C.ink }}>{d.title}</div>
 
           {d.facts.length > 0 && (
             <div style={{ display: 'flex', alignItems: 'center', marginTop: 14, fontFamily: 'Inter', fontWeight: 600, fontSize: 24, color: C.body }}>
@@ -204,20 +163,6 @@ export async function renderRecipeCard(d: CardData): Promise<ArrayBuffer> {
             </div>
           )}
 
-          <div style={{ display: 'flex', height: 2, backgroundColor: C.peach, marginTop: 18, marginBottom: 14 }} />
-          {rows.length > 0 && <div style={{ display: 'flex', fontFamily: 'Inter', fontWeight: 600, fontSize: 17, letterSpacing: 2, color: C.orange }}>YOU’LL NEED</div>}
-          <div style={{ display: 'flex', flexDirection: 'column', marginTop: 8 }}>
-            {rows.map((row, ri) => (
-              <div key={ri} style={{ display: 'flex', marginTop: ri ? KEY_ROW_GAP : 0 }}>
-                {row.map((n, ci) => (
-                  <div key={ci} style={{ display: 'flex', width: KEY_COL_W, fontFamily: 'Inter', fontWeight: 500, fontSize: kSize, lineHeight: KEY_LINE, color: C.body }}>
-                    <span style={{ color: C.orange, width: BULLET_W, fontWeight: 600 }}>•</span>
-                    <span style={{ display: 'flex', width: KEY_TEXT_W }}>{n}</span>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
           <div style={{ display: 'flex', alignItems: 'center', marginTop: 'auto', fontFamily: 'Serif', fontStyle: 'italic', fontWeight: 600, fontSize: 21, color: C.muted }}>
             Full ingredient list inside<Arrow size={22} color={C.muted} />
           </div>
@@ -232,6 +177,6 @@ export async function renderRecipeCard(d: CardData): Promise<ArrayBuffer> {
       </div>
     </div>
   )
-  const res = new ImageResponse(el, { width: W, height: H, fonts: await fonts() })
+  const res = new ImageResponse(el, { width: W, height: H, fonts: fontList })
   return res.arrayBuffer()
 }
