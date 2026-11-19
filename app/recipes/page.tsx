@@ -101,10 +101,19 @@ export default async function RecipesPage() {
         <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ backgroundColor: '#C8401A', color: 'white', padding: '8px 18px', borderRadius: 10, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 13, fontWeight: 700 }}>Get the App</a>
       </div>
 
-      {/* Compact opening so the first recipe photo shows on an iPhone's first screen */}
-      <div style={{ textAlign: 'center', padding: '22px 20px 20px' }}>
+      {/* Opening: the Chef Jen AI logo says who made these recipes (approved Nov 2026, design D).
+          Kept compact so the first recipe photo still shows on an iPhone's first screen. */}
+      <div style={{ textAlign: 'center', padding: '18px 20px 20px' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/brand/chef-jen-ai-logo.webp"
+          alt="Chef Jen — Your AI Cooking Companion"
+          width={600}
+          height={371}
+          style={{ display: 'block', width: 'min(300px, 54vw)', height: 'auto', margin: '0 auto 10px' }}
+        />
         <h1 style={{ fontSize: 'clamp(26px, 6.5vw, 46px)', fontWeight: 700, color: '#2C1810', margin: '0 0 8px', lineHeight: 1.2 }}>Chef Jen&rsquo;s Recipe Collection</h1>
-        <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 16, color: '#78716C', maxWidth: 520, margin: '0 auto', lineHeight: 1.5 }}>Delicious recipes from Chef Jen&rsquo;s kitchen. Find something you&rsquo;ll love to make!</p>
+        <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 16, color: '#78716C', maxWidth: 520, margin: '0 auto', lineHeight: 1.5 }}>Every recipe here was created by Chef Jen. Imagine what she could create for you.</p>
       </div>
 
       {sections[0].recipes.length > 0 && <CollectionSection {...sections[0]} inserts={sectionInserts[0]} />}
