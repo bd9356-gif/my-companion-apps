@@ -37,8 +37,17 @@ export default function MeetChefJenPage() {
 
       <main style={{ maxWidth: 720, margin: '0 auto', padding: '0 20px 72px' }}>
 
-        {/* Welcome — compact, so the reel and both choices fit on an iPhone's first screen */}
-        <div style={{ textAlign: 'center', padding: '16px 0 0' }}>
+        {/* Welcome — the Chef Jen AI logo says who answers the question (approved Nov 2026,
+            design F). Compact, so the reel and both choices fit on an iPhone's first screen. */}
+        <div style={{ textAlign: 'center', padding: '10px 0 0' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/brand/chef-jen-ai-logo.webp"
+            alt="Chef Jen — Your AI Cooking Companion"
+            width={600}
+            height={371}
+            style={{ display: 'block', width: 'min(200px, 38vw)', height: 'auto', margin: '0 auto 6px' }}
+          />
           <h1 style={{ fontSize: 'clamp(26px, 6.5vw, 42px)', fontWeight: 700, color: '#2C1810', margin: 0, lineHeight: 1.15 }}>
             What Should I Make Tonight? Need&nbsp;a&nbsp;Recipe?
           </h1>
