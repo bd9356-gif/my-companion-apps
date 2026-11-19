@@ -36,17 +36,22 @@ export default async function TipsPage() {
         </a>
       </div>
 
-      {/* Hero */}
-      <div style={{ textAlign: 'center', padding: '64px 24px 40px' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, backgroundColor: '#FEF3E8', border: '1px solid #F5D9C0', borderRadius: 100, padding: '6px 16px', marginBottom: 20 }}>
-          <span style={{ fontSize: 16 }}>👩‍🍳</span>
-          <span style={{ fontFamily: 'system-ui, sans-serif', fontSize: 13, fontWeight: 600, color: '#C8401A' }}>From Chef Jen</span>
-        </div>
+      {/* Hero: the Chef Jen AI logo says who wrote these tips (approved Nov 2026, design E,
+          same treatment as the Recipe Collection). */}
+      <div style={{ textAlign: 'center', padding: '18px 24px 36px' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/brand/chef-jen-ai-logo.webp"
+          alt="Chef Jen — Your AI Cooking Companion"
+          width={600}
+          height={371}
+          style={{ display: 'block', width: 'min(300px, 54vw)', height: 'auto', margin: '0 auto 10px' }}
+        />
         <h1 style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 700, color: '#2C1810', margin: '0 0 16px', lineHeight: 1.2 }}>
-          Chef Jen's Cooking Tips
+          Chef Jen&rsquo;s Cooking Tips
         </h1>
         <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 18, color: '#78716C', maxWidth: 560, margin: '0 auto 12px', lineHeight: 1.6 }}>
-          Practical kitchen wisdom from your personal AI cooking companion. The techniques that actually make a difference.
+          Practical kitchen know-how from Chef Jen — the techniques that make a real difference.
         </p>
         <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#A89990', maxWidth: 480, margin: '0 auto' }}>
           Want Chef Jen to answer your cooking questions? <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ color: '#C8401A', textDecoration: 'none', fontWeight: 600 }}>Download MyRecipe Companion →</a>
