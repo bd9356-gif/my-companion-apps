@@ -6,7 +6,7 @@ import DemoVideo from './DemoVideo'
 
 // Shared layout for the Chef Jen demonstration pages:
 //   /show-me-how   — Watch Chef Jen Create a Recipe!
-//   /cooking-tips  — Cooking Questions? Let's Talk!
+//   /cooking-tips  — Imagine Having a Personal Chef to Talk To!
 // Headline + orange subheading, a compact video player, a closing message, and two
 // next steps (Try It Free → App Store, Learn More → /myrecipe).
 
@@ -25,13 +25,15 @@ export type DemoPageProps = {
   /** Optional bold line above the closing text (left out when the page has none). */
   closingTitle?: ReactNode
   closingText: ReactNode
+  /** Show the closing text large, in the heading font (for a page with no closing title). */
+  closingTextLarge?: boolean
   tryLabel: string
   learnLabel: string
   /** GA source_type for the two buttons. */
   source: string
 }
 
-export default function DemoPage({ back, title, subtitle, video, closingTitle, closingText, tryLabel, learnLabel, source }: DemoPageProps) {
+export default function DemoPage({ back, title, subtitle, video, closingTitle, closingText, closingTextLarge, tryLabel, learnLabel, source }: DemoPageProps) {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#FFFDF9', fontFamily: serif }}>
 
@@ -67,7 +69,9 @@ export default function DemoPage({ back, title, subtitle, video, closingTitle, c
             {closingTitle}
           </h2>
           )}
-          <p style={{ fontFamily: sans, fontSize: 15, color: '#5C4A3A', margin: 0, lineHeight: 1.4 }}>
+          <p style={closingTextLarge
+            ? { fontSize: 'clamp(20px, 5vw, 30px)', fontWeight: 700, color: '#2C1810', margin: 0, lineHeight: 1.2 }
+            : { fontFamily: sans, fontSize: 15, color: '#5C4A3A', margin: 0, lineHeight: 1.4 }}>
             {closingText}
           </p>
         </div>

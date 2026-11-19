@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import DemoPage from '../show-me-how/DemoPage'
 
-// "Cooking Questions? Let's Talk!" — the Chef Jen Tips demonstration.
+// "Imagine Having a Personal Chef to Talk To!" — the Talk with Chef Jen demonstration
+// (headline and wording updated Nov 2026; the page title and Facebook preview text are unchanged).
 // Opened from homepage card #1 (Need a Little Help in the Kitchen?). Same layout as
 // /show-me-how (shared DemoPage).
 
@@ -25,11 +26,11 @@ export default function CookingTipsPage() {
   return (
     <DemoPage
       back={{ href: '/myrecipe', label: 'MyRecipe Companion' }}
-      title={<>Cooking Questions? Let’s&nbsp;Talk!</>}
-      subtitle={<>Have ingredients, questions, or an idea? Talk it through with Chef&nbsp;Jen.</>}
+      title={<>Imagine Having a Personal Chef to Talk&nbsp;To!</>}
+      subtitle={<>Come on in and meet Chef&nbsp;Jen.</>}
       video={VIDEO}
-      closingTitle={<>Imagine Having Chef Jen in Your&nbsp;Kitchen!</>}
-      closingText="From a simple question to a recipe you can call your own."
+      closingText={<>From a simple question to a recipe you can call your&nbsp;own.</>}
+      closingTextLarge
       tryLabel="Ready to Get Cooking Help?"
       learnLabel="Want to See What Else MyRecipe Companion Can Do?"
       source="cooking_tips"
