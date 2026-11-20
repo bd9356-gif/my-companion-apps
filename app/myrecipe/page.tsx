@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import type React from 'react'
 import Show from '../more-than-recipes/Show'
+import MeetChefJenHeader from './MeetChefJenHeader'
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990'
 const DEMO_URL = 'https://pin.it/wfzginTwe'
@@ -114,31 +115,37 @@ export default function MyRecipePage() {
 
       {/* NAV */}
       <nav style={{ backgroundColor: 'rgba(255,253,249,0.95)', backdropFilter: 'blur(8px)', borderBottom: '1px solid #E8E0D4', padding: '8px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 50 }}>
-        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/recipe-icon.png" alt="" style={{ width: 32, height: 32, objectFit: 'contain', flexShrink: 0 }} />
-          <span style={{ fontFamily: 'Georgia, serif', fontWeight: 700, fontSize: 15, color: '#2C1810', whiteSpace: 'nowrap' }}>
-            My<span style={{ color: '#C8401A' }}>Recipe</span> Companion
-          </span>
-        </a>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <a href="/" aria-label="MyCompanionApps" style={{ display: 'flex', textDecoration: 'none', flexShrink: 0 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/recipe-icon.png" alt="" style={{ width: 32, height: 32, objectFit: 'contain', flexShrink: 0 }} />
+          </a>
+          {/* The name, with "❤️ Meet Chef Jen ▶" (opens the video right here) beneath it */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <a href="/" style={{ textDecoration: 'none', fontFamily: 'Georgia, serif', fontWeight: 700, fontSize: 15, lineHeight: 1.25, color: '#2C1810', whiteSpace: 'nowrap' }}>
+              My<span style={{ color: '#C8401A' }}>Recipe</span> Companion
+            </a>
+            <MeetChefJenHeader />
+          </div>
+        </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
           <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+            <a href="/meet-chef-jen" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Meet Chef Jen</a>
             <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }} onClick={() => trackWhatItDoes('What It Does Nav')}>What It Does</a>
             <a href="https://pin.it/wfzginTwe" target="_blank" rel="noopener noreferrer" onClick={() => trackDemoRoom('Demo Room Nav')} style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Demo Room</a>
             <a href="/recipes" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Recipes</a>
             <a href="/tips" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Tips</a>
-            <a href="/meet-chef-jen" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Meet Chef Jen</a>
           </div>
           <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" onClick={() => trackAppStore('Try It Free Nav')} style={{ fontSize: 13, color: '#FFFDF9', backgroundColor: '#C8401A', padding: '8px 16px', borderRadius: 20, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>App Store</a>
         </div>
       </nav>
       <style>{`@media (max-width: 768px) { .nav-links { display: none !important; } } @media (min-width: 769px) { .mobile-nav { display: none !important; } } .mobile-nav > :first-child { margin-left: auto; } .mobile-nav > :last-child { margin-right: auto; }`}</style>
       <div className="mobile-nav" style={{ backgroundColor: '#FFFDF9', borderBottom: '1px solid #E8E0D4', padding: '7px 16px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 24, overflowX: 'auto' }}>
+        <a href="/meet-chef-jen" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Meet Chef Jen</a>
         <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }} onClick={() => trackWhatItDoes('What It Does Nav')}>What It Does</a>
         <a href="https://pin.it/wfzginTwe" target="_blank" rel="noopener noreferrer" onClick={() => trackDemoRoom('Demo Room Nav')} style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>Demo Room</a>
         <a href="/recipes" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Recipes</a>
             <a href="/tips" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Tips</a>
-        <a href="/meet-chef-jen" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Meet Chef Jen</a>
         <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>App Store</a>
       </div>
 
