@@ -1,19 +1,32 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Slideshow from './Slideshow'
 import TrackedLink from '../recipes/TrackedLink'
+import DemoVideo from '../show-me-how/DemoVideo'
+
+// Meet Chef Jen (Nov 2026): the Chef Jen AI logo, a short welcome, the Meet Chef Jen video
+// (plays in the page), then the visitor's two choices and Explore More Than Recipes.
+// Simple. Helpful. Human. — an introduction, not a feature tour.
+
+const TITLE = 'Meet Chef Jen — Your AI Cooking Companion | MyRecipe Companion'
+const DESCRIPTION = 'Meet Chef Jen, your personal AI cooking companion. Ask questions, share cooking ideas, and discover how a simple conversation can help in your kitchen.'
+const OG_IMAGE = { url: '/meet-chef-jen-og.jpg', width: 1200, height: 630, alt: 'Meet Chef Jen — Your AI Cooking Companion' }
 
 export const metadata: Metadata = {
-  title: 'Meet Chef Jen — MyRecipe Companion',
-  description: 'Meet Chef Jen, your personal AI cooking companion. Have a conversation. Make something wonderful.',
+  title: TITLE,
+  description: DESCRIPTION,
   openGraph: {
-    title: 'Meet Chef Jen',
-    description: 'Have a conversation. Make something wonderful.',
-    images: ['/videos/web-recipe-poster.jpg'],
+    title: 'Meet Chef Jen — Your AI Cooking Companion',
+    description: DESCRIPTION,
+    images: [OG_IMAGE],
     type: 'website',
     siteName: 'MyRecipe Companion',
   },
+  twitter: { card: 'summary_large_image', title: 'Meet Chef Jen — Your AI Cooking Companion', description: DESCRIPTION, images: [OG_IMAGE.url] },
 }
+
+// 002-meet-chef.mp4 (unchanged; the opening image is the "Hi, I'm Chef Jen!" frame).
+// GA4: demo_page_view, demo_video_play and demo_video_complete with video = meet_chef_jen.
+const VIDEO = { src: '/videos/meet-chef-jen.mp4', poster: '/videos/meet-chef-jen-poster.jpg', width: 720, height: 1278, name: 'meet_chef_jen' }
 
 const serif = 'Georgia, serif'
 const sans = 'system-ui, -apple-system, sans-serif'
@@ -37,8 +50,7 @@ export default function MeetChefJenPage() {
 
       <main style={{ maxWidth: 720, margin: '0 auto', padding: '0 20px 72px' }}>
 
-        {/* Welcome — the Chef Jen AI logo says who answers the question (approved Nov 2026,
-            design F). Compact, so the reel and both choices fit on an iPhone's first screen. */}
+        {/* Welcome: logo, heading and one short line — the video tells the story */}
         <div style={{ textAlign: 'center', padding: '10px 0 0' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -48,17 +60,21 @@ export default function MeetChefJenPage() {
             height={371}
             style={{ display: 'block', width: 'min(200px, 38vw)', height: 'auto', margin: '0 auto 6px' }}
           />
-          <h1 style={{ fontSize: 'clamp(26px, 6.5vw, 42px)', fontWeight: 700, color: '#2C1810', margin: 0, lineHeight: 1.15 }}>
-            What Should I Make Tonight? Need&nbsp;a&nbsp;Recipe?
+          <h1 style={{ fontSize: 'clamp(28px, 7vw, 44px)', fontWeight: 700, color: '#2C1810', margin: 0, lineHeight: 1.15 }}>
+            Meet Chef Jen
           </h1>
+          <p style={{ fontFamily: sans, fontSize: 'clamp(16px, 4.2vw, 19px)', color: '#5C4A3A', maxWidth: 460, margin: '6px auto 0', lineHeight: 1.45 }}>
+            Your personal cooking companion. Someone you can talk to about anything&nbsp;cooking.
+          </p>
         </div>
 
-        {/* Chef Jen's slideshow (moved by hand), then the two choices */}
-        <section style={{ padding: '14px 0 0', textAlign: 'center' }}>
-          {/* Sized to the screen height so the slideshow and the choices fit on an iPhone's
-              first screen — including Facebook's browser (svh = visible height with its bars). */}
-          <Slideshow maxWidth="min(520px, max(190px, calc((100svh - 450px) * 0.75)))" />
-          {/* The two next-step choices, set apart from the slideshow and its Play button */}
+        {/* The video (plays in the page, never full screen or automatically), then the two choices */}
+        <section style={{ padding: '16px 0 0', textAlign: 'center' }}>
+          {/* Large but sized to the screen height; never cropped (the box is the video's own shape). */}
+          <div style={{ width: `min(100%, 320px, max(230px, calc((100svh - 300px) * ${(VIDEO.width / VIDEO.height).toFixed(4)})))`, margin: '0 auto' }}>
+            <DemoVideo {...VIDEO} inline />
+          </div>
+          {/* The two next-step choices, set apart from the video */}
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 10, marginTop: 26 }}>
             {SHOW_ME_HOW_URL && (
               <TrackedLink href={SHOW_ME_HOW_URL} event="show_me_how_click" params={{ source_type: 'meet_chef_jen' }} style={choiceButton}>
