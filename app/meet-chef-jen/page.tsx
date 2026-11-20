@@ -3,7 +3,7 @@ import Link from 'next/link'
 import TrackedLink from '../recipes/TrackedLink'
 import DemoVideo from '../show-me-how/DemoVideo'
 
-// Meet Chef Jen (Nov 2026): the Chef Jen AI logo, a short welcome, the Meet Chef Jen video
+// Meet Chef Jen (Nov 2026): a short welcome, the Meet Chef Jen video
 // (full screen on phones), then the visitor's two choices and Explore More Than Recipes.
 // Simple. Helpful. Human. — an introduction, not a feature tour.
 
@@ -50,16 +50,9 @@ export default function MeetChefJenPage() {
 
       <main style={{ maxWidth: 720, margin: '0 auto', padding: '0 20px 72px' }}>
 
-        {/* Welcome: logo, heading and one short line — the video tells the story */}
-        <div style={{ textAlign: 'center', padding: '10px 0 0' }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/brand/chef-jen-ai-logo.webp"
-            alt="Chef Jen — Your AI Cooking Companion"
-            width={600}
-            height={371}
-            style={{ display: 'block', width: 'min(200px, 38vw)', height: 'auto', margin: '0 auto 6px' }}
-          />
+        {/* Welcome: heading and one short line — the video tells the story (it opens with the
+            Chef Jen AI logo, so the page doesn't repeat it above) */}
+        <div style={{ textAlign: 'center', padding: '16px 0 0' }}>
           <h1 style={{ fontSize: 'clamp(28px, 7vw, 44px)', fontWeight: 700, color: '#2C1810', margin: 0, lineHeight: 1.15 }}>
             Meet Chef Jen
           </h1>
