@@ -4,7 +4,7 @@ import TrackedLink from '../recipes/TrackedLink'
 import DemoVideo from '../show-me-how/DemoVideo'
 
 // Meet Chef Jen (Nov 2026): the Chef Jen AI logo, a short welcome, the Meet Chef Jen video
-// (plays in the page), then the visitor's two choices and Explore More Than Recipes.
+// (full screen on phones), then the visitor's two choices and Explore More Than Recipes.
 // Simple. Helpful. Human. — an introduction, not a feature tour.
 
 const TITLE = 'Meet Chef Jen — Your AI Cooking Companion | MyRecipe Companion'
@@ -68,11 +68,13 @@ export default function MeetChefJenPage() {
           </p>
         </div>
 
-        {/* The video (plays in the page, never full screen or automatically), then the two choices */}
+        {/* The video, then the two choices. Tapping Play on a phone or small tablet opens the
+            full-screen player (same as the other Chef Jen videos), and it returns to the page when
+            the video ends; desktops play it in the page. Never plays automatically. */}
         <section style={{ padding: '16px 0 0', textAlign: 'center' }}>
           {/* Large but sized to the screen height; never cropped (the box is the video's own shape). */}
           <div style={{ width: `min(100%, 320px, max(230px, calc((100svh - 300px) * ${(VIDEO.width / VIDEO.height).toFixed(4)})))`, margin: '0 auto' }}>
-            <DemoVideo {...VIDEO} inline />
+            <DemoVideo {...VIDEO} />
           </div>
           {/* The two next-step choices, set apart from the video */}
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 10, marginTop: 26 }}>
