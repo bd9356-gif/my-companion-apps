@@ -1,6 +1,6 @@
 // Facebook recipe preview card ("photo first", 1200x630) — Chef Jen AI branding approved Nov 2026 (B2).
 // Big food photo; on the right a large Chef Jen AI logo, the title, time · difficulty ·
-// servings and "Full ingredient list inside →"; and a full-width
+// servings and (when there's room) "Full ingredient list inside →"; and a full-width
 // "TAP THE PICTURE FOR THE FULL RECIPE" band as the strongest call to action.
 // The short ingredient list was dropped for the logo — it was too small to read in the feed.
 // Rendered with next/og (Satori: flexbox only, inline styles).
@@ -23,9 +23,20 @@ const TITLE_W = PANEL_W - 10
 
 const C = { cream: '#FBF4E6', ink: '#2C1810', body: '#3C2415', muted: '#78716C', orange: '#C8401A', orangeDark: '#A8320F', red: '#B91C1C', rule: 'rgba(185,28,28,0.06)' }
 
-// Large Chef Jen AI logo, centered at the top of the recipe panel.
-const LOGO_W = 370
-const LOGO_H = Math.round(LOGO_W / LOGO_RATIO) // 229
+// Large Chef Jen AI logo, centered at the top of the recipe panel. Enlarged ~40% (Nov 2026,
+// was 370px wide) so Chef Jen is easy to recognize in a phone's Facebook feed; it uses
+// nearly the full panel width, centered.
+const PANEL_TOTAL_W = W - PHOTO_W // 550
+const LOGO_W = 520
+const LOGO_H = Math.round(LOGO_W / LOGO_RATIO) // 322
+const LOGO_TOP = -22 // pulled up into the panel's top padding
+const LOGO_LEFT = Math.round((PANEL_TOTAL_W - LOGO_W) / 2) - PANEL_PAD_L // centered in the whole panel
+
+// Vertical room in the panel (between the red rule and the bottom padding).
+const PANEL_INNER_H = H - BAND_H - 8 - 30 - 22 // 478
+const TITLE_GAP = 4
+const FACTS_H = 14 + 30
+const FOOTER_H = 34 // "Full ingredient list inside →" with its spacing
 
 // ── Key ingredients ─────────────────────────────────────────────
 const UNITS = /^(cups?|c\.|tablespoons?|tbsps?|tbs|tbsp\.|teaspoons?|tsps?|tsp\.|pounds?|lbs?\.?|ounces?|oz\.?|grams?|g|kg|ml|liters?|litres?|cloves?|cans?|packages?|pkgs?|sticks?|pinch(es)?|dash(es)?|large|medium|small|whole|bunch(es)?|heads?|slices?|pieces?|sprigs?|handfuls?|jars?|bottles?|quarts?|pints?|each|of)\b\.?\s*/i
@@ -89,12 +100,23 @@ export function factsOf(r: { total?: number | null; prep?: number | null; cook?:
   return out
 }
 
-function fitTitle(title: string): { size: number; lines: number } {
-  for (let size = 46; size >= 30; size -= 2) {
-    const lines = lineCount(title, (TITLE_W * 0.96) / size, serifWidth)
-    if (lines <= 3) return { size, lines }
+/**
+ * Largest title size (46px down to 28px, up to 3 lines) that fits the room under the logo —
+ * the title's readability comes first. "Full ingredient list inside →" is shown only when it
+ * fits without making the title any smaller, so the title never overlaps or gets cut off.
+ */
+function fitTitle(title: string, hasFacts: boolean): { size: number; lines: number; footer: boolean } {
+  const room = PANEL_INNER_H - (LOGO_H + LOGO_TOP) - TITLE_GAP - (hasFacts ? FACTS_H : 0)
+  const fit = (height: number) => {
+    for (let size = 46; size >= 28; size -= 2) {
+      const lines = lineCount(title, (TITLE_W * 0.96) / size, serifWidth)
+      if (lines <= 3 && lines * size * 1.08 <= height) return { size, lines }
+    }
+    return null
   }
-  return { size: 30, lines: 3 }
+  const best = fit(room) ?? { size: 28, lines: 3 }
+  const withFooter = fit(room - FOOTER_H)
+  return withFooter && withFooter.size === best.size ? { ...best, footer: true } : { ...best, footer: false }
 }
 
 // ── Fonts ───────────────────────────────────────────────────────
@@ -131,7 +153,7 @@ export interface CardData { title: string; photo: string; facts: string[]; key?:
 
 /** Renders the card and returns PNG bytes. Throws if anything fails. */
 export async function renderRecipeCard(d: CardData): Promise<ArrayBuffer> {
-  const t = fitTitle(d.title)
+  const t = fitTitle(d.title, d.facts.length > 0)
   const [logo, fontList] = await Promise.all([chefJenLogo(), fonts()])
 
   const el = (
@@ -149,8 +171,8 @@ export async function renderRecipeCard(d: CardData): Promise<ArrayBuffer> {
           borderTop: `8px solid ${C.red}`,
         }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logo} alt="" width={LOGO_W} height={LOGO_H} style={{ width: LOGO_W, height: LOGO_H, marginTop: -18, alignSelf: 'center' }} />
-          <div style={{ display: 'flex', width: TITLE_W, marginTop: 4, fontFamily: 'Serif', fontWeight: 700, fontSize: t.size, lineHeight: 1.08, color: C.ink }}>{d.title}</div>
+          <img src={logo} alt="" width={LOGO_W} height={LOGO_H} style={{ width: LOGO_W, height: LOGO_H, marginTop: LOGO_TOP, marginLeft: LOGO_LEFT }} />
+          <div style={{ display: 'flex', width: TITLE_W, marginTop: TITLE_GAP, fontFamily: 'Serif', fontWeight: 700, fontSize: t.size, lineHeight: 1.08, color: C.ink }}>{d.title}</div>
 
           {d.facts.length > 0 && (
             <div style={{ display: 'flex', alignItems: 'center', marginTop: 14, fontFamily: 'Inter', fontWeight: 600, fontSize: 24, color: C.body }}>
@@ -163,9 +185,11 @@ export async function renderRecipeCard(d: CardData): Promise<ArrayBuffer> {
             </div>
           )}
 
-          <div style={{ display: 'flex', alignItems: 'center', marginTop: 'auto', fontFamily: 'Serif', fontStyle: 'italic', fontWeight: 600, fontSize: 21, color: C.muted }}>
-            Full ingredient list inside<Arrow size={22} color={C.muted} />
-          </div>
+          {t.footer && (
+            <div style={{ display: 'flex', alignItems: 'center', marginTop: 'auto', fontFamily: 'Serif', fontStyle: 'italic', fontWeight: 600, fontSize: 21, color: C.muted }}>
+              Full ingredient list inside<Arrow size={22} color={C.muted} />
+            </div>
+          )}
         </div>
       </div>
 

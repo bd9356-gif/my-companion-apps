@@ -26,7 +26,7 @@ export function lineCount(text: string, widthEm: number, measure: (s: string) =>
 // Bump when the card's design changes, so every recipe gets a fresh image URL
 // (the CDN and Facebook cache cards by URL). Keep in step with the recipe app's
 // share page (jen-ai-companion app/share/[id]/page.js).
-export const CARD_DESIGN = 'c3' // c3 = Chef Jen AI logo (Nov 2026)
+export const CARD_DESIGN = 'c4' // c4 = Chef Jen AI logo 40% larger (Nov 2026)
 
 // Same idea for the tall picture (Facebook photo posts / Pinterest).
 export const TALL_DESIGN = 't2' // t2 = Chef Jen AI logo + title panel (Nov 2026)
