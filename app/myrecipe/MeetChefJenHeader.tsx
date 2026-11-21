@@ -49,9 +49,14 @@ export default function MeetChefJenHeader() {
           trackEvent('meet_chef_jen_click', { source_type: 'myrecipe_header', cta_location: 'header', transport_type: 'beacon' })
           setOpen(true)
         }}
-        style={{ display: 'block', padding: 0, margin: 0, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: "'Dancing Script', 'Brush Script MT', cursive", fontSize: 26, fontWeight: 700, lineHeight: 1.05, color: '#B07A12', whiteSpace: 'nowrap', textAlign: 'left' }}
+        aria-label="Meet Chef Jen — play the video"
+        style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: 0, margin: 0, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: "'Dancing Script', 'Brush Script MT', cursive", fontSize: 26, fontWeight: 700, lineHeight: 1.05, color: '#B07A12', whiteSpace: 'nowrap', textAlign: 'left' }}
       >
-        Meet Chef Jen <span style={{ fontFamily: 'system-ui, sans-serif', fontSize: 15, verticalAlign: '3px' }}>▶</span>
+        {/* Looks like a link: a thin gold underline, and a gold play button so it reads as a video */}
+        <span style={{ textDecoration: 'underline', textDecorationThickness: 1.5, textUnderlineOffset: 4, textDecorationColor: 'rgba(176,122,18,0.7)' }}>Meet Chef Jen</span>
+        <span aria-hidden="true" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 22, height: 22, borderRadius: 999, backgroundColor: '#B07A12', boxShadow: '0 1px 3px rgba(44,24,16,0.25)', flexShrink: 0 }}>
+          <svg width="10" height="10" viewBox="0 0 10 10"><path d="M2.5 1.5v7l6-3.5z" fill="#FFFFFF" /></svg>
+        </span>
       </button>
 
       {/* Drawn at the end of the page (a portal): inside the sticky header the pop-up would be
