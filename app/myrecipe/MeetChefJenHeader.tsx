@@ -1,6 +1,6 @@
 'use client'
 
-// "❤️ Meet Chef Jen ▶" under the MyRecipe Companion name in the /myrecipe header (Nov 2026).
+// "Meet Chef Jen ▶" in gold script under the MyRecipe Companion name in the /myrecipe header (Nov 2026).
 // Opens the Meet Chef Jen video (002-meet-chef.mp4) in a pop-up player right on this page —
 // it does not go to /meet-chef-jen. The video starts only when the visitor presses Play.
 // Closing (✕, the dark backdrop or Esc) stops the video and leaves the visitor exactly where
@@ -41,15 +41,17 @@ export default function MeetChefJenHeader() {
 
   return (
     <>
+      {/* Gold script (Dancing Script, served from /fonts — no outside font service). */}
+      <style>{`@font-face { font-family: 'Dancing Script'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/dancing-script-700.woff2') format('woff2'); }`}</style>
       <button
         type="button"
         onClick={() => {
           trackEvent('meet_chef_jen_click', { source_type: 'myrecipe_header', cta_location: 'header', transport_type: 'beacon' })
           setOpen(true)
         }}
-        style={{ display: 'block', padding: 0, margin: 0, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'system-ui, sans-serif', fontSize: 12.5, fontWeight: 600, lineHeight: 1.3, color: '#C8401A', whiteSpace: 'nowrap', textAlign: 'left' }}
+        style={{ display: 'block', padding: 0, margin: 0, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: "'Dancing Script', 'Brush Script MT', cursive", fontSize: 19, fontWeight: 700, lineHeight: 1.1, color: '#B07A12', whiteSpace: 'nowrap', textAlign: 'left' }}
       >
-        ❤️ Meet Chef Jen ▶
+        Meet Chef Jen <span style={{ fontFamily: 'system-ui, sans-serif', fontSize: 11, verticalAlign: '2px' }}>▶</span>
       </button>
 
       {/* Drawn at the end of the page (a portal): inside the sticky header the pop-up would be

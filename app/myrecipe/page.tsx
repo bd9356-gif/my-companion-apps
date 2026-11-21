@@ -104,17 +104,17 @@ export default function MyRecipePage() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <a href="/" aria-label="MyCompanionApps" style={{ display: 'flex', textDecoration: 'none', flexShrink: 0 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/recipe-icon.png" alt="" style={{ width: 32, height: 32, objectFit: 'contain', flexShrink: 0 }} />
+            <img src="/recipe-icon.png" alt="" style={{ width: 42, height: 42, objectFit: 'contain', flexShrink: 0 }} />
           </a>
-          {/* The name, with "❤️ Meet Chef Jen ▶" (opens the video right here) beneath it */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6 }}>
+          {/* The name, with "Meet Chef Jen ▶" in gold script (opens the video right here) beneath it */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 2 }}>
             <a href="/" style={{ textDecoration: 'none', fontFamily: 'Georgia, serif', fontWeight: 700, fontSize: 15, lineHeight: 1.25, color: '#2C1810', whiteSpace: 'nowrap' }}>
               My<span style={{ color: '#C8401A' }}>Recipe</span> Companion
             </a>
             <MeetChefJenHeader />
           </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 34 }}>
           <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
             <a href="/meet-chef-jen" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Meet Chef Jen</a>
             <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }} onClick={() => trackWhatItDoes('What It Does Nav')}>What It Does</a>
@@ -127,7 +127,7 @@ export default function MyRecipePage() {
       {/* Phone-style two-line menu below 900px (phones and iPads held upright): the one-line
           menu needs about 850px and crowded the name and App Store button on an iPad. */}
       <style>{`@media (max-width: 899px) { .nav-links { display: none !important; } } @media (min-width: 900px) { .mobile-nav { display: none !important; } } .mobile-nav > :first-child { margin-left: auto; } .mobile-nav > :last-child { margin-right: auto; }`}</style>
-      <div className="mobile-nav" style={{ backgroundColor: '#FFFDF9', borderBottom: '1px solid #E8E0D4', padding: '7px 16px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 24, overflowX: 'auto' }}>
+      <div className="mobile-nav" style={{ backgroundColor: '#FFFDF9', borderBottom: '1px solid #E8E0D4', padding: '7px 16px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 20, overflowX: 'auto' }}>
         <a href="/meet-chef-jen" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Meet Chef Jen</a>
         <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }} onClick={() => trackWhatItDoes('What It Does Nav')}>What It Does</a>
         <a href="/recipes" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Recipes</a>
