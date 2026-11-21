@@ -1,7 +1,7 @@
 'use client'
 
 // The six showroom cards (the "playbill"): 1 across on phones so the words stay
-// readable, 2 across from 600px up. A card with an href is a link; a card with a
+// readable, 2 across from 600px up; with `wide` (the homepage) 3 across from 1000px up. A card with an href is a link; a card with a
 // video opens it in a pop-up player; any other card shows but isn't clickable yet.
 
 import { useEffect, useRef, useState } from 'react'
@@ -14,7 +14,7 @@ const coverStyle: React.CSSProperties = {
   filter: 'drop-shadow(0 3px 8px rgba(44,24,16,0.14))',
 }
 
-export default function Booths() {
+export default function Booths({ wide = false }: { wide?: boolean }) {
   // The one video card's player stays mounted (hidden) so the tap itself can start
   // playback — iPhones only allow sound-on playback straight from a tap.
   const videoBooth = BOOTHS.find((b) => b.video)
@@ -26,6 +26,7 @@ export default function Booths() {
       <style>{`
         .mtr-booths { display: grid; grid-template-columns: 1fr; gap: 8px; }
         @media (min-width: 600px) { .mtr-booths { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+        @media (min-width: 1000px) { .mtr-booths-wide { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
         .mtr-choose { font-family: Georgia, serif; font-weight: 600; color: #374151; text-align: center; font-size: 17.5px; line-height: 1.3; margin: 2px 0 8px; }
         @media (min-width: 600px) { .mtr-choose { font-size: 20px; margin: 4px 0 10px; } }
       `}</style>
@@ -37,7 +38,7 @@ export default function Booths() {
         <span style={{ display: 'inline-block' }}>See What’s Possible.</span>
       </h2>
 
-      <div className="mtr-booths">
+      <div className={wide ? 'mtr-booths mtr-booths-wide' : 'mtr-booths'}>
         {BOOTHS.map((b, n) => {
           const img = (
             <picture>

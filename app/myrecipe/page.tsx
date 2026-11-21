@@ -71,8 +71,9 @@ function trackChoice(eventName: string) {
 // panel) are kept in the code but not shown. Set to true to bring them back.
 const SHOW_LEGACY_SECTIONS = false
 
-// The More Than Recipes presentation is the homepage (Nov 2026): banner, Chef Jen
-// slideshow, invitation and the six cards, right under the menu. ROLLBACK: set to
+// The More Than Recipes presentation is the homepage (Nov 2026): the opening picture
+// (Experience the Future of Home Cooking), the invitation and the six cards, right under the
+// menu — up to 1140px wide on desktops, the picture as wide as the three-across cards. ROLLBACK: set to
 // false to bring back the previous opening (the two image doors) unchanged.
 const SHOW_PRESENTATION = true
 
@@ -160,7 +161,7 @@ export default function MyRecipePage() {
         }
       `}</style>
       {SHOW_PRESENTATION && (
-        <main style={{ maxWidth: 720, margin: '0 auto', padding: '8px 16px 28px' }}>
+        <main style={{ maxWidth: 1140, margin: '0 auto', padding: '8px 16px 28px' }}>
           <Show scrollOffset={64} playbill />
         </main>
       )}
