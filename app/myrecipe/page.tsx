@@ -351,18 +351,19 @@ export default function MyRecipePage() {
       </section>
       </>}
 
-      {/* FOOTER */}
-      <footer style={{ backgroundColor: '#2C1810', padding: '32px 32px' }}>
-        <div style={{ maxWidth: 960, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
+      {/* FOOTER — compact (Nov 2026): quietly closes the page. One line on wide screens;
+          two short lines on an iPhone (name, then © · Privacy · Terms). */}
+      <footer style={{ backgroundColor: '#2C1810', padding: '8px 20px' }}>
+        <div style={{ maxWidth: 1108, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '4px 16px' }}>
           <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/recipe-icon.png" alt="" style={{ width: 26, height: 26, objectFit: 'contain' }} />
+            <img src="/recipe-icon.png" alt="" style={{ width: 22, height: 22, objectFit: 'contain' }} />
             <span style={{ fontFamily: 'Georgia, serif', fontSize: 14, color: '#F5EDE0', fontWeight: 600 }}>MyCompanionApps</span>
           </a>
-          <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5C4A3A', margin: 0 }}>© 2026 MyCompanionApps</p>
-          <div style={{ display: 'flex', gap: 20 }}>
-            <a href="/privacy" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5C4A3A', textDecoration: 'none' }}>Privacy</a>
-            <a href="/terms" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5C4A3A', textDecoration: 'none' }}>Terms</a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#A89990', margin: 0 }}>© 2026 MyCompanionApps</p>
+            <a href="/privacy" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#A89990', textDecoration: 'none', padding: '3px 0' }}>Privacy</a>
+            <a href="/terms" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#A89990', textDecoration: 'none', padding: '3px 0' }}>Terms</a>
           </div>
         </div>
       </footer>

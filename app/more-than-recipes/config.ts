@@ -21,17 +21,18 @@ export const BOOTHS_BANNER = { img: 'main-header', width: 500, height: 100, alt:
 export type BoothVideo = { src: string; poster: string; width: number; height: number }
 
 /**
- * The six booths (the "playbill"), in order. Card images are 600 × 280.
+ * The six booths (the "playbill"), in order. Card images are 600 × 280 — the "-2x2" artwork
+ * (Nov 2026): the question only, no small description, so it reads two across on iPhone.
  * - `href`: the card is a link to that page.
  * - `video`: the card opens that video in a pop-up player.
  * - neither: the card shows but isn't clickable yet (nobody lands on a missing page).
  * Connect a booth later by setting its href or video.
  */
 export const BOOTHS: { id: string; img: string; alt: string; href: string | null; video?: BoothVideo }[] = [
-  { id: 'talk_to_chef_jen', img: 'need-help', alt: 'Need a little help in the kitchen? Talk to Chef Jen for ideas, tips, and solutions.', href: '/cooking-tips' },
-  { id: 'create_a_recipe', img: 'got-recipe', alt: 'Got a recipe idea? Turn it into a recipe with Chef Jen.', href: '/show-me-how' },
-  { id: 'cooking_school', img: 'want-to-cook', alt: 'Want to learn to cook? Build your skills with easy lessons, videos, and tips.', href: '/cooking-school' },
-  { id: 'recipe_vault', img: 'tired-of', alt: 'Tired of losing recipes? Save, find, and organize all your favorites in one place.', href: '/recipe-vault' },
-  { id: 'recipe_box', img: 'ever-lose', alt: 'Ever lose a family recipe? Preserve your recipes and the memories behind them.', href: '/recipe-box' },
-  { id: 'plan_your_meals', img: 'ever-want', alt: 'Ever want to save time and money? Plan your meals, shop smarter, and get more from what you have.', href: '/meal-ideas' },
+  { id: 'talk_to_chef_jen', img: 'need-help-2x2', alt: 'Need a little help in the kitchen? Talk to Chef Jen for ideas, tips, and solutions.', href: '/cooking-tips' },
+  { id: 'create_a_recipe', img: 'got-recipe-2x2', alt: 'Got a recipe idea? Turn it into a recipe with Chef Jen.', href: '/show-me-how' },
+  { id: 'cooking_school', img: 'want-to-cook-2x2', alt: 'Want to learn to cook? Build your skills with easy lessons, videos, and tips.', href: '/cooking-school' },
+  { id: 'recipe_vault', img: 'tired-of-2x2', alt: 'Tired of losing recipes? Save, find, and organize all your favorites in one place.', href: '/recipe-vault' },
+  { id: 'recipe_box', img: 'ever-lose-2x2', alt: 'Ever lose a family recipe? Preserve your recipes and the memories behind them.', href: '/recipe-box' },
+  { id: 'plan_your_meals', img: 'ever-want-2x2', alt: 'Ever want to save time and money? Plan your meals, shop smarter, and get more from what you have.', href: '/meal-ideas' },
 ]
