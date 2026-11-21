@@ -1,27 +1,28 @@
 // The homepage opening (Nov 2026): one static picture — More Than Recipes. Experience the
-// Future of Home Cooking. With Chef Jen. Your AI Cooking Companion. (01-main-web-opening.png)
-// Replaces the rotating Playbill. The same picture on every screen: full width of the page,
-// its own shape (never cropped or stretched), rounded corners. WebP in four sizes so phones
-// load a small file; the browser picks the size it needs.
+// Future of Home Cooking. With Chef Jen. Your AI Cooking Companion. (02-main-opening.png,
+// the taller remake, with larger lettering so it reads on an iPhone). The same picture on
+// every screen: full width of the page, its own shape (never cropped or stretched). The
+// artwork carries its own rounded orange border; the white outside it is made clear so it
+// sits on the page like the cards. WebP in three sizes; the browser picks the one it needs.
 
-const W = 2170
-const H = 725
+const W = 1838
+const H = 856
 
 export default function OpeningImage() {
   return (
     <picture>
       <source
         type="image/webp"
-        srcSet="/myrecipe/opening-800.webp 800w, /myrecipe/opening-1200.webp 1200w, /myrecipe/opening-1600.webp 1600w, /myrecipe/opening-2170.webp 2170w"
+        srcSet="/myrecipe/opening2-800.webp 800w, /myrecipe/opening2-1200.webp 1200w, /myrecipe/opening2-1838.webp 1838w"
         sizes="(min-width: 1180px) 1108px, calc(100vw - 32px)"
       />
       <img
-        src="/myrecipe/opening.jpg"
+        src="/myrecipe/opening2.png"
         alt="More Than Recipes. Experience the Future of Home Cooking. With Chef Jen — Your AI Cooking Companion."
         width={W}
         height={H}
         fetchPriority="high"
-        style={{ display: 'block', width: '100%', height: 'auto', aspectRatio: `${W} / ${H}`, borderRadius: 16, backgroundColor: '#F5F0EA', boxShadow: '0 4px 20px rgba(44,24,16,0.12)', marginBottom: 12 }}
+        style={{ display: 'block', width: '100%', height: 'auto', aspectRatio: `${W} / ${H}`, filter: 'drop-shadow(0 3px 8px rgba(44,24,16,0.14))', marginBottom: 12 }}
       />
     </picture>
   )
