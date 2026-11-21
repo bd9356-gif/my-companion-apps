@@ -140,7 +140,9 @@ export default function MyRecipePage() {
           <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" onClick={() => trackAppStore('Try It Free Nav')} style={{ fontSize: 13, color: '#FFFDF9', backgroundColor: '#C8401A', padding: '8px 16px', borderRadius: 20, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>App Store</a>
         </div>
       </nav>
-      <style>{`@media (max-width: 768px) { .nav-links { display: none !important; } } @media (min-width: 769px) { .mobile-nav { display: none !important; } } .mobile-nav > :first-child { margin-left: auto; } .mobile-nav > :last-child { margin-right: auto; }`}</style>
+      {/* Phone-style two-line menu below 900px (phones and iPads held upright): the one-line
+          menu needs about 850px and crowded the name and App Store button on an iPad. */}
+      <style>{`@media (max-width: 899px) { .nav-links { display: none !important; } } @media (min-width: 900px) { .mobile-nav { display: none !important; } } .mobile-nav > :first-child { margin-left: auto; } .mobile-nav > :last-child { margin-right: auto; }`}</style>
       <div className="mobile-nav" style={{ backgroundColor: '#FFFDF9', borderBottom: '1px solid #E8E0D4', padding: '7px 16px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 24, overflowX: 'auto' }}>
         <a href="/meet-chef-jen" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Meet Chef Jen</a>
         <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }} onClick={() => trackWhatItDoes('What It Does Nav')}>What It Does</a>

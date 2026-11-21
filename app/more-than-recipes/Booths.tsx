@@ -1,7 +1,8 @@
 'use client'
 
 // The six showroom cards (the "playbill"): 1 across on phones so the words stay
-// readable, 2 across from 600px up; with `wide` (the homepage) 3 across from 1000px up. A card with an href is a link; a card with a
+// readable, 2 across from 600px up; with `wide` (the homepage) 3 across from 1000px up on
+// computers (mouse or trackpad). iPads stay two across, upright or sideways; so do phones. A card with an href is a link; a card with a
 // video opens it in a pop-up player; any other card shows but isn't clickable yet.
 
 import { useEffect, useRef, useState } from 'react'
@@ -26,7 +27,9 @@ export default function Booths({ wide = false }: { wide?: boolean }) {
       <style>{`
         .mtr-booths { display: grid; grid-template-columns: 1fr; gap: 8px; }
         @media (min-width: 600px) { .mtr-booths { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
-        @media (min-width: 1000px) { .mtr-booths-wide { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+        @media (min-width: 1000px) and (hover: hover) and (pointer: fine) { .mtr-booths-wide { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+        /* iPad sideways: two across, kept to the opening picture's 840px width so the cards don't overpower it. */
+        @media (min-width: 1000px) and (pointer: coarse) { .mtr-booths-wide { max-width: 840px; margin: 0 auto; gap: 12px; } }
         /* Homepage on iPhone: cards two across (three rows of two), with a softer shadow, so the
            opening picture leads and the cards invite. */
         @media (max-width: 599px) {
