@@ -1,12 +1,12 @@
 import Link from 'next/link'
-import TrackedLink from './TrackedLink'
-import RecipeTips from './RecipeTips'
+import MoreThanRecipesInvite from '../components/MoreThanRecipesInvite'
 
 // Public recipe page — "pickup counter" layout.
 // 1. Deliver the recipe (title, photo, description, quick facts, ingredients, instructions)
 //    with no sales block in the way.
-// 2. Cards: Meet Chef Jen → Facebook group → Recipe Import Tip (RecipeTips)
-// 3. Continue shopping → /recipes            (GA4: recipe_collection_click)
+// 2. One invitation (Nov 2026): More Than Recipes → Explore MyRecipe Companion → /myrecipe
+//    (GA4: myrecipe_homepage_click, more_than_recipes_footer). Replaces the earlier
+//    Meet Chef Jen / Facebook group / Recipe Import Tip cards and the recipe-collection link.
 // The header keeps the small "Get the App" button.
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990'
@@ -131,23 +131,10 @@ export default function RecipePage({ recipe }: { recipe: RecipeData }) {
           )}
         </article>
 
-        {/* Tips: import into a recipe app, join the Facebook group */}
-        <RecipeTips slug={slug} />
-
-        {/* ── SECTION 2: continue shopping ──────────────────────── */}
-        <section style={{ margin: '48px 0 0', textAlign: 'center', padding: '28px 20px', border: '1px solid #F0EBE3', borderRadius: 16, backgroundColor: 'white' }}>
-          <p style={{ fontSize: 20, fontWeight: 700, color: '#2C1810', margin: '0 0 14px', lineHeight: 1.3 }}>
-            Want to see what else Chef Jen is cooking?
-          </p>
-          <TrackedLink
-            href="/recipes"
-            event="recipe_collection_click"
-            params={{ source_recipe_slug: slug }}
-            style={{ display: 'inline-block', fontFamily: sans, fontSize: 15, fontWeight: 700, color: '#C8401A', textDecoration: 'none', border: '2px solid #C8401A', borderRadius: 12, padding: '12px 22px' }}
-          >
-            Explore Chef Jen’s Recipe Collection →
-          </TrackedLink>
-        </section>
+        {/* One invitation: More Than Recipes → MyRecipe Companion */}
+        <div style={{ marginTop: 40 }}>
+          <MoreThanRecipesInvite sourceType="recipe_page" params={{ source_recipe_slug: slug }} />
+        </div>
       </main>
 
       {/* Footer */}
