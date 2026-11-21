@@ -49,9 +49,9 @@ export default function MeetChefJenHeader() {
           trackEvent('meet_chef_jen_click', { source_type: 'myrecipe_header', cta_location: 'header', transport_type: 'beacon' })
           setOpen(true)
         }}
-        style={{ display: 'block', padding: 0, margin: 0, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: "'Dancing Script', 'Brush Script MT', cursive", fontSize: 19, fontWeight: 700, lineHeight: 1.1, color: '#B07A12', whiteSpace: 'nowrap', textAlign: 'left' }}
+        style={{ display: 'block', padding: 0, margin: 0, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: "'Dancing Script', 'Brush Script MT', cursive", fontSize: 26, fontWeight: 700, lineHeight: 1.05, color: '#B07A12', whiteSpace: 'nowrap', textAlign: 'left' }}
       >
-        Meet Chef Jen <span style={{ fontFamily: 'system-ui, sans-serif', fontSize: 11, verticalAlign: '2px' }}>▶</span>
+        Meet Chef Jen <span style={{ fontFamily: 'system-ui, sans-serif', fontSize: 15, verticalAlign: '3px' }}>▶</span>
       </button>
 
       {/* Drawn at the end of the page (a portal): inside the sticky header the pop-up would be
