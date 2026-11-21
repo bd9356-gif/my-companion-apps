@@ -60,7 +60,7 @@ export default function TipPage({ tip }: { tip: TipData }) {
         </div>
         )}
 
-        {/* Next steps: more tips, dinner ideas, the Facebook group, then More Than Recipes */}
+        {/* One invitation: More Than Recipes → MyRecipe Companion */}
         <TipFooter tipTitle={tip.title} />
       </div>
 

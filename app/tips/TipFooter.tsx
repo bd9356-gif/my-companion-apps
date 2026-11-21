@@ -1,53 +1,40 @@
 'use client'
 
-// Footer after a Chef Jen tip: exactly three next steps. "Find Your Next Dinner Idea" goes to the
-// MyRecipe Companion homepage (/myrecipe). Left-aligned, no boxes (same style as the shared-recipe footer).
-// GA4: learn_more_click, myrecipe_homepage_click, chef_jen_group_click.
+// Footer after a Chef Jen tip (Nov 2026): one invitation — More Than Recipes, one button to the
+// MyRecipe Companion product page (same tab). Same wording and design as the shared recipe and
+// tip pages on recipe.mycompanionapps.com. Replaces the earlier three links (more tips, dinner
+// idea, Facebook group).
+// GA4: myrecipe_homepage_click with cta_location more_than_recipes_footer and source_type chef_jen_tip.
 
-import Link from 'next/link'
-import { trackEvent, openFacebookGroup } from '@/lib/community'
+import { trackEvent } from '@/lib/community'
 
-const FACEBOOK_GROUP_SHARE_URL = 'https://www.facebook.com/share/g/19wjF8WYr7/?mibextid=wwXIfr'
-const CHARCOAL = '#292929'
+const MYRECIPE_HOME_URL = '/myrecipe'
 const sans = 'system-ui, sans-serif'
 
-const heading = (color: string): React.CSSProperties => ({ fontFamily: sans, fontSize: 19, fontWeight: 600, lineHeight: 1.35, color, textDecoration: 'underline', textUnderlineOffset: 4 })
-const body: React.CSSProperties = { fontFamily: sans, fontSize: 16, lineHeight: 1.6, color: CHARCOAL, margin: '4px 0 0' }
-
 export default function TipFooter({ tipTitle }: { tipTitle: string }) {
-  const track = (name: string, params: Record<string, string>) =>
-    trackEvent(name, { transport_type: 'beacon', source_page: window.location.pathname, source_type: 'chef_jen_tip', tip_title: tipTitle, ...params })
+  const onClick = () =>
+    trackEvent('myrecipe_homepage_click', {
+      cta_location: 'more_than_recipes_footer',
+      source_type: 'chef_jen_tip',
+      source_page: window.location.pathname,
+      tip_title: tipTitle,
+      destination_url: 'https://mycompanionapps.com/myrecipe',
+      transport_type: 'beacon',
+    })
 
   return (
-    <footer style={{ textAlign: 'left', marginTop: 8 }}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 26 }}>
-        <section>
-          <Link href="/tips" onClick={() => track('learn_more_click', { cta_location: 'tip_footer', destination_url: '/tips' })} style={heading('#5F8A70')}>
-            👩‍🍳 More Chef Jen Kitchen&nbsp;Tips&nbsp;→
-          </Link>
-          <p style={body}>Cooking made easier.</p>
-        </section>
-
-        <section>
-          <Link href="/myrecipe" onClick={() => track('myrecipe_homepage_click', { cta_location: 'tip_footer_dinner_idea' })} style={heading('#557FA3')}>
-            🍽️ Find Your Next Dinner&nbsp;Idea&nbsp;→
-          </Link>
-          <p style={body}>Or get help with any cooking question, just by asking.</p>
-        </section>
-
-        <section>
-          <a
-            href={FACEBOOK_GROUP_SHARE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => { track('chef_jen_group_click', { cta_location: 'tip_footer' }); openFacebookGroup(e) }}
-            style={heading('#262626')}
-          >
-            👥 Join Chef Jen’s Cooking&nbsp;Group&nbsp;→
-          </a>
-          <p style={body}>Join the conversation.</p>
-        </section>
-      </div>
+    <footer style={{ marginTop: 16, paddingTop: 32, borderTop: '1px solid #F0EBE3', textAlign: 'center' }}>
+      <h2 style={{ fontSize: 30, fontWeight: 700, color: '#2C1810', margin: 0, lineHeight: 1.2 }}>More Than Recipes</h2>
+      <p style={{ fontFamily: sans, fontSize: 16, color: '#5C4A3A', lineHeight: 1.6, margin: '8px 0 20px' }}>
+        Experience the future of home cooking with AI Chef&nbsp;Jen.
+      </p>
+      <a
+        href={MYRECIPE_HOME_URL}
+        onClick={onClick}
+        style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: 52, boxSizing: 'border-box', padding: '12px 28px', borderRadius: 14, backgroundColor: '#C8401A', color: '#FFFFFF', textDecoration: 'none', fontFamily: sans, fontSize: 17, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.3)' }}
+      >
+        Explore MyRecipe Companion&nbsp;→
+      </a>
     </footer>
   )
 }
