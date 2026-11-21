@@ -27,10 +27,10 @@ export default function Booths({ wide = false }: { wide?: boolean }) {
         .mtr-booths { display: grid; grid-template-columns: 1fr; gap: 8px; }
         @media (min-width: 600px) { .mtr-booths { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
         @media (min-width: 1000px) { .mtr-booths-wide { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
-        /* Homepage on iPhone: cards at 90% width, centered, with a softer shadow, so the
+        /* Homepage on iPhone: cards two across (three rows of two), with a softer shadow, so the
            opening picture leads and the cards invite. */
         @media (max-width: 599px) {
-          .mtr-booths-wide { width: 90%; margin: 0 auto; }
+          .mtr-booths-wide { grid-template-columns: repeat(2, 1fr); gap: 8px; }
           .mtr-booths-wide img { filter: drop-shadow(0 2px 4px rgba(44,24,16,0.08)) !important; }
         }
         .mtr-choose { font-family: Georgia, serif; font-weight: 600; color: #374151; text-align: center; font-size: 17.5px; line-height: 1.3; margin: 2px 0 8px; }
