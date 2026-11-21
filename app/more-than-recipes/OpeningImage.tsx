@@ -4,17 +4,20 @@
 // every screen: full width of the page, its own shape (never cropped or stretched). The
 // artwork carries its own rounded orange border; the white outside it is made clear so it
 // sits on the page like the cards. WebP in three sizes; the browser picks the one it needs.
+// Desktop (1000px and up): a little narrower (840px, centered) so the picture and both rows
+// of cards fit on a laptop's first screen; phones and iPad portrait use the full width.
 
 const W = 1838
 const H = 856
 
 export default function OpeningImage() {
   return (
-    <picture>
+    <picture className="mr-opening">
+      <style>{`.mr-opening { display: block; } @media (min-width: 1000px) { .mr-opening { max-width: 840px; margin: 0 auto; } }`}</style>
       <source
         type="image/webp"
         srcSet="/myrecipe/opening2-800.webp 800w, /myrecipe/opening2-1200.webp 1200w, /myrecipe/opening2-1838.webp 1838w"
-        sizes="(min-width: 1180px) 1108px, calc(100vw - 32px)"
+        sizes="(min-width: 1000px) 840px, calc(100vw - 32px)"
       />
       <img
         src="/myrecipe/opening2.png"
