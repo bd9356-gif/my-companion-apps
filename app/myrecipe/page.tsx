@@ -107,7 +107,7 @@ export default function MyRecipePage() {
             <img src="/recipe-icon.png" alt="" style={{ width: 32, height: 32, objectFit: 'contain', flexShrink: 0 }} />
           </a>
           {/* The name, with "❤️ Meet Chef Jen ▶" (opens the video right here) beneath it */}
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6 }}>
             <a href="/" style={{ textDecoration: 'none', fontFamily: 'Georgia, serif', fontWeight: 700, fontSize: 15, lineHeight: 1.25, color: '#2C1810', whiteSpace: 'nowrap' }}>
               My<span style={{ color: '#C8401A' }}>Recipe</span> Companion
             </a>
