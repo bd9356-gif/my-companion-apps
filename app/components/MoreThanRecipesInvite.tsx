@@ -2,7 +2,8 @@
 
 // One invitation after a recipe or Chef Jen tip (Nov 2026): what the visitor came for comes
 // first; then one message, one button, one destination — the MyRecipe Companion product page
-// (same tab). Same wording and design as the shared recipe and tip pages on
+// (same tab): the button first (See What MyRecipe Companion Can Do for You →), one supporting
+// line beneath it. Same wording and design as the shared recipe and tip pages on
 // recipe.mycompanionapps.com.
 // GA4: myrecipe_homepage_click with cta_location more_than_recipes_footer, the page type
 // (source_type) and the recipe slug or tip title, so recipe → product and tip → product can be compared.
@@ -24,17 +25,18 @@ export default function MoreThanRecipesInvite({ sourceType, params = {} }: { sou
 
   return (
     <footer style={{ marginTop: 16, paddingTop: 32, borderTop: '1px solid #F0EBE3', textAlign: 'center' }}>
-      <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 30, fontWeight: 700, color: '#2C1810', margin: 0, lineHeight: 1.2 }}>More Than Recipes</h2>
-      <p style={{ fontFamily: sans, fontSize: 16, color: '#5C4A3A', lineHeight: 1.6, margin: '8px 0 20px' }}>
-        Experience the future of home cooking with AI Chef&nbsp;Jen.
-      </p>
+      {/* Button first, then the one supporting line (Nov 2026). The label may wrap to two
+          balanced lines on a phone; "for You →" always stays together. */}
       <a
         href="/myrecipe"
         onClick={onClick}
-        style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: 52, boxSizing: 'border-box', padding: '12px 28px', borderRadius: 14, backgroundColor: '#C8401A', color: '#FFFFFF', textDecoration: 'none', fontFamily: sans, fontSize: 17, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.3)' }}
+        style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', maxWidth: '100%', minHeight: 52, boxSizing: 'border-box', padding: '12px 24px', borderRadius: 14, backgroundColor: '#C8401A', color: '#FFFFFF', textDecoration: 'none', fontFamily: sans, fontSize: 17, lineHeight: 1.35, fontWeight: 700, textWrap: 'balance', boxShadow: '0 4px 14px rgba(200,64,26,0.3)' }}
       >
-        Explore MyRecipe Companion&nbsp;→
+        See What MyRecipe Companion Can Do for&nbsp;You&nbsp;→
       </a>
+      <p style={{ fontFamily: sans, fontSize: 16, color: '#5C4A3A', lineHeight: 1.6, maxWidth: 440, margin: '16px auto 0' }}>
+        Your personal cooking companion. Discover how Chef Jen can help you in the&nbsp;kitchen.
+      </p>
     </footer>
   )
 }
