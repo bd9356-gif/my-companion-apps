@@ -97,7 +97,7 @@ export default function MyRecipePage() {
   const next = () => setActive(i => (i + 1) % SCREENSHOTS.length)
 
   return (
-    <div style={{ backgroundColor: '#FFFDF9', fontFamily: 'Georgia, serif', color: '#2C1810', overflowX: 'hidden' }}>
+    <div style={{ backgroundColor: '#FFFDF9', fontFamily: 'Georgia, serif', color: '#2C1810', overflowX: 'hidden', minHeight: '100svh', display: 'flex', flexDirection: 'column' }}>
 
       {/* NAV */}
       <nav style={{ backgroundColor: 'rgba(255,253,249,0.95)', backdropFilter: 'blur(8px)', borderBottom: '1px solid #E8E0D4', padding: '8px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 50 }}>
@@ -117,22 +117,22 @@ export default function MyRecipePage() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 34 }}>
           <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
             <a href="/meet-chef-jen" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Meet Chef Jen</a>
-            <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }} onClick={() => trackWhatItDoes('What It Does Nav')}>What It Does</a>
+            <a href="#features" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }} onClick={() => trackWhatItDoes('What It Does Nav')}>What It Does</a>
             <a href="/recipes" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Recipes</a>
-            <a href="/tips" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Tips</a>
+        <a href="/tips" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Tips</a>
           </div>
           <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" onClick={() => trackAppStore('Try It Free Nav')} style={{ fontSize: 13, color: '#FFFDF9', backgroundColor: '#C8401A', padding: '8px 16px', borderRadius: 20, textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>App Store</a>
         </div>
       </nav>
+      {/* Phone-style two-line menu below 900px. Its row leaves out Meet Chef Jen and App Store
+          (both are already in the header just above), so the rest fits on one iPhone line. */}
       {/* Phone-style two-line menu below 900px (phones and iPads held upright): the one-line
           menu needs about 850px and crowded the name and App Store button on an iPad. */}
       <style>{`@media (max-width: 899px) { .nav-links { display: none !important; } } @media (min-width: 900px) { .mobile-nav { display: none !important; } } .mobile-nav > :first-child { margin-left: auto; } .mobile-nav > :last-child { margin-right: auto; }`}</style>
-      <div className="mobile-nav" style={{ backgroundColor: '#FFFDF9', borderBottom: '1px solid #E8E0D4', padding: '7px 16px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 20, overflowX: 'auto' }}>
-        <a href="/meet-chef-jen" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Meet Chef Jen</a>
-        <a href="#features" style={{ fontSize: 13, color: '#78716C', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }} onClick={() => trackWhatItDoes('What It Does Nav')}>What It Does</a>
+      <div className="mobile-nav" style={{ backgroundColor: '#FFFDF9', borderBottom: '1px solid #E8E0D4', padding: '7px 16px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 22, overflowX: 'auto' }}>
+        <a href="#features" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }} onClick={() => trackWhatItDoes('What It Does Nav')}>What It Does</a>
         <a href="/recipes" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Recipes</a>
-            <a href="/tips" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Tips</a>
-        <a href="https://apps.apple.com/us/app/myrecipe-ai-cooking-companion/id6772163990" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>App Store</a>
+        <a href="/tips" style={{ fontSize: 13, color: '#C8401A', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontWeight: 600, whiteSpace: 'nowrap' }}>Chef Jen Tips</a>
       </div>
 
       {/* Phones only: tighter opening so the two image doors come up quickly */}
@@ -148,6 +148,22 @@ export default function MyRecipePage() {
       {SHOW_PRESENTATION && (
         <main style={{ maxWidth: 1140, margin: '0 auto', padding: '8px 16px 28px' }}>
           <Show scrollOffset={64} playbill />
+
+          {/* Closing invitation (Nov 2026): for visitors who've seen enough and are ready.
+              Chef Jen on the button; the app's name on the line beneath. GA4: app_store_click. */}
+          <section style={{ textAlign: 'center', padding: '26px 8px 4px' }}>
+            <a
+              href={APP_STORE_URL}
+              onClick={() => trackAppStore('Ready to Try Chef Jen')}
+              style={{ display: 'inline-flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', columnGap: '0.3em', minHeight: 52, boxSizing: 'border-box', padding: '12px 22px', borderRadius: 14, backgroundColor: '#C8401A', color: '#FFFFFF', textDecoration: 'none', fontFamily: 'system-ui, sans-serif', fontSize: 17, fontWeight: 700, boxShadow: '0 4px 14px rgba(200,64,26,0.3)' }}
+            >
+              <span style={{ whiteSpace: 'nowrap' }}>Ready to Try Chef Jen?</span>
+              <span style={{ whiteSpace: 'nowrap' }}>Get the App&nbsp;→</span>
+            </a>
+            <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: 14, color: '#78716C', margin: '10px 0 0' }}>
+              MyRecipe Companion — available on the App&nbsp;Store.
+            </p>
+          </section>
         </main>
       )}
 
@@ -338,7 +354,7 @@ export default function MyRecipePage() {
 
       {/* FOOTER — compact (Nov 2026): quietly closes the page. One line on wide screens;
           two short lines on an iPhone (name, then © · Privacy · Terms). */}
-      <footer style={{ backgroundColor: '#2C1810', padding: '8px 20px' }}>
+      <footer style={{ backgroundColor: '#2C1810', padding: '8px 20px', marginTop: 'auto' }}>
         <div style={{ maxWidth: 1108, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '4px 16px' }}>
           <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}

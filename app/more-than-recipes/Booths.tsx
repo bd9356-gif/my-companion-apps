@@ -36,7 +36,7 @@ export default function Booths({ wide = false }: { wide?: boolean }) {
           .mtr-booths-wide { grid-template-columns: repeat(2, 1fr); gap: 8px; }
           .mtr-booths-wide img { filter: drop-shadow(0 2px 4px rgba(44,24,16,0.08)) !important; }
         }
-        .mtr-choose { font-family: Georgia, serif; font-weight: 600; color: #374151; text-align: center; font-size: 17.5px; line-height: 1.3; margin: 2px 0 8px; }
+        .mtr-choose { font-family: Georgia, serif; font-weight: 600; color: #2C1810; text-align: center; font-size: 17.5px; line-height: 1.3; margin: 2px 0 8px; }
         @media (min-width: 600px) { .mtr-choose { font-size: 20px; margin: 4px 0 10px; } }
       `}</style>
 

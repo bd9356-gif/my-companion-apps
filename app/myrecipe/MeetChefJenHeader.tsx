@@ -26,6 +26,13 @@ export default function MeetChefJenHeader() {
     setOpen(false)
   }
 
+  // The homepage opening picture's "Meet Chef Jen ▶" badge opens this same player.
+  useEffect(() => {
+    const onOpen = () => setOpen(true)
+    window.addEventListener('meet-chef-jen:open', onOpen)
+    return () => window.removeEventListener('meet-chef-jen:open', onOpen)
+  }, [])
+
   useEffect(() => {
     if (!open) return
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') close() }
